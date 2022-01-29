@@ -133,18 +133,18 @@ fn main() {
 
 
     // Ownership
-    let mut name = String::from("Jack");
+    let mut name = String::from("jack");
     name.push_str("hello");
     println!("my name is: {}", name);
 
     let another_str = name.clone();
     println!("my name is: {}", name);
 
-    let ownership_str = String::from("Jack");
+    let ownership_str = String::from("jack");
     take_ownership(ownership_str);
     // print!("{}", ownership_str); value borrowed here after move
 
-    let ownership_str = String::from("Jack");
+    let ownership_str = String::from("jack");
     let (ownership_str_1, length) = calculate_length(ownership_str);
     println!("size of String {} is: {}", ownership_str_1, length);
 
@@ -194,4 +194,19 @@ fn main() {
     let whole = "Hello World";
     let find = first_world(whole);
     println!("first world is: {}", find);
+    let my_whole = String::from("My name is jack");
+    let find = first_world(&my_whole[..]);
+    println!("first world is: {}", find);
+
+
+    // struct
+    struct User {
+        name: String,
+        age: u8,
+    }
+    let jack = User {
+        age: 1,
+        name: String::from("jack"),
+    };
+    println!("age: {}", jack.age);
 }
