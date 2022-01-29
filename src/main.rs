@@ -12,6 +12,25 @@ fn plus_six(x: i32) -> i32 {
     x + 6
 }
 
+fn take_ownership(x: String) {
+    println!("take ownership: {}", x);
+}
+
+fn calculate_length(x: String) -> (String, usize) {
+    let length = x.len();
+    return (x, length);
+}
+
+fn calculate_length_1(x: &String) -> usize {
+    // x.push_str("world"); Cannot borrow immutable local variable `x` as mutable
+    x.len()
+}
+
+fn mut_calculate_length(x: &mut String) -> usize {
+    x.push_str("_mut");
+    x.len()
+}
+
 fn main() {
     // Variables and Mutability
     println!("rust course version is: {}", VERSION);
@@ -34,6 +53,7 @@ fn main() {
     let array_a: [i32; 2] = [1, 2];
     let array_b = [3; 2];
     println!("array value: {}, {}", array_a[0], array_b[0]);
+    println!("array len of array_b is: {}", array_b.len());
 
 
     // Functions
@@ -66,4 +86,82 @@ fn main() {
     // if 是一个表达式
     let final_number = if number < 5 { 1 } else { 2 };
     println!("final number is: {}", final_number);
+
+    let mut counter = 0;
+
+    let result = loop {
+        counter += 1;
+        if counter == 10 {
+            break counter * 2;
+        }
+    };
+
+    println!("The result is {}", result);
+
+    let mut number = 3;
+    while number != 0 {
+        println!("{}!", number);
+        number -= 1;
+    }
+    println!("LIFTOFF!!!");
+
+    for numbers in 1..5 {
+        println!("i32 value is: {}", numbers);
+    }
+    for numbers in (1..5).rev() {
+        println!("i32 value is: {}", numbers);
+    }
+
+    let print_array: [i32; 4] = [1, 2, 3, 4];
+    for i in print_array {
+        println!("i32 value is: {}", i);
+    }
+    for i in print_array.iter() {
+        println!("&i32 value is: {}", i);
+    }
+
+
+    // Ownership
+    let mut name = String::from("Jack");
+    name.push_str("hello");
+    println!("my name is: {}", name);
+
+    let another_str = name.clone();
+    println!("my name is: {}", name);
+
+    let ownership_str = String::from("Jack");
+    take_ownership(ownership_str);
+    // print!("{}", ownership_str); value borrowed here after move
+
+    let ownership_str = String::from("Jack");
+    let (ownership_str_1, length) = calculate_length(ownership_str);
+    println!("size of String {} is: {}", ownership_str_1, length);
+
+
+    // Reference
+    let str = String::from("Hello");
+    let length = calculate_length_1(&str);
+    println!("my str: {}'s length is: {}", str, length);
+
+    // mut reference
+    let mut mut_str: String = String::from("Hello");
+    let length = mut_calculate_length(&mut mut_str);
+    println!("Len of updated mutable variable {} is: {}", mut_str, length);
+
+    let mut mut_str_another = String::from("Hello");
+    let s1 = &mut mut_str_another;
+    // let s2 = &mut mut_str_another; cannot borrow `mut_str_another` as mutable more than once at a time
+    // println!("{}{}", s1, s2);
+
+    let a: char = 'a';
+    let b: char = 'a';
+    let c: bool = a == b;
+    println!("{}", c);
+
+    // string slice
+    let str_slice = String::from("Hello World");
+    let hello: &str = &str_slice[..5];
+    let world: &str = &str_slice[6..];
+    let whole: &str = &str_slice[..];
+    println!("{},{},{}", hello, world, whole);
 }
