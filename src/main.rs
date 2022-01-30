@@ -281,4 +281,96 @@ fn main() {
 
 
     // 枚举与模式匹配
+    enum IpAddKind {
+        V4,
+        V6,
+    }
+
+    let ipv4 = IpAddKind::V4;
+    let ipv6 = IpAddKind::V6;
+    let myv4 = IpAddKind::V4;
+    // an implementation of `PartialEq<_>` might be missing for `IpAddKind`
+    // let is_equal = ipv4 == myv4;
+    // println!("is equal: {}", is_equal);
+
+    fn route(ip_kind: IpAddKind) {}
+    route(ipv4);
+    route(ipv6);
+
+    struct IpAddress {
+        kind: IpAddKind,
+        address: String,
+    }
+
+    enum IpAddressKind {
+        V4(u8, u8, u8, u8),
+        V6(String),
+    }
+
+    // todo: 下面这个值如何参与运算呢 ?
+    let home = IpAddressKind::V4(127, 0, 0, 1);
+
+
+    // option 枚举 (位于预导入模块重 prelude)
+    // Rust 中没有 NULL
+    let some_number = Some(5);
+    let some_string = Some("A String");
+    let absent_number: Option<i32> = None;
+
+
+    // match 关键字
+    // 允许一个值与一系列模式进行匹配, 模式
+    #[derive(Debug)]
+    enum China {
+        Shanghai,
+        Beijing,
+    }
+
+    enum Coin {
+        Penny,
+        Nickel,
+        Dime,
+        Quarter,
+        RMB(China),
+    }
+
+    fn value_in_cents(coin: Coin) -> u8 {
+        match coin {
+            Coin::Penny => {
+                println!("Coin::Penny has been called");
+                return 1;
+            }
+            Coin::Nickel => 5,
+            Coin::Dime => 10,
+            Coin::RMB(state) => {
+                println!("State quarter from : {:?}", state);
+                return 25;
+            }
+            _ => 15
+        }
+    }
+
+    let my_coin = Coin::RMB(China::Beijing);
+    let result = value_in_cents(my_coin);
+    println!("The value of Coin::Penny is: {}", result);
+
+    // Rust 的 match 匹配，必须穷举所有的可能性
+    fn plus_one(x: Option<i32>) -> Option<i32> {
+        match x {
+            None => None,
+            Some(i) => Some(i + 1)
+        }
+    }
+
+    let v: u8 = 0u8;
+    let matched_value = match v {
+        0 => 1,
+        1 => 2,
+        2 => 3,
+        _ => 100,
+    };
+    println!("matched value: {}", matched_value);
+
+
+    // 模式与模式匹配 if let
 }
