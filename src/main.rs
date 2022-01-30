@@ -373,4 +373,43 @@ fn main() {
 
 
     // 模式与模式匹配 if let
+    // if let 只关心一种匹配，而忽略其他匹配的情况，可以看做是 match 的语法糖
+    let v = Some(0);
+    match v {
+        Some(3) => println!("match three"),
+        _ => println!("match others"),
+    }
+
+    // if let 只关心一种匹配，而忽略其他匹配的情况，可以看做是 match 的语法糖
+    if let Some(3) = v {
+        println!("if let three")
+    } else {
+        println!("if let others")
+    }
+
+    let v = China::Beijing;
+    // todo: 也许可以通过这种方式，对枚举值进行判断
+    // todo: 虽然作为 match 的语法糖，但是用处了条件语句的感觉
+    if let China::Shanghai = v {
+        println!("if let China::Beijing");
+    } else {
+        println!("if let China::else Shanghai");
+    }
+
+    // 试试看非内置类型的情况
+    enum HighContrast {
+        White,
+        Black,
+    }
+
+    let hcb = HighContrast::White;
+    // todo: 需要特别注意的是: HighContrast::Black = hcb 不能倒过来写
+    if let HighContrast::Black = hcb {
+        println!("This is hcb");
+    } else {
+        println!("This is else hcw");
+    }
+
+    let num = 1;
+    if num == 1 { println!("1") } else { print!("2"); }
 }
