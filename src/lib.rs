@@ -20,6 +20,13 @@ mod back_of_house {
         seasonal_fruit: String,
     }
 
+    // pub enum
+    // 公共枚举里面的所有变体都是公共的
+    pub enum Appetizer {
+        Soup,
+        Salad,
+    }
+
     impl Breakfast {
         pub fn summer(toast: &str) -> Breakfast {
             return Breakfast {
