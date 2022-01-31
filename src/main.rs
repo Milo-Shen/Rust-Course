@@ -1,3 +1,7 @@
+use std::collections::HashMap;
+use std::fmt::Result;
+use std::io::Result as IoResult;
+
 const VERSION: &str = "1.0.0";
 
 fn another_function(x: i32) {
@@ -416,4 +420,10 @@ fn main() {
 
     let num = 1;
     if num == 1 { println!("1") } else { print!("2"); }
+
+    // struct, enum，其他: 指定完整的路径 （ 指定到本身 ）
+    let mut map = HashMap::new();
+    map.insert(1, 2);
+
+    // 使用 as 关键字
 }
