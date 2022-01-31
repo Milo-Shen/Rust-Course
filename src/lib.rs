@@ -41,7 +41,9 @@ mod back_of_house {
     }
 }
 
-use crate::front_of_house::hosting;
+// 使用 pub use 以便让导入的代码可以被外部访问
+// 默认 use 导入的代码对当前文件是 private 的
+pub use crate::front_of_house::hosting;
 
 // 下面是使用相对路径引入
 // use front_of_house::hosting;
