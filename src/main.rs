@@ -214,7 +214,7 @@ fn main() {
         name: String,
         age: u8,
     }
-    let jack = User {
+    let mut jack: User = User {
         age: 1,
         name: String::from("jack"),
     };
@@ -222,6 +222,10 @@ fn main() {
         name: String::from("Mary"),
         ..jack
     };
+    println!("name: {}, {}", jack.name, marry.name);
+
+    // update the value of struct User for jack variable
+    jack.name = String::from("Jack Upgrade");
     println!("name: {}, {}", jack.name, marry.name);
 
     // tuple struct
