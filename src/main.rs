@@ -5,6 +5,10 @@ use std::io::Result as IoResult;
 // use 的简写形式
 use std::io::{self, Write};
 
+mod front_of_house;
+
+use front_of_house::hosting;
+
 // 引入包内所有的内容
 // use std::collections::*;
 
@@ -431,5 +435,6 @@ fn main() {
     let mut map = HashMap::new();
     map.insert(1, 2);
 
-    // 使用 as 关键字
+    // 使用 module 下的函数
+    hosting::print_house();
 }

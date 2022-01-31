@@ -1,21 +1,4 @@
-fn serve_order() {}
-
-mod front_of_house {
-    pub mod hosting {
-        pub fn add_to_wait_list() {
-            println!("add to wait list successfully");
-        }
-
-        fn private_function() {
-            println!("This is a private function");
-        }
-    }
-
-    fn fix_order() {
-        super::serve_order();
-        crate::serve_order();
-    }
-}
+mod front_of_house;
 
 mod back_of_house {
     // pub 放在 struct 前, struct 是公共的，而 struct 的字段默认是私有的
