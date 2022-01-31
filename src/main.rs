@@ -2,6 +2,12 @@ use std::collections::HashMap;
 use std::fmt::Result;
 use std::io::Result as IoResult;
 
+// use 的简写形式
+use std::io::{self, Write};
+
+// 引入包内所有的内容
+// use std::collections::*;
+
 const VERSION: &str = "1.0.0";
 
 fn another_function(x: i32) {
