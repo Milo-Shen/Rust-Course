@@ -7,8 +7,6 @@ use std::io::{self, Write};
 
 mod front_of_house;
 
-mod vector;
-
 // 引入包内所有的内容
 // use std::collections::*;
 
@@ -62,6 +60,9 @@ fn print_type_of<T>(_: &T) {
     println!("{}", std::any::type_name::<T>())
 }
 
+// mod tree
+mod hashmap;
+
 fn main() {
     // Variables and Mutability
     println!("rust course version is: {}", VERSION);
@@ -83,6 +84,7 @@ fn main() {
     println!("my tuple is: {}, {}", _a, _b);
     let array_a: [i32; 2] = [1, 2];
     let array_b = [3; 2];
+    let mut array_c = [1, 2];
     println!("array value: {}, {}", array_a[0], array_b[0]);
     println!("array len of array_b is: {}", array_b.len());
 
@@ -437,4 +439,7 @@ fn main() {
 
     // 使用 module 下的函数
     front_of_house::hosting::print_house();
+
+    // hashmap 章节
+    hashmap::learning_hashmap();
 }
