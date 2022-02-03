@@ -1,7 +1,7 @@
 use std::collections::HashMap;
 
 pub fn learning_hashmap() {
-    println!("Start to learning hashmap");
+    println!("Start to learn hashmap");
 
     // 创建 HashMap
     let mut scores: HashMap<String, i32> = HashMap::new();
