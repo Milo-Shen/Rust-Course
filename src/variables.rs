@@ -10,9 +10,14 @@ pub fn learning_variables() {
     let a: i32 = 10;
     let address = & a as * const i32 as usize;
     println!("a address is :0x{}", address);
+
+    // b address is :0x140701963303796
     let mut b: i32 = 5;
     let address = & b as * const i32 as usize;
     println!("b address is :0x{}", address);
+
+    // b address is :0x140701963303796
+    // rust don't update the address of variable b if we use mut syntax
     b = 50;
     let address = & b as * const i32 as usize;
     println!("b address is :0x{}", address);
