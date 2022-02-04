@@ -10,16 +10,6 @@ mod front_of_house;
 // 引入包内所有的内容
 // use std::collections::*;
 
-fn calculate_length_1(x: &String) -> usize {
-    // x.push_str("world"); Cannot borrow immutable local variable `x` as mutable
-    x.len()
-}
-
-fn mut_calculate_length(x: &mut String) -> usize {
-    x.push_str("_mut");
-    x.len()
-}
-
 fn first_world(x: &str) -> &str {
     // todo: &[u8] 是什么 ?
     let _bytes = x.as_bytes();
@@ -40,6 +30,7 @@ mod variables;
 mod functions;
 mod control_flow;
 mod ownership;
+mod reference;
 mod hashmap;
 
 fn main() {
@@ -56,24 +47,7 @@ fn main() {
     ownership::learning_ownership();
 
     // Reference
-    let str = String::from("Hello");
-    let length = calculate_length_1(&str);
-    println!("my str: {}'s length is: {}", str, length);
-
-    // mut reference
-    let mut mut_str: String = String::from("Hello");
-    let length = mut_calculate_length(&mut mut_str);
-    println!("Len of updated mutable variable {} is: {}", mut_str, length);
-
-    let mut mut_str_another = String::from("Hello");
-    let s1 = &mut mut_str_another;
-    // let s2 = &mut mut_str_another; cannot borrow `mut_str_another` as mutable more than once at a time
-    // println!("{}{}", s1, s2);
-
-    let a: char = 'a';
-    let b: char = 'a';
-    let c: bool = a == b;
-    println!("{}", c);
+    reference::learning_reference();
 
     // string slice
     let str_slice = String::from("Hello World");
