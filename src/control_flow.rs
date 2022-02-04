@@ -1,4 +1,4 @@
-pub fn control_flow() {
+pub fn learning_control_flow() {
     println!("Start to learn control flow");
 
     let number: i32 = 3;

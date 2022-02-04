@@ -10,15 +10,6 @@ mod front_of_house;
 // 引入包内所有的内容
 // use std::collections::*;
 
-fn take_ownership(x: String) {
-    println!("take ownership: {}", x);
-}
-
-fn calculate_length(x: String) -> (String, usize) {
-    let length = x.len();
-    return (x, length);
-}
-
 fn calculate_length_1(x: &String) -> usize {
     // x.push_str("world"); Cannot borrow immutable local variable `x` as mutable
     x.len()
@@ -48,6 +39,7 @@ fn print_type_of<T>(_: &T) {
 mod variables;
 mod functions;
 mod control_flow;
+mod ownership;
 mod hashmap;
 
 fn main() {
@@ -58,24 +50,10 @@ fn main() {
     functions::learning_functions();
 
     // Control Flow
-    control_flow::control_flow();
+    control_flow::learning_control_flow();
 
     // Ownership
-    let mut name = String::from("jack");
-    name.push_str("hello");
-    println!("my name is: {}", name);
-
-    let another_str = name.clone();
-    println!("my name is: {}", name);
-
-    let ownership_str = String::from("jack");
-    take_ownership(ownership_str);
-    // print!("{}", ownership_str); value borrowed here after move
-
-    let ownership_str = String::from("jack");
-    let (ownership_str_1, length) = calculate_length(ownership_str);
-    println!("size of String {} is: {}", ownership_str_1, length);
-
+    ownership::learning_ownership();
 
     // Reference
     let str = String::from("Hello");
