@@ -18,6 +18,7 @@ mod ownership;
 mod reference;
 mod slices;
 mod structs;
+mod enums;
 mod hashmap;
 
 fn main() {
@@ -42,43 +43,8 @@ fn main() {
     // Struct
     structs::learning_struct();
 
-    // 枚举与模式匹配
-    enum IpAddKind {
-        V4,
-        V6,
-    }
-
-    let ipv4 = IpAddKind::V4;
-    let ipv6 = IpAddKind::V6;
-    let myv4 = IpAddKind::V4;
-    // an implementation of `PartialEq<_>` might be missing for `IpAddKind`
-    // let is_equal = ipv4 == myv4;
-    // println!("is equal: {}", is_equal);
-
-    fn route(ip_kind: IpAddKind) {}
-    route(ipv4);
-    route(ipv6);
-
-    struct IpAddress {
-        kind: IpAddKind,
-        address: String,
-    }
-
-    enum IpAddressKind {
-        V4(u8, u8, u8, u8),
-        V6(String),
-    }
-
-    // todo: 下面这个值如何参与运算呢 ?
-    let home = IpAddressKind::V4(127, 0, 0, 1);
-
-
-    // option 枚举 (位于预导入模块重 prelude)
-    // Rust 中没有 NULL
-    let some_number = Some(5);
-    let some_string = Some("A String");
-    let absent_number: Option<i32> = None;
-
+    // Enum & Pattern matching
+    enums::learning_enums();
 
     // match 关键字
     // 允许一个值与一系列模式进行匹配, 模式
