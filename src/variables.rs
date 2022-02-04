@@ -1,3 +1,5 @@
+const VERSION: &str = "1.0.0";
+
 pub fn learning_variables() {
     // Variables and Mutability
     println!("Start to learn variables and mutability");

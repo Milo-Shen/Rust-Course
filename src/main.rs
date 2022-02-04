@@ -10,20 +10,6 @@ mod front_of_house;
 // 引入包内所有的内容
 // use std::collections::*;
 
-const VERSION: &str = "1.0.0";
-
-fn another_function(x: i32) {
-    println!("The value of x is: {}", x);
-}
-
-fn plus_five(x: i32) -> i32 {
-    return x + 5;
-}
-
-fn plus_six(x: i32) -> i32 {
-    x + 6
-}
-
 fn take_ownership(x: String) {
     println!("take ownership: {}", x);
 }
@@ -54,14 +40,13 @@ fn first_world(x: &str) -> &str {
     return &x[..];
 }
 
-fn empty_function() {}
-
 fn print_type_of<T>(_: &T) {
     println!("{}", std::any::type_name::<T>())
 }
 
 // mod tree
 mod variables;
+mod functions;
 mod hashmap;
 
 fn main() {
@@ -69,25 +54,7 @@ fn main() {
     variables::learning_variables();
 
     // Functions
-    another_function(10086);
-    let mut total: i32 = 0;
-    total = plus_five(total);
-    println!("The total value is: {}", total);
-    total = plus_six(total);
-    println!("The total value is: {}", total);
-
-    let y = {
-        let x = 3;
-        // 此处 x + 1 后不可加分号，加分号的话返回值为 Tuple
-        x + 1
-    };
-
-    println!("The value of y is: {}", y);
-
-    // Empty Functions
-    // todo: The return value of empty function is ();
-    let empty_result = empty_function();
-
+    functions::learning_functions();
 
     // Control Flow
     let number: i32 = 3;
