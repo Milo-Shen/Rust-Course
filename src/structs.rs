@@ -23,8 +23,12 @@ pub fn learning_struct() {
     struct Color(i32, i32, i32);
     struct Point(f32, f32, f64);
     let black: Color = Color(0, 0, 0);
+    let yellow: Color = Color(1, 1, 1);
     let point: Point = Point(1.0, 1.0, 1.0);
-    println!("{}, {}", black.0, point.0);
+
+    // an implementation of `PartialEq<_>` might be missing for `Color`an implementation of `PartialEq<_>` might be missing for `Color`
+    // let is_equal = black == yellow;
+    // println!("black.0: {}, point.0: {}, isEqual: {}", black.0, point.0, is_equal);
 
     // Unit-Like Struct
     struct UnitLikeStruct {}
