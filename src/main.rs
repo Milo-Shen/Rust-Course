@@ -24,6 +24,7 @@ mod hashmap;
 mod string;
 mod vector;
 mod panic;
+mod result;
 
 fn main() {
     // Variables and Mutability
@@ -68,4 +69,7 @@ fn main() {
 
     // panic
     panic::learning_panic();
+
+    // result
+    result::learning_result();
 }

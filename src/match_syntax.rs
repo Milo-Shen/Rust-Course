@@ -45,11 +45,12 @@ pub fn learning_match() {
         }
     }
 
-    let v: u8 = 0u8;
+    let v: u8 = 10u8;
     let matched_value = match v {
         0 => 1,
         1 => 2,
         2 => 3,
+        // 此处的 _ 可以改成任意字符，譬如 other
         _ => 100,
     };
     println!("matched value: {}", matched_value);
