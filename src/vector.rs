@@ -35,6 +35,7 @@ pub fn learning_vector() {
 
     // traverse the vector - immutable
     let v = vec![100, 32, 57];
+    // 此处若是使用 v 而不是 &v 的话，这里的 in 后面的 v 就会获得所有权，在循环之后的代码将无法使用 v
     for i in &v {
         println!("the value is: {}", i);
     }
