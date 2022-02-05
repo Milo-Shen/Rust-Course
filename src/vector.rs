@@ -60,4 +60,9 @@ pub fn learning_vector() {
         SpreadSheetCell::Float(2.0),
         SpreadSheetCell::Text("Text SpreadSheetCell".to_string()),
     ];
+
+    let first_enum_element = &row[0];
+    if let SpreadSheetCell::Int(value) = first_enum_element {
+        println!("if let match SpreadSheetCell::Int, value is: {}", value);
+    }
 }
