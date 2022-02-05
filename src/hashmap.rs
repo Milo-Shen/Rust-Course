@@ -1,3 +1,4 @@
+// struct, enum，其他: 指定完整的路径 （ 指定到本身 ）
 use std::collections::HashMap;
 
 pub fn learning_hashmap() {
