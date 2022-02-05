@@ -29,6 +29,9 @@ pub fn learning_enums() {
 
     // todo: 下面这个值如何参与运算呢 ?
     let home = IpAddressKind::V4(127, 0, 0, 1);
+    let home_another = IpAddressKind::V4(127, 0, 0, 2);
+    // error[E0369]: binary operation `==` cannot be applied to type `IpAddressKind`
+    // let is_equal = home == home_another;
 
     // option 枚举 (位于预导入模块重 prelude)
     // Rust 中没有 NULL
