@@ -23,6 +23,7 @@ mod match_syntax;
 mod hashmap;
 mod string;
 mod vector;
+mod panic;
 
 fn main() {
     // Variables and Mutability
@@ -56,12 +57,15 @@ fn main() {
     // 使用 module 下的函数
     front_of_house::hosting::print_house();
 
-    // hashmap 章节
-    hashmap::learning_hashmap();
-
     // vector
     vector::learning_vector();
 
     // string
     string::learning_string();
+
+    // hashmap 章节
+    hashmap::learning_hashmap();
+
+    // panic
+    panic::learning_panic();
 }
