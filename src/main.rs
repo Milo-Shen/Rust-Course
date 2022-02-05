@@ -25,6 +25,7 @@ mod string;
 mod vector;
 mod panic;
 mod result;
+mod eliminate_duplicate_code;
 
 fn main() {
     // Variables and Mutability
@@ -72,4 +73,7 @@ fn main() {
 
     // result
     result::learning_result();
+
+    // eliminate duplicated code
+    eliminate_duplicate_code::learning_eliminate();
 }
