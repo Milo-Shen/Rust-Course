@@ -21,6 +21,7 @@ mod structs;
 mod enums;
 mod match_syntax;
 mod hashmap;
+mod vector;
 
 fn main() {
     // Variables and Mutability
@@ -56,4 +57,7 @@ fn main() {
 
     // hashmap 章节
     hashmap::learning_hashmap();
+
+    // vector
+    vector::learning_vector();
 }
