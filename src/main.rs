@@ -26,6 +26,7 @@ mod vector;
 mod panic;
 mod result;
 mod eliminate_duplicate_code;
+mod generics;
 
 fn main() {
     // Variables and Mutability
@@ -76,4 +77,7 @@ fn main() {
 
     // eliminate duplicated code
     eliminate_duplicate_code::learning_eliminate();
+
+    // generics
+    generics::learning_generics();
 }
