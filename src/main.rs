@@ -21,6 +21,7 @@ mod structs;
 mod enums;
 mod match_syntax;
 mod hashmap;
+mod string;
 mod vector;
 
 fn main() {
@@ -60,4 +61,7 @@ fn main() {
 
     // vector
     vector::learning_vector();
+
+    // string
+    string::learning_string();
 }
