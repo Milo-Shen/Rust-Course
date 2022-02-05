@@ -1,5 +1,7 @@
+use std::error::Error;
 use std::fs::File;
 use std::io::{self, ErrorKind, Read};
+use std::slice::RSplit;
 
 pub fn learning_result() {
     println!("Start to learn Result");
@@ -69,7 +71,10 @@ pub fn learning_result() {
     let username = read_username_from_file().unwrap();
     println!("The username from file is: {}", username);
 
-    // use ? syntax to spread error
+    // use ? syntax to spread error ( only used Result )
+    // ？运算符是传播错误的一种快捷方式，只能用于返回 Result 的函数：
+    // 1. 如果 Result 的值是 Ok, Ok 中的值就是表达式的结果，然后继续执行程序
+    // 2. 如果 Result 的值是 Err, Err 就是整个函数的返回值，就像是使用了 return
     fn read_username_from_file_question_mark() -> Result<String, io::Error> {
         // 此处使用 mut file 是因为 read_to_string 的签名为:
         // fn read_to_string(&mut self, buf: &mut String) -> io::Result<usize>
@@ -81,4 +86,26 @@ pub fn learning_result() {
 
     let username = read_username_from_file_question_mark().unwrap();
     println!("The username from file is: {}", username);
+
+    // ? 与 from 函数
+    // Trait std:convert:From 上的 from 函数，被 ? 所应用的错误，会隐式得被 from 函数处理
+    // 他所接收的错误类型会被转化为当前函数返回类型所定义的错误类型
+    // 用途: 针对不同的错误原因，返回同一种错误类型 (只要每个错误类型实现了转化为所返回错误类型的 from 函数)
+
+    // use chain method
+    fn read_username_from_file_chain_method() -> Result<String, io::Error> {
+        let mut s = String::new();
+        File::open("./assets/hello.txt")?.read_to_string(&mut s)?;
+        return Ok(s);
+    }
+    let username = read_username_from_file_chain_method().unwrap();
+    println!("The username from file is: {}", username);
+
+    // ? can only be used for functions that return type Result
+    // ? & main
+
+    // fn main() -> Result<(), Box<dyn Error>> {
+    //     let f = File::open("./assets/hello.txt")?;
+    //     Ok(());
+    // }
 }
