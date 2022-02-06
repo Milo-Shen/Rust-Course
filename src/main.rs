@@ -27,6 +27,7 @@ mod panic;
 mod result;
 mod eliminate_duplicate_code;
 mod generics;
+mod learning_trait;
 
 fn main() {
     // Variables and Mutability
@@ -80,4 +81,7 @@ fn main() {
 
     // generics
     generics::learning_generics();
+
+    // trait
+    learning_trait::learning_trait();
 }
