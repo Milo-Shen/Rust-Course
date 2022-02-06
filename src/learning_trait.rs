@@ -1,3 +1,5 @@
+use std::os::unix::raw::ino_t;
+
 trait Summary {
     fn summarize(&self) -> String;
     fn summarize_author(&self) -> String;
@@ -41,7 +43,7 @@ struct Tweet {
 
 impl Summary for Tweet {
     fn summarize(&self) -> String {
-        return format!("{}: {})", self.username, self.content);
+        return format!("{}: {}", self.username, self.content);
     }
     fn summarize_author(&self) -> String {
         "Milo-Shen".to_string()
@@ -76,4 +78,19 @@ pub fn learning_trait() {
         content: "Demo".to_string(),
     };
     news.print();
+
+    // 将 trait 作为参数 - impl Trait 写法，适用于简单的情况
+    // 该语法也是下面
+    pub fn notify_impl(item: &impl Summary) {
+        println!("Breaking news ! {}", item.summarize());
+    }
+    notify_impl(&tweet);
+    notify_impl(&news);
+
+    // Trait bound 语法，可用于复杂的情况
+    pub fn notify_bound<T: Summary>(item: &T) {
+        println!("Breaking news ! {}", item.summarize());
+    }
+    notify_bound(&tweet);
+    notify_bound(&news);
 }
