@@ -1,4 +1,5 @@
-use std::os::unix::raw::ino_t;
+use std::fmt::{Display, Debug};
+use std::clone::Clone;
 
 trait Summary {
     fn summarize(&self) -> String;
@@ -93,4 +94,124 @@ pub fn learning_trait() {
     }
     notify_bound(&tweet);
     notify_bound(&news);
+
+    // 使用 + 指定多个 Trait bound
+    pub fn notify_impl_display(item: &(impl Summary + Display)) {
+        println!("Breaking news ! {}", item.summarize());
+    }
+
+    pub fn notify_bound_display<T: Summary + Display>(item: &T) {
+        println!("Breaking news ! {}", item.summarize());
+    }
+
+    // Trait bound 使用 where 子句
+    // 未使用 where 子句
+    pub fn notify_bound_without_where<T: Summary + Display, U: Clone + Debug>(a: T, b: U) -> String {
+        return format!("Breaking news ! {}", a.summarize());
+    }
+    // 使用 where 子句 - 可以在方法签名的后面指定 where 子句
+    pub fn notify_bound_with_where<T, U>(a: T, b: U) -> String
+        where
+            T: Summary + Display,
+            U: Clone + Debug {
+        return format!("Breaking news ! {}", a.summarize());
+    }
+
+    // 实现 Trait 作为返回类型 - 使用 impl 的方式
+    // 使用 impl Trait 只能返回确定的同一种类型，返回可能不同类型的代码会报错
+    pub fn return_trait_impl() -> impl Summary {
+        return NewsArticle {
+            headline: "Shanghai News".to_string(),
+            location: "China".to_string(),
+            author: "Milo-Shen".to_string(),
+            content: "Demo".to_string(),
+        };
+    }
+    let return_impl_result = return_trait_impl();
+    return_impl_result.summarize();
+
+    // 实现 Trait 作为返回类型 - 使用 bound 的方式
+    // todo: 这里研究一下 ist.iter() 的用法
+    fn largest<T: PartialOrd + Copy>(list: &[T]) -> T {
+        let mut largest = list[0];
+        for item in list {
+            if *item > largest {
+                largest = *item;
+            }
+        }
+        return largest;
+    }
+    let vector = vec![1, 2, 3];
+    let largest = largest(&vector);
+    println!("The largest value is: {}", largest);
+
+    fn largest_string_1<T: PartialOrd + Clone>(list: &[T]) -> T {
+        let mut largest = list[0].clone();
+        for item in list {
+            if *item > largest {
+                largest = (*item).clone();
+            }
+        }
+        return largest;
+    }
+    let vector = vec![String::from("a"), String::from("b")];
+    let largest = largest_string_1(&vector);
+    println!("The largest value is: {}", largest);
+
+    fn largest_string_2<T: PartialOrd + Clone>(list: &[T]) -> &T {
+        let mut largest = &list[0];
+        for item in list {
+            // todo: 判断 (*item) > (*largest) 与 item > largest 的异同
+            if (*item) > (*largest) {
+                largest = item;
+            }
+        }
+        return largest;
+    }
+    let vector = vec![String::from("a"), String::from("b")];
+    let largest = largest_string_2(&vector);
+    println!("The largest value is: {}", largest);
+
+    let a = 2;
+    let b = &a;
+    let c = 3;
+    let d = a * c;
+    println!("The result is: {}", d);
+
+    // 使用 Trait bound 有条件的实现方法
+    // 在使用泛型类型参数的 impl 块上使用 Trait bound，我们可以有条件得为实现了特定 Trait 的类型来实现方法
+    struct Pair<T> {
+        x: T,
+        y: T,
+    }
+
+    impl<T> Pair<T> {
+        fn new(x: T, y: T) -> Self {
+            Self { x, y }
+        }
+    }
+
+    impl<T: Display + PartialOrd> Pair<T> {
+        fn cmp_display(&self) {
+            if self.x >= self.y {
+                println!("The largest number is x = {}", self.x);
+            } else {
+                println!("The largest number is y = {}", self.y);
+            }
+        }
+    }
+
+    let num_pair = Pair { x: 1, y: 1 };
+    num_pair.cmp_display();
+
+    // 也可以为实现了其他 Trait 的任意类型有条件的实现某个 Trait
+    // 为满足 Trait Bound 的所有类型上实现 Trait 叫做覆盖实现 ( blanket implementations )
+    trait ToString {
+        fn to_string(&self) -> String;
+    }
+    impl<T: Display> ToString for T {
+        fn to_string(&self) -> String {
+            todo!("to implement to_String method")
+        }
+    }
 }

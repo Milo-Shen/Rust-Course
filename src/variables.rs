@@ -5,23 +5,23 @@ pub fn learning_variables() {
     println!("Start to learn variables and mutability");
     // a address is :0x140701963303620
     let a: i32 = 5;
-    let address = & a as * const i32 as usize;
+    let address = &a as *const i32 as usize;
     println!("a address is :0x{}", address);
 
     // a address is :0x140701963303708
     let a: i32 = 10;
-    let address = & a as * const i32 as usize;
+    let address = &a as *const i32 as usize;
     println!("a address is :0x{}", address);
 
     // b address is :0x140701963303796
     let mut b: i32 = 5;
-    let address = & b as * const i32 as usize;
+    let address = &b as *const i32 as usize;
     println!("b address is :0x{}", address);
 
     // b address is :0x140701963303796
     // rust don't update the address of variable b if we use mut syntax
     b = 50;
-    let address = & b as * const i32 as usize;
+    let address = &b as *const i32 as usize;
     println!("b address is :0x{}", address);
     let tuple: (i32, f64) = (1, 2.0);
     println!("my tuple is: {}, {}", tuple.0, tuple.1);
