@@ -28,6 +28,7 @@ mod result;
 mod eliminate_duplicate_code;
 mod generics;
 mod learning_trait;
+mod lifecycle_1;
 
 fn main() {
     // Variables and Mutability
@@ -84,4 +85,7 @@ fn main() {
 
     // trait
     learning_trait::learning_trait();
+
+    // lifecycle
+    lifecycle_1::learning_lifecycle();
 }
