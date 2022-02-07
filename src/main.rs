@@ -32,6 +32,7 @@ mod lifecycle_1;
 mod lifecycle_2;
 mod lifecycle_3;
 mod lifecycle_4;
+mod learning_test;
 
 fn main() {
     // Variables and Mutability
@@ -94,4 +95,7 @@ fn main() {
     lifecycle_2::learning_lifecycle();
     lifecycle_3::learning_lifecycle();
     lifecycle_4::learning_lifecycle();
+
+    // test
+    learning_test::learning_tests();
 }
