@@ -81,7 +81,7 @@ pub fn learning_lifecycle() {
         fn first_world_rule_2<'a>(s: &'a str) -> &'a str;
 
         // 第二个例子
-        fn longest(x: &str, y: &str) -> &str;
+        // fn longest(x: &str, y: &str) -> &str;
         // 应用第 1 条规则，因为有 2 个输入生命周期且没有 self，所以应用完 3 条规则之后仍旧
         // 无法计算出签名中所有引用的生命周期，所以 Rust 会报错: error[E0106]: missing lifetime specifier
         // fn longest_rule_1<'a, 'b>(x: &'a str, y: &'b str) -> &str;

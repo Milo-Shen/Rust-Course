@@ -31,6 +31,7 @@ mod learning_trait;
 mod lifecycle_1;
 mod lifecycle_2;
 mod lifecycle_3;
+mod lifecycle_4;
 
 fn main() {
     // Variables and Mutability
@@ -92,4 +93,5 @@ fn main() {
     lifecycle_1::learning_lifecycle();
     lifecycle_2::learning_lifecycle();
     lifecycle_3::learning_lifecycle();
+    lifecycle_4::learning_lifecycle();
 }
