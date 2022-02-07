@@ -70,3 +70,23 @@ fn it_adds_two() {
     assert_eq!(add_two(2), 4);
     assert_ne!(add_three(2), 6);
 }
+
+// 添加自定义的错误信息
+// 可以向 assert!、assert_eq!、assert_ne! 添加可选的自定义消息
+//  - 这些自定义消息和失败消息都会被打印出来
+//  - assert! : 第一个参数必填，自定义参数作为第二个参数
+//  - assert_eq! 和 assert_ne! : 前两个参数必填，自定义消息作为第三个参数
+//  - 自定义消息参数会被传递给 format! 宏，可以使用 {} 占位符
+fn greeting(name: &str) -> String {
+    return format!("Hello {} !", name);
+}
+
+#[test]
+fn greeting_contains_name() {
+    let result = greeting("carol");
+    assert!(
+        result.contains("carol"),
+        "自定义信息: 找不到 carol，值是: {}",
+        result
+    );
+}
