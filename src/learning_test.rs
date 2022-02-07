@@ -51,3 +51,22 @@ fn larger_can_hold_smaller() {
     };
     assert!(larger.can_hold(&smaller));
 }
+
+// 使用 assert_eq! 和 assert_ne! 测试相等性
+// 都来自标准库，分别用于判断两个参数是否 (assert_eq!)相等 或 (assert_ne!)不等
+// 上述两个宏内部使用的就是 -- 和 != 运算符
+// 当断言失败时：自动打印出两个参数的值
+//  - 使用 debug 格式打印参数
+//     要求参数实现了 PartialEq 和 Debug Traits ( 所有的基本类型和标准库里大部分类型都实现了 )
+
+fn add_two(a: i32) -> i32 { a + 2 }
+
+fn add_three(a: i32) -> i32 { a + 3 }
+
+#[test]
+fn it_adds_two() {
+    assert_eq!(4, add_two(2));
+    // 参数反过来写也是可以的，如下:
+    assert_eq!(add_two(2), 4);
+    assert_ne!(add_three(2), 6);
+}
