@@ -90,3 +90,47 @@ fn greeting_contains_name() {
         result
     );
 }
+
+// 使用 should_panic 检查恐慌
+// 测试处了验证代码的返回值是否正确，还需要验证代码是否如预期的处理了发生错误的情况
+// 可验证代码在特定情况下是否发生了 panic
+// should_panic 属性 ( attribute ):
+//  - 函数 panic: 测试通过
+//  - 函数没有 panic: 测试失败
+
+struct Guess {
+    _value: i32,
+}
+
+impl Guess {
+    fn new(value: i32) -> Guess {
+        if value < 1 || value > 100 {
+            panic!("Guess value must be between 1 and 100, got {}", value);
+        }
+        return Guess { _value: value };
+    }
+}
+
+#[test]
+#[should_panic]
+fn greater_than_100() {
+    Guess::new(200);
+}
+
+// 让 should_panic 更精确
+// 为 should_panic 属性添加一个可选的 expected 参数，将检查失败消息中是否包含所指定的文字
+// expected 后面的内容只要被 panic! 的信息包含即可，不必完全相同
+#[test]
+#[should_panic(expected = "Guess value must be between 1 and 100, got 200")]
+fn greater_than_100_expected() {
+    Guess::new(200);
+}
+
+// panic message: `"Guess value must be between 1 and 100, got 200"`,
+// expected substring: `"Guess value must be between 1 and 100, got 201"`
+// 需要特别注意的是: 若是指定了 expected，但是 expected 的信息未被包含在 panic! message 中，那么即使 panic 发生了，也无法通过测试
+#[test]
+#[should_panic(expected = "Guess value must be between 1 and 100, got 201")]
+fn greater_than_100_expected_1() {
+    Guess::new(200);
+}
