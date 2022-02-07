@@ -31,6 +31,7 @@ pub fn learning_lifecycle() {
         };
     }
 
-    let result = longest(&string_1, &string_2);
-    println!("The longest")
+    // 这里的 string_1.as_str() 也可以写成 &string_1，这样便用了解引用强制转换
+    let result = longest(string_1.as_str(), string_2);
+    println!("The longest value is: {}", result);
 }
