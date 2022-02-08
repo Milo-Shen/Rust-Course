@@ -123,6 +123,9 @@ fn greater_than_100() {
 #[test]
 #[should_panic(expected = "Guess value must be between 1 and 100, got 200")]
 fn greater_than_100_expected() {
+    // 若是运行 cargo test -- -- show-output 则会输出: Use expected syntax, message is: Guess value
+    // 若是运行 cargo test，则只会在 unit test fail 的时候显示 println! 内的信息
+    println!("Use expected syntax, message is: Guess value must be between 1 and 100, got 200");
     Guess::new(200);
 }
 
@@ -141,7 +144,7 @@ fn greater_than_100_expected() {
 // 因为这种情况下不会产生 panic，因为会走 Err
 #[test]
 fn it_works_1() -> Result<(), String> {
-    if 2 + 2 == 24 {
+    if 2 + 2 == 4 {
         Ok(())
     } else {
         Err(String::from("two plus two does not equal four"))
@@ -158,4 +161,29 @@ fn it_works_1() -> Result<(), String> {
 //  - 针对 cargo test 的参数: 紧跟 cargo test 后
 //  - 针对 测试可执行程序: 放在 -- 之后
 // cargo test --help
-// cargo test -- --help
+// cargo test -- --help ( 这个命令有一个编译的过程 )
+
+// 并行/连续运行测试
+
+// 并行运行测试
+// 运行多个测试: 默认使用多个线程并行运行
+//  - 运行块
+// 确保测试之间:
+//  - 不会相互依赖
+//  - 不依赖于某个共享状态 ( 环境，工作目录、环境变量等等 )
+// 如何控制运行测试时并行的数量 ?
+
+// 可以使用 --test-threads 参数
+//  - 这个参数是传递给二进制文件的
+//  - 不想以并行方式运行测试，或相对线程数进行细粒度控制
+//  - 可以使用 --test-threads 参数，后面跟着线程的数量
+//  - 例如: cargo test -- --test-threads=1
+
+// 显式函数输出
+// 默认, 如果通过测试，Rust 的 test 库会捕获所有打印到标准输出的内容
+// 例如, 如果被测试代码中用到了 println! :
+//  - 如果测试通过: 不会在终端看到 println! 打印的内容
+//  - 如果测试失败: 会看到 println! 打印的内容 和 失败信息
+
+// 如果我们想在成功的测试中看到打印的内容 : --show-output
+// 例子: cargo test -- --show-output
