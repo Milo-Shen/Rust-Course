@@ -35,7 +35,14 @@ pub fn learning_tests() {
 
 // 单元测试 - 通过 #[cfg(test)]
 // 我们通常一般把单元测试和被测试的代码都放在 src 目录下的同一个文件中，同时每个源代码文件都要建立一个 tests 模块来放置测试函数，并使用 #[cfg(test)] 来对测试模块进行标注
-
+// tests 模块上的 #[cfg(test)] 标注:
+//  - 只有运行 cargo test 才编译和运行代码
+//  - 运行 cargo build 则不会
+// 集成测试在不同的目录，它不需要 #[cfg(test)] 标注
+// cfg: configuration ( 配置 )
+//  - 告诉 Rust 下面的条目只有在指定的配置选项下才会被包含
+//  - 配置选项 test: 由 Rust 提供，用来编译和运行测试
+//    - 只有 cargo test 才会编译代码，包括模块中的 helper 函数和 #[test] 标注的函数
 #[cfg(test)]
 mod tests {
     #[derive(Debug)]
@@ -44,6 +51,7 @@ mod tests {
         width: u32,
     }
 
+    // 因为下面的代码也在 #[cfg(test)] 所标注的 mod tests 下，所以这段代码在 cargo test 的时候也会被编译
     impl Rectangle {
         pub fn can_hold(&self, other: &Rectangle) -> bool {
             return self.length > other.length && self.width > other.width;
