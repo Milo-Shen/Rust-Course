@@ -129,8 +129,33 @@ fn greater_than_100_expected() {
 // panic message: `"Guess value must be between 1 and 100, got 200"`,
 // expected substring: `"Guess value must be between 1 and 100, got 201"`
 // 需要特别注意的是: 若是指定了 expected，但是 expected 的信息未被包含在 panic! message 中，那么即使 panic 发生了，也无法通过测试
+// #[test]
+// #[should_panic(expected = "Guess value must be between 1 and 100, got 201")]
+// fn greater_than_100_expected_1() {
+//     Guess::new(200);
+// }
+
+// 在测试中使用 Result<T,E>
+// 无需 panic, 可使用 Result<T,E> 作为返回类型编写测试
+// 需要注意的是: 不要在使用 Result<T,E> 编写的测试上标注 #[should_panic]
+// 因为这种情况下不会产生 panic，因为会走 Err
 #[test]
-#[should_panic(expected = "Guess value must be between 1 and 100, got 201")]
-fn greater_than_100_expected_1() {
-    Guess::new(200);
+fn it_works_1() -> Result<(), String> {
+    if 2 + 2 == 24 {
+        Ok(())
+    } else {
+        Err(String::from("two plus two does not equal four"))
+    }
 }
+
+// 控制测试如何运行
+// 改变 cargo test 的行为: 添加命令行参数
+// 默认行为:
+//  - 并行运行
+//  - 所有测试
+//  - 捕获 ( 不显示 ) 所有输出，使读取与测试结果相关的输出更容易
+// 命令行参数:
+//  - 针对 cargo test 的参数: 紧跟 cargo test 后
+//  - 针对 测试可执行程序: 放在 -- 之后
+// cargo test --help
+// cargo test -- --help
