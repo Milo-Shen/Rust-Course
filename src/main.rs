@@ -4,6 +4,9 @@ use std::io::Result as IoResult;
 
 // use 的简写形式
 use std::io::{self, Write};
+
+
+// todo: 需要研究下 项目名:: 这种用法
 use rust_course::eat_at_restaurant;
 
 mod front_of_house;
