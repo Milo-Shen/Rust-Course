@@ -46,4 +46,3 @@ pub fn eat_at_restaurant() {
     // todo: struct, enum，其他: 指定完整的路径 （ 指定到本身 ）
     // todo: 但是对于同名条目：指定到父级
 }
-

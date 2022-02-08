@@ -1,7 +1,6 @@
 use std::error::Error;
 use std::fs::File;
 use std::io::{self, ErrorKind, Read};
-use std::slice::RSplit;
 
 pub fn learning_result() {
     println!("Start to learn Result");
