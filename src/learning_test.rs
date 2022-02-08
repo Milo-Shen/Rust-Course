@@ -190,5 +190,14 @@ fn it_works_1() -> Result<(), String> {
 
 // 按名称运行测试的子集
 // 选择运行的测试: 将测试的名称 ( 一个或多个 ) 作为 cargo test 的参数
-// 运行单个测试: 指定测试名
-// 运行多个测试: 指定测试名的一部分 ( 模块名也可以 )
+// 运行单个测试: 指定测试名，例如: cargo test it_works_1
+// 运行多个测试: 指定测试名的一部分 ( 模块名也可以 )，例如: cargo test it_works
+
+// 忽略某些测试，运行剩余的测试
+// 可以使用 ignore 属性 ( attribute )
+// 运行被忽略 ( ignore ) 的测试: cargo test -- --ignored
+#[test]
+#[ignore]
+fn expensive_test() {
+    assert_eq!(1, 1);
+}
