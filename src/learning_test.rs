@@ -34,6 +34,8 @@ pub fn learning_tests() {
 //  - 可能在每个测试中使用到多个模块
 
 // 单元测试 - 通过 #[cfg(test)]
+// 我们通常一般把单元测试和被测试的代码都放在 src 目录下的同一个文件中，同时每个源代码文件都要建立一个 tests 模块来放置测试函数，并使用 #[cfg(test)] 来对测试模块进行标注
+
 #[cfg(test)]
 mod tests {
     #[derive(Debug)]
