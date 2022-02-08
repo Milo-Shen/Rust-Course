@@ -40,7 +40,7 @@ pub fn eat_at_restaurant() {
     // use absolute path: hosting
     hosting::add_to_wait_list();
     // Function `private_function` is private [E0603] use 也需要遵守私有性规则
-    // hosting::private_function();
+    // hosting::private_function();  private_function 是私有函数，所以无法在这里被访问
     hosting::print_house();
     hosting::test_mod::hello();
 

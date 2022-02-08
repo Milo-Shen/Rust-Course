@@ -20,6 +20,15 @@ pub fn learning_tests() {
     //  - 你可以添加任意数量的 test module 或函数
 }
 
+// 测试私有函数
+pub fn add_two(a: i32) -> i32 {
+    internal_adder(a, 2)
+}
+
+fn internal_adder(a: i32, b: i32) -> i32 {
+    a + b
+}
+
 // 测试的分类
 // Rust 对测试的分类:
 //  - 单元测试
@@ -234,9 +243,19 @@ mod tests {
 // 在这个例子中，我们可以指定只运行某个模块中的测试，例如: cargo test another_tests
 #[cfg(test)]
 mod another_tests {
+    // 下面两种导入方式都可以，这个例子中，我们使用 super 关键字导入
+    // use crate::learning_test::internal_adder;
+    use super::internal_adder;
+
     #[test]
     fn it_works_another() {
         let result = 2 + 2;
         assert_eq!(result, 4);
+    }
+
+    #[test]
+    fn test_private_functions() {
+        // 下面的函数 internal_adder 是私有函数，但是仍旧可以被 rust 进行测试
+        assert_eq!(internal_adder(1, 2), 3);
     }
 }
