@@ -8,4 +8,14 @@ fn private_function() {
 
 pub fn print_house() {
     println!("This is front_of_house_hosting module");
+    private_function();
+}
+
+pub mod test_mod {
+    use super::*;
+
+    pub fn hello() {
+        println!("hello test mod - private function");
+        private_function();
+    }
 }

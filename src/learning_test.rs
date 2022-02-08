@@ -43,6 +43,7 @@ pub fn learning_tests() {
 //  - 告诉 Rust 下面的条目只有在指定的配置选项下才会被包含
 //  - 配置选项 test: 由 Rust 提供，用来编译和运行测试
 //    - 只有 cargo test 才会编译代码，包括模块中的 helper 函数和 #[test] 标注的函数
+// todo: 测试一下 cargo build 的时候是不是真的不会编译下面代码，那么 cargo run 的时候呢 ？
 #[cfg(test)]
 mod tests {
     #[derive(Debug)]

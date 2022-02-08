@@ -41,6 +41,8 @@ pub fn eat_at_restaurant() {
     hosting::add_to_wait_list();
     // Function `private_function` is private [E0603] use 也需要遵守私有性规则
     // hosting::private_function();
+    hosting::print_house();
+    hosting::test_mod::hello();
 
     // todo: use 的习惯用法，函数: 将函数的父级模块引入到作用域
     // todo: struct, enum，其他: 指定完整的路径 （ 指定到本身 ）

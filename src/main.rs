@@ -4,6 +4,7 @@ use std::io::Result as IoResult;
 
 // use 的简写形式
 use std::io::{self, Write};
+use rust_course::eat_at_restaurant;
 
 mod front_of_house;
 
@@ -64,6 +65,8 @@ fn main() {
     match_syntax::learning_match();
 
     // 使用 module 下的函数
+    eat_at_restaurant();
+    front_of_house::hosting::print_house();
     front_of_house::hosting::print_house();
 
     // vector
