@@ -37,6 +37,7 @@ mod lifecycle_2;
 mod lifecycle_3;
 mod lifecycle_4;
 mod learning_test;
+mod example_grep;
 
 fn main() {
     // Variables and Mutability
@@ -104,4 +105,8 @@ fn main() {
 
     // test
     learning_test::learning_tests();
+
+    // grep example
+    example_grep::learning_grep_example();
+    example_grep::my_grep();
 }
