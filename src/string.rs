@@ -64,4 +64,11 @@ pub fn learning_string() {
     // thread 'main' panicked at 'byte index 2 is not a char boundary; it is inside
     // 切割字符串时，一定要按照字符的边界进行切割，否则会引起恐慌 panic
     // let s2 = &s[..2];
+
+    // as_str 函数
+    let mut string_1: String = " I am a string ".to_string();
+    let mut my_str: &str = string_1.as_str();
+    my_str = my_str.trim();
+    // The value of my str is:| I am a string |,|I am a string|
+    println!("The value of my str is:|{}|,|{}|", string_1, my_str);
 }
