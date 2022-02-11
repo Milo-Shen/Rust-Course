@@ -95,3 +95,21 @@ pub fn run(config: Config) -> Result<(), Box<dyn Error>> {
 // 编写或修改足够刚好的代码，让新测试通过
 // 重构刚刚添加好的代码，确保测试会始终通过
 // 返回步骤1, 继续
+
+pub fn search<'a>(query: &str, content: &'a str) -> Vec<&'a str> {
+    return vec![];
+}
+
+#[cfg(test)]
+mod test {
+    use super::*;
+
+    #[test]
+    fn one_result() {
+        let query = "duct";
+        let content = "\
+        Rust:\
+        safe, fast, productive.\
+        Pick three";
+    }
+}
