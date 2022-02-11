@@ -1,3 +1,6 @@
+use std::{fs, process};
+use std::error::Error;
+
 mod front_of_house;
 
 mod back_of_house {
@@ -51,4 +54,38 @@ pub fn eat_at_restaurant() {
 
 pub fn add_two(x: i32) -> i32 {
     x + 2
+}
+
+pub struct Config {
+    query: String,
+    filename: String,
+}
+
+impl Config {
+    // 此处是返回 Config 所以可以把原先的 parse_config 函数改编成如下的 new 关联函数的形式
+    // args 是一个 Vec 的切片
+    pub fn new(args: &[String]) -> Result<Config, &'static str> {
+        // 异常处理
+        if args.len() < 3 {
+            return Err("not enough arguments !");
+        }
+        // todo: 如果使用 arg[1] 而不是 &arg[1], 会报错: error[E0507]: cannot move out of index of `Vec<String>`
+        // todo: 思考为什么，顺带不用 clone 的话，会提示 can not move
+        let query = args[1].clone();
+        let mut filename = String::from("./assets/");
+        filename.push_str(&args[2]);
+        let _filename = filename;
+        println!("Search for {}, in file: {}", query, _filename);
+        return Ok(Config {
+            query,
+            filename: _filename,
+        });
+    }
+}
+
+pub fn run(config: Config) -> Result<(), Box<dyn Error>> {
+    let contents = fs::read_to_string(config.filename)?;
+    //  cargo run Nobody poem.txt
+    println!("With text: \n{}", contents);
+    Ok(())
 }

@@ -1,34 +1,9 @@
-use std::env::args;
 use std::{fs, process};
+use std::env::args;
+use rust_course::{Config, run};
 
 pub fn learning_grep_example() {
     println!("Start to learn grep example");
-}
-
-struct Config {
-    query: String,
-    filename: String,
-}
-
-impl Config {
-    // 此处是返回 Config 所以可以把原先的 parse_config 函数改编成如下的 new 关联函数的形式
-    // args 是一个 Vec 的切片
-    fn new(args: &[String]) -> Result<Config, &'static str> {
-        // 异常处理
-        if args.len() < 3 {
-            return Err("not enough arguments !");
-        }
-        // todo: 如果使用 arg[1] 而不是 &arg[1], 会报错: error[E0507]: cannot move out of index of `Vec<String>`
-        // todo: 思考为什么，顺带不用 clone 的话，会提示 can not move
-        let query = args[1].clone();
-        let mut filename = String::from("./assets/");
-        filename.push_str(&args[2]);
-        let _filename = filename;
-        return Ok(Config {
-            query,
-            filename: _filename,
-        });
-    }
 }
 
 // 二进制程序关注点分离的指导性原则
@@ -50,8 +25,8 @@ pub fn my_grep() {
         println!("Problem parsing arguments: {}", err);
         process::exit(1);
     });
-    println!("Search for {}, in file: {}", config.query, config.filename);
-    let contents = fs::read_to_string(config.filename).expect("Something went wrong when reading the file");
-    //  cargo run Nobody poem.txt
-    println!("With text: \n{}", contents);
+    if let Err(e) = run(config) {
+        println!("Application error: {}", e);
+        process::exit(1);
+    }
 }
