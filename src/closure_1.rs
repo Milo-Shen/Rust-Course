@@ -19,23 +19,21 @@ fn simulated_expensive_calculation(intensity: u32) -> u32 {
 }
 
 fn generate_workout(intensity: u32, random_number: u32) {
+    // 此处是把匿名函数的定义传给了变量 expensive_closure
+    // 此时 expensive_closure 的函数签名为: fn(u32) -> u32
+    let expensive_closure: fn(u32) -> u32 = |num: u32| {
+        println!("calculating slowly... ");
+        thread::sleep(Duration::from_secs(1));
+        return num;
+    };
     if intensity < 25 {
-        println!(
-            "Today, do {} push ups!",
-            simulated_expensive_calculation(intensity)
-        );
-        println!(
-            "Next, do {} sit ups",
-            simulated_expensive_calculation(intensity)
-        );
+        println!("Today, do {} push ups!", expensive_closure(intensity));
+        println!("Next, do {} sit ups", expensive_closure(intensity));
     } else {
         if random_number == 3 {
             println!("Take a break today! Remember to stay hydrated!");
         } else {
-            println!(
-                "Today, run for {} minutes!",
-                simulated_expensive_calculation(intensity)
-            );
+            println!("Today, run for {} minutes!", expensive_closure(intensity));
         }
     }
 }
