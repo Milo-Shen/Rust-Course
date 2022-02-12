@@ -96,8 +96,15 @@ pub fn run(config: Config) -> Result<(), Box<dyn Error>> {
 // 重构刚刚添加好的代码，确保测试会始终通过
 // 返回步骤1, 继续
 
+// 当前片引用的数据是有效的时候，切片本身才是有效的
 pub fn search<'a>(query: &str, content: &'a str) -> Vec<&'a str> {
-    return vec![];
+    let mut result: Vec<&str> = Vec::new();
+    for line in content.lines() {
+        if line.contains(query) {
+            result.push(line.trim());
+        }
+    }
+    return result;
 }
 
 #[cfg(test)]
@@ -108,8 +115,9 @@ mod test {
     fn one_result() {
         let query = "duct";
         let content = "\
-        Rust:\
-        safe, fast, productive.\
+        Rust:
+        safe, fast, productive.
         Pick three";
+        assert_eq!(vec!["safe, fast, productive."], search(query, content));
     }
 }
