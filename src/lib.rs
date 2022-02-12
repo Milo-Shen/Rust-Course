@@ -1,4 +1,4 @@
-use std::{fs, process};
+use std::{fs, env, process};
 use std::error::Error;
 
 mod front_of_house;
@@ -59,6 +59,7 @@ pub fn add_two(x: i32) -> i32 {
 pub struct Config {
     query: String,
     filename: String,
+    case_sensitive: bool,
 }
 
 impl Config {
@@ -76,8 +77,11 @@ impl Config {
         filename.push_str(&args[2]);
         let _filename = filename;
         println!("Search for {}, in file: {}", query, _filename);
+        // is_err 返回 true 或 false
+        let case_sensitive = env::var("CASE_INSENSITIVE").is_err();
         return Ok(Config {
             query,
+            case_sensitive,
             filename: _filename,
         });
     }
@@ -86,10 +90,15 @@ impl Config {
 pub fn run(config: Config) -> Result<(), Box<dyn Error>> {
     let contents = fs::read_to_string(config.filename)?;
     //  cargo run frog poem.txt
-    for line in search(&config.query, &contents) {
+    println!("With text: \n{}", contents);
+    let result = if config.case_sensitive {
+        search(&config.query, &contents)
+    } else {
+        search_case_insensitive(&config.query, &contents)
+    };
+    for line in result {
         println!("search: {}", line);
     }
-    println!("With text: \n{}", contents);
     Ok(())
 }
 
@@ -110,6 +119,18 @@ pub fn search<'a>(query: &str, content: &'a str) -> Vec<&'a str> {
     return result;
 }
 
+// 可以使用  CASE_INSENSITIVE=0 cargo run Too poem.txt 来测试
+pub fn search_case_insensitive<'a>(query: &str, content: &'a str) -> Vec<&'a str> {
+    let query = query.to_lowercase();
+    let mut result: Vec<&str> = Vec::new();
+    for line in content.lines() {
+        if line.to_lowercase().contains(&query) {
+            result.push(line.trim());
+        }
+    }
+    return result;
+}
+
 #[cfg(test)]
 mod test {
     use super::*;
@@ -122,5 +143,16 @@ mod test {
         safe, fast, productive.
         Pick three";
         assert_eq!(vec!["safe, fast, productive."], search(query, content));
+    }
+
+    #[test]
+    fn case_insensitive() {
+        let query = "rUsT";
+        let content = "\
+        Rust:
+        safe, fast, productive.
+        Pick three.
+        Trust me.";
+        assert_eq!(vec!["Rust:", "Trust me."], search_case_insensitive(query, content));
     }
 }
