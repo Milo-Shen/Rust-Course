@@ -21,7 +21,7 @@ fn simulated_expensive_calculation(intensity: u32) -> u32 {
 fn generate_workout(intensity: u32, random_number: u32) {
     // 此处是把匿名函数的定义传给了变量 expensive_closure
     // 此时 expensive_closure 的函数签名为: fn(u32) -> u32
-    let expensive_closure: fn(u32) -> u32 = |num: u32| {
+    let expensive_closure: fn(u32) -> u32 = |num: u32| -> u32 {
         println!("calculating slowly... ");
         thread::sleep(Duration::from_secs(1));
         return num;
@@ -37,3 +37,15 @@ fn generate_workout(intensity: u32, random_number: u32) {
         }
     }
 }
+
+// 闭包的类型推断和类型标注
+// 闭包的类型推断
+//  - 闭包不要求标注参数和返回值的类型，但是函数和方法需要
+//  - 闭包通常很短小，只在狭小的上下文中工作，编译器通常能推断出类型
+//  - 可以手动添加类型标注
+
+// 函数和闭包定义的语法
+// fn add_one_v1   ( x: u32 ) -> u32 { x + 1 }
+// fn add_one_v2 = | x: u32 | -> u32 { x + 1 };
+// fn add_one_v3   |x|               { x + 1 };
+// fn add_one_v4   |x|                 x + 1  ;
