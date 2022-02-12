@@ -1,0 +1,215 @@
+Start to learn variables and mutability
+a address is :0x6127562388
+a address is :0x6127562476
+b address is :0x6127562564
+b address is :0x6127562564
+my tuple is: 1, 2
+my tuple is: 1, 2
+array value: 1, 3
+array len of array_b is: 2
+Start to learn functions
+The value of x is: 10086
+The total value is: 5
+The total value is: 11
+The value of y is: 4
+Start to learn control flow
+condition was true
+final number is: 1
+The result is 20
+3!
+2!
+1!
+LIFTOFF!!!
+i32 value is: 1
+i32 value is: 2
+i32 value is: 3
+i32 value is: 4
+i32 value is: 4
+i32 value is: 3
+i32 value is: 2
+i32 value is: 1
+i32 value is: 1
+i32 value is: 2
+i32 value is: 3
+i32 value is: 4
+&i32 value is: 1
+&i32 value is: 2
+&i32 value is: 3
+&i32 value is: 4
+Start to learn ownership
+my name is: jackhello
+my name is: jackhello
+take ownership: jack
+size of String jack is: 4
+Start to learn reference
+my str: Hello's length is: 5
+Len of updated mutable variable Hello_mut is: 9
+mut_str_another: Hello_modified
+Is a equal to b ?: true 
+Start to learn slices
+Hello,World,Hello World
+array_slice index 1 is: 1
+slice index 0 value: 10
+origin index 0 value: 10
+first world is: Hello
+first world is: My
+Start to learn slices
+name: jack, Mary
+name: Jack Upgrade, Mary
+The area of rect is: 1200
+The rect is: Rectangle {
+    width: 30,
+    height: 40,
+}
+The area is: 1200
+static function print: My Print
+origin value of rect is: 30
+Start to learn enums
+Start to learn match
+State quarter from : Beijing
+The value of Coin::Penny is: 25
+matched value: 100
+match others
+if let others
+if let China::else Shanghai
+This is else hcw
+1
+add to wait list successfully
+I'd like Wheat toast please
+add to wait list successfully
+This is front_of_house_hosting module
+This is a private function
+hello test mod - private function
+This is a private function
+This is front_of_house_hosting module
+This is a private function
+This is front_of_house_hosting module
+This is a private function
+Start to learn vector
+The first element is: 1
+The second element is: 2
+Match -> the first value is: 1
+Out of bound
+the value is: 100
+the value is: 32
+the value is: 57
+the modified value is: 150
+the modified value is: 82
+the modified value is: 107
+if let match SpreadSheetCell::Int, value is: 1
+Start to learn string
+foo_bar, _bar
+foo_barh, h
+Hello World,World
+hello-world-Jack,hello,world,Jack
+The length of string is: 11
+77
+121
+32
+110
+97
+109
+101
+32
+105
+115
+32
+106
+97
+99
+107
+M
+y
+ 
+n
+a
+m
+e
+ 
+i
+s
+ 
+j
+a
+c
+k
+The slice of s is: 我
+The value of my str is:| I am a string |,|I am a string|
+Start to learn hashmap
+favourite color,Blue
+use match syntax: 10
+use if let syntax: 10
+Blue: 10
+Yellow: 20
+{
+    "Blue": 25,
+}
+{
+    "Yellow": 50,
+    "Blue": 10,
+}
+{
+    "world": 2,
+    "hello": 1,
+    "wonderful": 1,
+}
+Start to learn panic
+The guess value is: 100
+Start to learn Result
+open file success
+The username from file is: hello world
+The username from file is: hello world
+The username from file is: hello world
+Start to learn eliminate duplicated code
+The largest value is: 3
+Start to learn generics
+The return value of generic function is: Hello World
+The value of generic struct is: Point {
+    x: 1,
+    y: 2.0,
+}
+The origin value x: 100, y: 200
+This is a special function for Point<i32, i32>
+The mixed up value p3 is: Point {
+    x: 1,
+    y: "world",
+}
+Start to learn trait
+1 new tweet: horse_ebooks: trait_demo_tweet
+this is the default implementation of trait summary, from: Milo-Shen
+customized implementation of NewsArticle
+Breaking news ! horse_ebooks: trait_demo_tweet
+Breaking news ! Shanghai News, by Milo-Shen (Demo)
+Breaking news ! horse_ebooks: trait_demo_tweet
+Breaking news ! Shanghai News, by Milo-Shen (Demo)
+The largest value is: 3
+The largest value is: b
+The largest value is: b
+The result is: 6
+The largest number is x = 1
+Start to learn life cycle - 1
+The longest value is: Hello World
+Start to learn life cycle - 2
+The longest string is: Hello World
+The longest string is: string_2: borrowed value does not live long enough
+Start to learn life cycle - 3
+The first sentence is: Call me Jack
+Start to learn life cycle - 4
+Announcement! I am demo
+The longest string is: I am the longest string
+Start to learn test
+Start to learn grep example
+["target/debug/rust_course", "too", "poem.txt"]
+Search for too, in file: ./assets/poem.txt
+With text: 
+I'm Nobody! Who are you?
+Are you nobody, too?
+Then there's a pair of us.
+Don't tell——they'd banish us, you know.
+
+How dreary to be somebody!
+How public——like a frog——
+
+To tell your name the livelong June
+To an admiring bog!
+search: Are you nobody, too?

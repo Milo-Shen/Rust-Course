@@ -156,3 +156,10 @@ mod test {
         assert_eq!(vec!["Rust:", "Trust me."], search_case_insensitive(query, content));
     }
 }
+
+// 将错误信息写入到标准错误而不是标准输出
+// 标准输出 vs 标准错误
+// 标准输出: stdout
+//  - println!
+// 标准错误: stderr
+//  - eprintln!
