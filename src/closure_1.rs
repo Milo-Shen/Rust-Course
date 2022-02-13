@@ -23,12 +23,6 @@ pub fn learning_closure() {
     let n = example_closure(5);
 }
 
-fn simulated_expensive_calculation(intensity: u32) -> u32 {
-    println!("calculating slowly... ");
-    thread::sleep(Duration::from_secs(1));
-    return intensity;
-}
-
 fn generate_workout(intensity: u32, random_number: u32) {
     // 此处是把匿名函数的定义传给了变量 expensive_closure
     // 此时 expensive_closure 的函数签名为: fn(u32) -> u32
@@ -63,3 +57,5 @@ fn generate_workout(intensity: u32, random_number: u32) {
 
 // 闭包的类型推断
 //  - 注意: 闭包的定义最终只会为参数 / 返回值推断出唯一具体的类型
+
+// 使用泛型参数和 Fn Trait 来存储闭包
