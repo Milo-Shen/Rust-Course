@@ -1,5 +1,6 @@
 use std::thread;
 use std::time::Duration;
+use std::collections::HashMap;
 
 pub fn learning_closure() {
     println!("Start to learn closure 1");
@@ -38,6 +39,11 @@ impl<T> Cache<T>
         };
     }
 
+    // todo: 当前实现的 value 的限制 ( 需要自己实现 refactor 一把 )
+    // Cache 实现假定针对不同的参数 arg, value 方法总会得到相同的值
+    //  - 可以使用 HashMap 代替单个的值:
+    // key: arg 参数, value: 执行闭包的结果
+    // 只能接收一个 u32 类型的参数和 u32 类型的返回值
     fn value(&mut self, arg: u32) -> u32 {
         match self.value {
             Some(v) => v,
