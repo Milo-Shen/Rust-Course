@@ -22,6 +22,7 @@ pub fn learning_closure() {
     // 因为上面语句的执行中 x 已经是 &str 了，所以再赋 int 类型是错误的，
     // 错误提示为: error[E0308]: mismatched types, expected `&str`, found integer
     // let n = example_closure(5);
+    generate_workout(1, 1);
 }
 
 struct Cache<T>
