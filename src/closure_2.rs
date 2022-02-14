@@ -19,7 +19,7 @@ pub fn learning_closure() {
     //   1. 取得所有权: FnOnce
     //   2. 可变借用
     //   3. 不可变借用: Fn
-    let equal_to_x = |z| z == x;
+    let equal_to_x: fn(i32) -> bool = |z: i32| z == x;
     println!("The result of equal_to_x is: {}", equal_to_x(1));
     println!("The result of equal_to_x is: {}", equal_to_x(2));
 }
