@@ -30,6 +30,7 @@ struct Cache<T>
     where T: Fn(u32) -> u32 {
     calculation: T,
     value: Option<u32>,
+    hash_value: HashMap<u32, u32>,
 }
 
 impl<T> Cache<T>
@@ -38,6 +39,7 @@ impl<T> Cache<T>
         return Cache {
             calculation,
             value: None,
+            hash_value: HashMap::new(),
         };
     }
 
@@ -58,16 +60,16 @@ impl<T> Cache<T>
     }
 
     // todo: to finish hash_value function
+    // todo: 理解 rust 中的 *
     fn hash_value(&mut self, arg: u32) -> u32 {
-        let hashmap: HashMap<String, String> = HashMap::new();
-        return match self.value {
-            Some(v) => v,
+        match self.hash_value.get(&arg) {
+            Some(s) => *s,
             None => {
                 let v = (self.calculation)(arg);
-                self.value = Some(v);
+                self.hash_value.insert(arg, arg);
                 return v;
             }
-        };
+        }
     }
 }
 
@@ -97,13 +99,14 @@ fn generate_workout(intensity: u32, random_number: u32) {
         //  - Fn
         //  - FnMut
         //  - FnOnce
-        println!("Today, do {} push ups!", expensive_closure.value(intensity));
-        println!("Next, do {} sit ups", expensive_closure.value(intensity));
+        println!("Today, do {} push ups!", expensive_closure.hash_value(intensity));
+        println!("Next, do {} sit ups!", expensive_closure.hash_value(intensity + 1));
+        println!("Finally, do {} push ups!", expensive_closure.hash_value(intensity + 1));
     } else {
         if random_number == 3 {
             println!("Take a break today! Remember to stay hydrated!");
         } else {
-            println!("Today, run for {} minutes!", expensive_closure.value(intensity));
+            println!("Today, run for {} minutes!", expensive_closure.value(intensity + 3));
         }
     }
 }
