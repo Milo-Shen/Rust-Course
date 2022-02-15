@@ -17,9 +17,21 @@ pub fn learning_closure() {
     // 闭包从所在环境捕获值的方式
     // 与函数获得参数的三种方式:
     //   1. 取得所有权: FnOnce
-    //   2. 可变借用
+    //   2. 可变借用:   FnMut
     //   3. 不可变借用: Fn
-    let equal_to_x: fn(i32) -> bool = |z: i32| z == x;
+    let equal_to_x = |z: i32| z == x;
     println!("The result of equal_to_x is: {}", equal_to_x(1));
-    println!("The result of equal_to_x is: {}", equal_to_x(2));
+
+    // 创建闭包时，通过闭包对环境值的使用，Rust 推断出具体使用哪个 trait
+    //  - 所有的闭包都实现了 FnOnce
+    //  - 没有移动被捕获变量的闭包实现了 FnMut ( 实现包含了前者 )
+    //  - 无需可变访问被捕获变量的闭包实现了 Fn  ( 实现包含了前 2 者 )
+    let mut string_1 = String::from("FnOnce");
+    let equal_to_str = |z: String| z == string_1;
+    // cannot borrow `string_1` as mutable because it is also borrowed as immutable
+    // string_1.push_str("2");
+    println!("The result of equal_to_str is: {}", equal_to_str(String::from("FnOnce")));
+    // error[E0506]: cannot assign to `string_1` because it is borrowed
+    // string_1 = String::from("Fn");
+    println!("The result of equal_to_str is: {}", equal_to_str(String::from("FnOnce")));
 }
