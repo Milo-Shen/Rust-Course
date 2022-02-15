@@ -44,4 +44,7 @@ pub fn learning_closure() {
     let equal_to_str = move |z: String| z == string_1;
     // borrow of moved value: `string_1`
     // println!("The value: {} is still available", string_1);
+
+    // 最佳实践
+    // 当指定 Fn trait bound 之一时，首先使用 Fn, 基于闭包体里的情况，如果需要 FnOnce 或 FnMut，编译器会再告诉你
 }
