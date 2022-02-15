@@ -34,4 +34,14 @@ pub fn learning_closure() {
     // error[E0506]: cannot assign to `string_1` because it is borrowed
     // string_1 = String::from("Fn");
     println!("The result of equal_to_str is: {}", equal_to_str(String::from("FnOnce")));
+    println!("The value: {} is still available", string_1);
+
+    // move 关键字
+    // 在参数列表前使用 move 关键字，可以强制闭包取得它所使用的环境的所有权
+    //  - 当将闭包传递给新线程以移动数据使其归新线程所有时，此技术最为有用
+    let x = vec![1, 2, 3];
+    let mut string_1 = String::from("FnOnce");
+    let equal_to_str = move |z: String| z == string_1;
+    // borrow of moved value: `string_1`
+    // println!("The value: {} is still available", string_1);
 }
