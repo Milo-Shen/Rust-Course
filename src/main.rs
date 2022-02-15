@@ -113,5 +113,5 @@ fn main() {
 
     // closure
     closure_1::learning_closure();
-    // closure_2::learning_closure();
+    closure_2::learning_closure();
 }
