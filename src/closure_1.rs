@@ -25,6 +25,7 @@ pub fn learning_closure() {
     generate_workout(1, 1);
 }
 
+// todo: 需要研究下函数泛型参数如何申明的
 struct Cache<T>
     where T: Fn(u32) -> u32 {
     calculation: T,
@@ -54,6 +55,19 @@ impl<T> Cache<T>
                 return v;
             }
         }
+    }
+
+    // todo: to finish hash_value function
+    fn hash_value(&mut self, arg: u32) -> u32 {
+        let hashmap: HashMap<String, String> = HashMap::new();
+        return match self.value {
+            Some(v) => v,
+            None => {
+                let v = (self.calculation)(arg);
+                self.value = Some(v);
+                return v;
+            }
+        };
     }
 }
 

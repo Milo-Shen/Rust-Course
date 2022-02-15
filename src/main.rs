@@ -1,4 +1,3 @@
-use std::collections::HashMap;
 use std::fmt::Result;
 use std::io::Result as IoResult;
 
@@ -114,5 +113,5 @@ fn main() {
 
     // closure
     closure_1::learning_closure();
-    closure_2::learning_closure();
+    // closure_2::learning_closure();
 }
