@@ -4,12 +4,10 @@ use std::io::Result as IoResult;
 // use 的简写形式
 use std::io::{self, Write};
 
-
 // todo: 需要研究下 项目名:: 这种用法
 use rust_course::eat_at_restaurant;
 
 mod front_of_house;
-
 // 引入包内所有的内容
 // use std::collections::*;
 
@@ -39,7 +37,8 @@ mod learning_test;
 mod example_grep;
 mod closure_1;
 mod closure_2;
-mod iterator;
+mod iterator_1;
+mod iterator_2;
 
 fn main() {
     // Variables and Mutability
@@ -117,5 +116,6 @@ fn main() {
     closure_2::learning_closure();
 
     // iterator
-    iterator::learning_iterator();
+    iterator_1::learning_iterator();
+    iterator_2::learning_iterator();
 }
