@@ -39,6 +39,7 @@ mod closure_1;
 mod closure_2;
 mod iterator_1;
 mod iterator_2;
+mod iterator_3;
 
 fn main() {
     // Variables and Mutability
@@ -118,4 +119,5 @@ fn main() {
     // iterator
     iterator_1::learning_iterator();
     iterator_2::learning_iterator();
+    iterator_3::learning_iterator();
 }
