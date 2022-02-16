@@ -14,6 +14,18 @@ pub fn learning_iterator() {
     }
 
     fn shoes_in_my_size(shoes: Vec<Shoe>, shoe_size: u32) -> Vec<Shoe> {
+        // 此处的 into_iter 会获取 shoes 的所有权
+        // todo: 这里的 == 使用的是默认实现，思考如何采用自己的实现
+        // 此处采用 into_iter 的原因是，若是采用 iter，则 x 的类型为 &&Shoe, 使用 iter 时候的类型才是 &shoe
         shoes.into_iter().filter(|x| x.size == shoe_size).collect()
     }
+
+    let shoes = vec![
+        Shoe { size: 10, style: String::from("sneaker") },
+        Shoe { size: 15, style: String::from("sandal") },
+        Shoe { size: 20, style: String::from("boot") },
+    ];
+
+    let my_size_shoes = shoes_in_my_size(shoes, 10);
+    println!("{:?}", my_size_shoes);
 }
