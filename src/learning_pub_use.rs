@@ -1,3 +1,7 @@
+use rust_course::PrimaryColor;
+use rust_course::SecondaryColor;
+use rust_course::mix;
+
 pub fn learning_pub_use() {
     println!("Start to learn pub use");
 
@@ -12,4 +16,9 @@ pub fn learning_pub_use() {
     // 解决办法:
     //  - 不需要重新组织内部代码结构
     //  - 使用 pub use: 可以重新导出，创建一个与内部私有结构不同的对外公共结构
+
+    let red = PrimaryColor::Red;
+    let yellow = PrimaryColor::Yellow;
+    let color: SecondaryColor = mix(red, yellow);
+    println!("The mixed color is: {:?}", color)
 }
