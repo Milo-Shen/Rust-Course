@@ -42,6 +42,7 @@ mod iterator_2;
 mod iterator_3;
 mod iterator_4;
 mod iterator_5;
+mod iterator_6;
 
 fn main() {
     // Variables and Mutability
@@ -124,4 +125,5 @@ fn main() {
     iterator_3::learning_iterator();
     iterator_4::learning_iterator();
     iterator_5::learning_iterator();
+    iterator_6::learning_iterator();
 }
