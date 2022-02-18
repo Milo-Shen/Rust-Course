@@ -50,7 +50,6 @@ pub fn learning_match() {
         0 => 1,
         1 => 2,
         2 => 3,
-        // 此处的 _ 可以改成任意字符，譬如 other
         _ => 100,
     };
     println!("matched value: {}", matched_value);

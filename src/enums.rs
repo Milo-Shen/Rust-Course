@@ -30,6 +30,7 @@ pub fn learning_enums() {
     // todo: 下面这个值如何参与运算呢 ?
     let home = IpAddressKind::V4(127, 0, 0, 1);
     let home_another = IpAddressKind::V4(127, 0, 0, 2);
+    let v6_address = IpAddressKind::V6(String::from("v6 address"));
     // error[E0369]: binary operation `==` cannot be applied to type `IpAddressKind`
     // let is_equal = home == home_another;
 
@@ -38,4 +39,8 @@ pub fn learning_enums() {
     let some_number = Some(5);
     let some_string = Some("A String");
     let absent_number: Option<i32> = None;
+    match v6_address {
+        IpAddressKind::V4(a, b, c, d) => println!("{},{},{},{}", a, b, c, d),
+        _ => println!("nothing"),
+    }
 }

@@ -163,3 +163,13 @@ mod test {
 //  - println!
 // 标准错误: stderr
 //  - eprintln!
+
+// learning pub use
+
+pub mod kinds {
+    pub enum PrimaryColor {
+        Red,
+        Yellow,
+        Blue,
+    }
+}
