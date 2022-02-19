@@ -1,3 +1,7 @@
+fn take_ownership(x: Box<i32>) {
+    println!("take ownership: {}", x);
+}
+
 pub fn learning_smart_pointer() {
     println!("Start to learn smart pointer - Box<T>");
 
@@ -8,4 +12,49 @@ pub fn learning_smart_pointer() {
     //  - 没有性能开销
     //  - 没有其他额外功能
     //  - 实现了 Deref trait 和 Drop trait
+
+    // Box<T> 的常用场景
+    // 在编译时，某类型的大小无法确定。但使用该类型时，上下文需要知道它的确切大小
+    // 当你有大量数据，想移交所有权，但需要确保在操作数据时数据不会被复制
+    // 使用某个值时，你只关心它是否实现了特定的 trait，而不关心它的具体类型
+
+    // 使用 Box<T> 在 heap 上面存储数据
+    let b: Box<i32> = Box::new(5);
+    take_ownership(b);
+    // Box 拥有对数据的所有权，所以此处当 b 丧失所有权后，无法被继续访问
+    // borrow of moved value: `b`
+    // println!("{}", b);
+
+    // 使用 Box 赋能递归类型
+    // 在编译时，Rust 需要知道一个类型所占的空间大小
+    // 而递归类型的大小无法在编译时确定
+    // 但 Box 类型的大小确定
+    // 在递归类型中使用 Box 就可解决上述问题
+    // 函数式语言中的 Cons List
+
+    // 关于 Cons List ( Cons List 相当于一个链表 )
+    //  - Cons List 是来自 Lisp 语言的一种数据结构
+    // Cons List 里每个成员由 2 个元素组成
+    //  - 当前项的值
+    //  - 下一个元素
+    // Cons List 里最后一个成员只包含一个 Nil 值，没有下一个元素
+    // Nil 是一个终止标记，和 Null 不一样，Null 表示的是一个无效或是缺失的值
+
+    // Cons List 并不是 Rust 的常用集合
+    // 通常情况下, Vec<T> 是更好的选择
+
+    // 例子: Rust 如何确定为枚举类型分类的空间大小
+    enum Message {
+        Quit,
+        Move { x: i32, y: i32 },
+        Write(String),
+        ChangeColor(i32, i32, i32),
+    }
+
+    // 例子: 创建一个 Cons List
+    // 下面这个 enum 的申明会报错: error[E0072]: recursive type `List` has infinite size
+    // enum List {
+    //     Cons(i32, List),
+    //     Nil,
+    // }
 }

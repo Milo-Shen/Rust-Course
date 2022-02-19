@@ -43,4 +43,21 @@ pub fn learning_enums() {
         IpAddressKind::V4(a, b, c, d) => println!("{},{},{},{}", a, b, c, d),
         _ => println!("nothing"),
     }
+
+    #[derive(Debug)]
+    enum Message {
+        Quit,
+        Move { x: i32, y: i32 },
+        Write(String),
+        ChangeColor(i32, i32, i32),
+    }
+
+    let my_message = Message::Move { x: 1, y: 2 };
+    match my_message {
+        Message::Move { x, y } => println!("{},{}", x, y),
+        _ => println!("Nothing happen")
+    }
+    if let Message::Move { x, y } = my_message {
+        println!("if let my_message: {},{}", x, y)
+    }
 }
