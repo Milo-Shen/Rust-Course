@@ -44,8 +44,11 @@ pub fn learning_smart_pointer() {
     // 通常情况下, Vec<T> 是更好的选择
 
     // 例子: Rust 如何确定为枚举类型分类的空间大小
+    // Rust 会遍历枚举中的每个变体，从而寻找需要最大空间的那个变体
     enum Message {
+        // 在 rust 眼中，Quit 这个变体不需要占用任何空间
         Quit,
+        // Move 占用的空间为 2 个 i32 类型所占用的空间
         Move { x: i32, y: i32 },
         Write(String),
         ChangeColor(i32, i32, i32),
