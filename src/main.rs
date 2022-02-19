@@ -44,6 +44,7 @@ mod iterator_4;
 mod iterator_5;
 mod iterator_6;
 mod learning_pub_use;
+mod smart_pointer_begin;
 
 fn main() {
     // Variables and Mutability
@@ -130,4 +131,7 @@ fn main() {
 
     // pub use
     learning_pub_use::learning_pub_use();
+
+    // smart pointer
+    smart_pointer_begin::learning_smart_pointer();
 }
