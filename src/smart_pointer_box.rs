@@ -80,7 +80,7 @@ pub fn learning_smart_pointer() {
     }
 
     use List::{Cons, Nil};
-    let list = Cons(
+    let list: List = Cons(
         1, Box::new(Cons(
             2, Box::new(Cons(
                 3, Box::new(Nil))))));
