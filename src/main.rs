@@ -49,6 +49,7 @@ mod smart_pointer_box;
 mod deref_trait_1;
 mod deref_trait_2;
 mod drop_trait;
+mod rc;
 
 fn main() {
     // Variables and Mutability
@@ -146,4 +147,7 @@ fn main() {
 
     // drop trait
     drop_trait::learning_drop_trait();
+
+    // Rc<T> 引用计数智能指针
+    rc::learning_rc();
 }
