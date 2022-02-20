@@ -1,3 +1,5 @@
+use std::ops::Deref;
+
 pub fn learning_deref_trait() {
     println!("Start to learn deref trait");
 
@@ -42,4 +44,18 @@ pub fn learning_deref_trait() {
     // 标准库中的 Deref trait 要求我们实现一个 deref 方法:
     //  - 该方法借用 self
     //  - 返回一个指向内部数据的引用 ( todo: 不会报错么 ? )
+
+    impl<T> Deref for MyBox<T> {
+        // 使用 Type 定义了一个关联类型
+        type Target = T;
+
+        fn deref(&self) -> &T {
+            &self.0
+        }
+    }
+
+    assert_eq!(5, *a);
+
+    // Rust  会自动把实现了 Deref Trait 的自定义类型 MyBox 展开成如下的模式:
+    assert_eq!(5, *(y.deref()));
 }
