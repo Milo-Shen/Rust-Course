@@ -60,4 +60,29 @@ pub fn learning_smart_pointer() {
     //     Cons(i32, List),
     //     Nil,
     // }
+
+    // 使用 Box 来获得确定大小的递归类型
+    // Box<T> 是一个指针, Rust 知道它需要多少空间, 因为:
+    //  - 指针的大小不会基于它指向的数据的大小变化而变化
+
+    // Box<T>:
+    //  - 只提供了 "间接" 存储和 heap 内存分配的功能
+    //  - 没有其他额外功能
+    //  - 没有性能开销
+    //  - 适用于需要 "间接" 存储的场景, 例如: Cons List
+    //  - 实现了 Deref trait 和 Drop Trait 这两个 trait
+    //  - Deref: 允许我们将 Box 的值当做引用来处理
+    //  - Drop: 当 Box 值离开作用于时, 它所指向的 heap 内存上面的数据以及指针数据都会被自动清理掉
+    #[derive(Debug)]
+    enum List {
+        Cons(i32, Box<List>),
+        Nil,
+    }
+
+    use List::{Cons, Nil};
+    let list = Cons(
+        1, Box::new(Cons(
+            2, Box::new(Cons(
+                3, Box::new(Nil))))));
+    println!("{:?}", list);
 }
