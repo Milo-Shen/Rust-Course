@@ -47,6 +47,7 @@ mod learning_pub_use;
 mod smart_pointer_begin;
 mod smart_pointer_box;
 mod deref_trait_1;
+mod deref_trait_2;
 
 fn main() {
     // Variables and Mutability
@@ -140,4 +141,5 @@ fn main() {
 
     // deref trait
     deref_trait_1::learning_deref_trait();
+    deref_trait_2::learning_deref_trait();
 }

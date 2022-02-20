@@ -1,7 +1,7 @@
 use std::ops::Deref;
 
 pub fn learning_deref_trait() {
-    println!("Start to learn deref trait");
+    println!("Start to learn deref trait 1");
 
     // Deref 是解引用的意思
     // 实现 Deref Trait 使我们可以自定义解引用运算符 * 的行为
