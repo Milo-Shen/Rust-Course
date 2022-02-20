@@ -46,6 +46,7 @@ mod iterator_6;
 mod learning_pub_use;
 mod smart_pointer_begin;
 mod smart_pointer_box;
+mod deref_trait_1;
 
 fn main() {
     // Variables and Mutability
@@ -136,4 +137,7 @@ fn main() {
     // smart pointer
     smart_pointer_begin::learning_smart_pointer();
     smart_pointer_box::learning_smart_pointer();
+
+    // deref trait
+    deref_trait_1::learning_deref_trait();
 }
