@@ -46,5 +46,6 @@ pub fn learning_rc() {
         println!("strong reference count after creating c = {}", Rc::strong_count(&list));
     }
 
+    // 当上面的变量 c 离开作用域的时候, 其上的计数引用会自动减少 1, 因为 Rc<T> 也实现了 Drop Trait
     println!("count after c goes out of scope = {}", Rc::strong_count(&list));
 }
