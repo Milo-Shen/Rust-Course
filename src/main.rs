@@ -153,5 +153,5 @@ fn main() {
     rc::learning_rc();
 
     // RecCell<T>
-    refcell::learning_RefCell();
+    refcell::learning_ref_cell();
 }
