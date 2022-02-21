@@ -50,6 +50,7 @@ mod deref_trait_1;
 mod deref_trait_2;
 mod drop_trait;
 mod rc;
+mod refcell;
 
 fn main() {
     // Variables and Mutability
@@ -150,4 +151,7 @@ fn main() {
 
     // Rc<T> 引用计数智能指针
     rc::learning_rc();
+
+    // RecCell<T>
+    refcell::learning_RefCell();
 }
