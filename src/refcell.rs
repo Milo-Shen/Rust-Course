@@ -49,5 +49,33 @@ pub fn learning_ref_cell() {
     // error[E0596]: cannot borrow `x` as mutable, as it is not declared as mutable
     // let y = &mut x;
 
-    // 那么
+    // 下面我们来看一个例子
+    pub trait Messenger {
+        fn send(&self, msg: &str);
+    }
+
+    // todo: 了解 'a + Messenger 用法的含义
+    pub struct LimitTracker<'a, T: 'a + Messenger> {
+        messenger: &'a T,
+        value: usize,
+        max: usize,
+    }
+
+    // 为什么 Where 子句此处不用 where T: 'a + Messenger
+    impl<'a, T> LimitTracker<'a, T>
+        where T: Messenger {
+        pub fn new(messenger: &T, max: usize) -> LimitTracker<T> {
+            LimitTracker {
+                messenger,
+                value: 0,
+                max,
+            }
+        }
+
+        pub fn set_value(&mut self, value: usize) {
+            self.value = value;
+            // todo: 为什么这里要使用 as f64 转换成 64 位浮点再执行除法
+            let percentage_of_max = self.value as f64 / self.max as f64;
+        }
+    }
 }
