@@ -1,3 +1,5 @@
+use std::cell::RefCell;
+
 pub trait Messenger {
     fn send(&self, msg: &str);
 }
@@ -88,23 +90,24 @@ pub fn learning_ref_cell() {
 
 #[cfg(test)]
 mod tests {
+    use std::borrow::Borrow;
     use super::*;
 
     struct MockMessenger {
-        sent_messages: Vec<String>,
+        sent_messages: RefCell<Vec<String>>,
     }
 
     impl MockMessenger {
         fn new() -> MockMessenger {
             MockMessenger {
-                sent_messages: vec![]
+                sent_messages: RefCell::new(vec![])
             }
         }
     }
 
     impl Messenger for MockMessenger {
-        fn send(&mut self, msg: &str) {
-            self.sent_messages.push(String::from(msg));
+        fn send(&self, msg: &str) {
+            self.sent_messages.borrow_mut().push(String::from(msg));
         }
     }
 
@@ -113,6 +116,6 @@ mod tests {
         let mock_messenger = MockMessenger::new();
         let mut limit_tracker = LimitTracker::new(&mock_messenger, 100);
         limit_tracker.set_value(80);
-        assert_eq!(mock_messenger.sent_messages.len(), 1);
+        assert_eq!(mock_messenger.sent_messages.borrow().len(), 1);
     }
 }
