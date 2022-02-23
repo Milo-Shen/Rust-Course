@@ -107,6 +107,7 @@ mod tests {
 
     impl Messenger for MockMessenger {
         fn send(&self, msg: &str) {
+            // borrow_mut 可以获得内部值的可变引用
             self.sent_messages.borrow_mut().push(String::from(msg));
         }
     }
@@ -116,6 +117,7 @@ mod tests {
         let mock_messenger = MockMessenger::new();
         let mut limit_tracker = LimitTracker::new(&mock_messenger, 100);
         limit_tracker.set_value(80);
+        // borrow 可以获得内部值的不可变引用
         assert_eq!(mock_messenger.sent_messages.borrow().len(), 1);
     }
 }
