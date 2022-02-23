@@ -1,3 +1,39 @@
+pub trait Messenger {
+    fn send(&self, msg: &str);
+}
+
+// todo: 了解 'a + Messenger 用法的含义
+pub struct LimitTracker<'a, T: 'a + Messenger> {
+    messenger: &'a T,
+    value: usize,
+    max: usize,
+}
+
+// 为什么 Where 子句此处不用 where T: 'a + Messenger
+impl<'a, T> LimitTracker<'a, T>
+    where T: Messenger {
+    pub fn new(messenger: &T, max: usize) -> LimitTracker<T> {
+        LimitTracker {
+            messenger,
+            value: 0,
+            max,
+        }
+    }
+
+    pub fn set_value(&mut self, value: usize) {
+        self.value = value;
+        // todo: 为什么这里要使用 as f64 转换成 64 位浮点再执行除法
+        let percentage_of_max = self.value as f64 / self.max as f64;
+        if percentage_of_max >= 1.0 {
+            self.messenger.send("Error: you are over your quota");
+        } else if percentage_of_max >= 0.9 {
+            self.messenger.send("Urgent warning: You've used up over 90% of your quote");
+        } else if percentage_of_max >= 0.75 {
+            self.messenger.send("Urgent warning: You've used up over 75% of your quote");
+        }
+    }
+}
+
 pub fn learning_ref_cell() {
     println!("Start to learn RefCell<T>");
 
@@ -48,34 +84,35 @@ pub fn learning_ref_cell() {
     // 借用规则有一个推论: 可变的借用一个不可变的值, 所以下面代码错误
     // error[E0596]: cannot borrow `x` as mutable, as it is not declared as mutable
     // let y = &mut x;
+}
 
-    // 下面我们来看一个例子
-    pub trait Messenger {
-        fn send(&self, msg: &str);
+#[cfg(test)]
+mod tests {
+    use super::*;
+
+    struct MockMessenger {
+        sent_messages: Vec<String>,
     }
 
-    // todo: 了解 'a + Messenger 用法的含义
-    pub struct LimitTracker<'a, T: 'a + Messenger> {
-        messenger: &'a T,
-        value: usize,
-        max: usize,
-    }
-
-    // 为什么 Where 子句此处不用 where T: 'a + Messenger
-    impl<'a, T> LimitTracker<'a, T>
-        where T: Messenger {
-        pub fn new(messenger: &T, max: usize) -> LimitTracker<T> {
-            LimitTracker {
-                messenger,
-                value: 0,
-                max,
+    impl MockMessenger {
+        fn new() -> MockMessenger {
+            MockMessenger {
+                sent_messages: vec![]
             }
         }
+    }
 
-        pub fn set_value(&mut self, value: usize) {
-            self.value = value;
-            // todo: 为什么这里要使用 as f64 转换成 64 位浮点再执行除法
-            let percentage_of_max = self.value as f64 / self.max as f64;
+    impl Messenger for MockMessenger {
+        fn send(&mut self, msg: &str) {
+            self.sent_messages.push(String::from(msg));
         }
+    }
+
+    #[test]
+    fn it_sends_an_over_75_percent_warning_message() {
+        let mock_messenger = MockMessenger::new();
+        let mut limit_tracker = LimitTracker::new(&mock_messenger, 100);
+        limit_tracker.set_value(80);
+        assert_eq!(mock_messenger.sent_messages.len(), 1);
     }
 }
