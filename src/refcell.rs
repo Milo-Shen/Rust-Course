@@ -1,3 +1,4 @@
+use std::rc::Rc;
 use std::cell::RefCell;
 
 pub trait Messenger {
@@ -35,6 +36,14 @@ impl<'a, T> LimitTracker<'a, T>
         }
     }
 }
+
+#[derive(Debug)]
+enum List {
+    Cons(Rc<RefCell<i32>>, Rc<List>),
+    Nil,
+}
+
+use List::{Cons, Nil};
 
 pub fn learning_ref_cell() {
     println!("Start to learn RefCell<T>");
@@ -86,6 +95,22 @@ pub fn learning_ref_cell() {
     // 借用规则有一个推论: 可变的借用一个不可变的值, 所以下面代码错误
     // error[E0596]: cannot borrow `x` as mutable, as it is not declared as mutable
     // let y = &mut x;
+
+    // 将 Rc<T> 和 RcCell<T> 结合使用来实现一个拥有多重所有权的可变数据
+    let value = Rc::new(RefCell::new(5));
+    let a = Rc::new(Cons(Rc::clone(&value), Rc::new(Nil)));
+    let b = Cons(Rc::new(RefCell::new(6)), Rc::clone(&a));
+    let c = Cons(Rc::new(RefCell::new(10)), Rc::clone(&a));
+
+    // todo: l
+    *value.borrow_mut() += 10;
+    println!("a after = {:?}", a);
+    println!("a after = {:?}", b);
+    println!("a after = {:?}", c);
+
+    // 其他可实现内部可变性的类型
+    //  - Cell<T>: 通过复制来访问数据
+    //  - Mutex<T>: 用于实现跨线程情形下的内部可变性模式
 }
 
 #[cfg(test)]
@@ -120,4 +145,20 @@ mod tests {
         // borrow 可以获得内部值的不可变引用
         assert_eq!(mock_messenger.sent_messages.borrow().len(), 1);
     }
+
+    // 使用 RefCell<T> 在运行时记录借用信息
+    // 两个方法 ( 安全接口 )
+    //  - borrow 方法: 返回智能指针 Ref<T>, 它实现了 Deref
+    //  - borrow_mut 方法: 返回智能指针 RefMut<T>, 它实现了 Deref
+    // RefCell<T> 会记录当前存在多少个活跃的 Ref<T> 和 RefMut<T> 智能指针:
+    //  - 每次调用 borrow: 不可变借用计数 + 1
+    //  - 任何一个 Ref<T> 的值离开作用域被释放时: 不可变借用计数 -1
+    //  - 每次调用 borrow_mut: 可变借用计数 + 1
+    //  - 任何一个 RefMut<T> 的值离开作用域被释放时: 可变借用计数 - 1
+
+    // 以此技术来维护借用检查规则:
+    //  - 任何一个给定时间里, 只允许拥有多个不可变你借用或一个可变借用
+    // todo: 能否同时拥有多个不可变借用和一个可变借用
+
+    // 将 Rc<T> 和 RcCell<T> 结合使用来实现一个拥有多重所有权的可变数据
 }
