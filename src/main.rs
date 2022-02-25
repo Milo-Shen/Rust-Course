@@ -51,6 +51,7 @@ mod deref_trait_2;
 mod drop_trait;
 mod rc;
 mod refcell;
+mod memory_leak;
 
 fn main() {
     // Variables and Mutability
@@ -154,4 +155,7 @@ fn main() {
 
     // RecCell<T>
     refcell::learning_ref_cell();
+
+    // memory leak
+    memory_leak::learning_memory_leak();
 }
