@@ -32,8 +32,8 @@ pub fn learning_memory_leak() {
     println!("a next item = {:?}", a.tail());
 
     let b = Rc::new(Cons(10, RefCell::new(Rc::clone(&a))));
-    // a rc count after b creation = 1, todo: 为什么此处是 1
-    println!("a rc count after b creation = {}", Rc::strong_count(&b));
+    // a rc count after b creation = 2
+    println!("a rc count after b creation = {}", Rc::strong_count(&a));
     println!("b initial rc count = {}", Rc::strong_count(&b));
     println!("b next item = {:?}", b.tail());
 
