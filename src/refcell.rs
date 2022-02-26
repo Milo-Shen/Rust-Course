@@ -102,11 +102,11 @@ pub fn learning_ref_cell() {
     let b = Cons(Rc::new(RefCell::new(6)), Rc::clone(&a));
     let c = Cons(Rc::new(RefCell::new(10)), Rc::clone(&a));
 
-    // todo: l
+    // todo: 理解此处 * 的用法, 下面这句话的执行顺序是否是: *(value.borrow_mut()) += 10;
     *value.borrow_mut() += 10;
     println!("a after = {:?}", a);
-    println!("a after = {:?}", b);
-    println!("a after = {:?}", c);
+    println!("b after = {:?}", b);
+    println!("c after = {:?}", c);
 
     // 其他可实现内部可变性的类型
     //  - Cell<T>: 通过复制来访问数据
