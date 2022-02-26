@@ -43,4 +43,29 @@ pub fn learning_memory_leak() {
 
     println!("b rc count after changing a = {}", Rc::strong_count(&b));
     println!("a rc count after changing a = {}", Rc::strong_count(&a));
+
+    // a-> 5 -> b -> 10 -> a 循环引用，所以下面的这行代码会堆栈溢出
+    // println!("a next item = {:?}", a.tail());
+
+    // 防止内存泄漏的解决办法
+    // 依靠开发者来保证, 不能依靠 rust
+    // 重新组织数据结构: 一些引用来表达所有权, 一些引用不表达所有权
+    //  - 循环引用中的一部分具有所有权关系, 另一部分不涉及所有权关系
+    //  - 只有所有权关系才影响值的清理
+
+    // 防止循环引用 - 把 Rc<T> 换成 Weak<T>
+    // 把 Rc::clone 为 Rc<T> 实例的 strong_count + 1, Rc<T> 的实例只有在 strong_count 为 0 时才会被清理
+    // Rc<T> 实例通过调用 Rc::downgrade 方法可以创建 Weak Reference ( 弱引用 )
+    //  - 返回类型是 Weak<T> ( 智能指针 )
+    //  - 调用 Rc::downgrade 会为 weak_count + 1
+    // Rc<T> 使用 weak_count 开追踪存在多少 Weak<T>
+    // weak_count 不为 0 并不影响 Rc<T> 实例的清理
+
+    // Strong vs Weak
+    // Strong Reference ( 强引用 ) 是如何分享 Rc<T> 实例的所有权
+    // Weak Reference ( 弱引用 ) 并不表达上述意思
+    // 使用 Weak Reference 并不会创建循环引用:
+    //  - 当 Strong Reference 数量为 0 的时候, Weak Reference 会自动断开
+    // 在使用 Weak<T> 前, 需保证它指向的值仍然存在:
+    //  - 在 Weak<T> 实例上调用 upgrade 方法, 返回 Option<Rc<T>>
 }
