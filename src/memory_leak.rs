@@ -83,14 +83,22 @@ pub fn learning_memory_leak() {
     });
 
     println!("leaf parent  = {:?}", leaf.parent.borrow().upgrade());
+    println!("leaf strong = {}, weak = {}", Rc::strong_count(&leaf), Rc::weak_count(&leaf));
 
-    let branch = Rc::new(Node {
-        value: 5,
-        parent: RefCell::new(Weak::new()),
-        children: RefCell::new(vec![Rc::clone(&leaf)]),
-    });
+    {
+        let branch = Rc::new(Node {
+            value: 5,
+            parent: RefCell::new(Weak::new()),
+            children: RefCell::new(vec![Rc::clone(&leaf)]),
+        });
 
-    *leaf.parent.borrow_mut() = Rc::downgrade(&branch);
-    // 因为使用了 Weak, 所以下面这段代码没有造成循环引用
-    println!("leaf parent  = {:#?}", leaf.parent.borrow().upgrade());
+        *leaf.parent.borrow_mut() = Rc::downgrade(&branch);
+        // 因为使用了 Weak, 所以下面这段代码没有造成循环引用
+        println!("leaf parent  = {:#?}", leaf.parent.borrow().upgrade());
+        println!("branch strong = {}, weak = {}", Rc::strong_count(&leaf), Rc::weak_count(&branch));
+        println!("leaf strong = {}, weak = {}", Rc::strong_count(&leaf), Rc::weak_count(&leaf));
+    }
+
+    println!("leaf parent  = {:?}", leaf.parent.borrow().upgrade());
+    println!("leaf strong = {}, weak = {}", Rc::strong_count(&leaf), Rc::weak_count(&leaf));
 }
