@@ -53,6 +53,7 @@ mod rc;
 mod refcell;
 mod memory_leak;
 mod threads_1;
+mod threads_2;
 
 fn main() {
     // Variables and Mutability
@@ -162,4 +163,5 @@ fn main() {
 
     // multi threads
     threads_1::learning_threads();
+    threads_2::learning_threads();
 }
