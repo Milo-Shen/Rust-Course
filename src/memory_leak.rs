@@ -95,7 +95,7 @@ pub fn learning_memory_leak() {
         *leaf.parent.borrow_mut() = Rc::downgrade(&branch);
         // 因为使用了 Weak, 所以下面这段代码没有造成循环引用
         println!("leaf parent  = {:#?}", leaf.parent.borrow().upgrade());
-        println!("branch strong = {}, weak = {}", Rc::strong_count(&leaf), Rc::weak_count(&branch));
+        println!("branch strong = {}, weak = {}", Rc::strong_count(&branch), Rc::weak_count(&branch));
         println!("leaf strong = {}, weak = {}", Rc::strong_count(&leaf), Rc::weak_count(&leaf));
     }
 
