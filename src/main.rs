@@ -52,6 +52,7 @@ mod drop_trait;
 mod rc;
 mod refcell;
 mod memory_leak;
+mod threads;
 
 fn main() {
     // Variables and Mutability
@@ -158,4 +159,7 @@ fn main() {
 
     // memory leak
     memory_leak::learning_memory_leak();
+
+    // multi threads
+    threads::learning_threads();
 }
