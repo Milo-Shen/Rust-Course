@@ -1,3 +1,5 @@
+use std::sync::Mutex;
+
 pub fn learning_threads() {
     println!("Start to learn threads 3");
 
@@ -18,4 +20,22 @@ pub fn learning_threads() {
     // Mutex 的两条规则
     // 在使用数据之前, 必须尝试获取锁 ( lock )
     // 使用完 mutex 所保护的数据, 必须对数据进行解锁, 以便其他线程可以获取锁
+
+    // Mutex<T> 的 API
+    // 通过 Mutex::new(数据) 来创建 Mutex<T>
+    //  - Mutex<T> 是一个智能指针
+    // 访问数据前, 通过 lock 方法获取锁
+    //  - 会阻塞当前线程
+    //  - lock 可能会失败
+    //  - 返回的是 MutexGuard ( 智能指针, 实现了 Deref 和 Drop )
+    let m = Mutex::new(5);
+    {
+        // lock 返回的是一个 MutexGuard<i32>, 它实现了 Deref, 所以它可以指向其内部的数据
+        // 从而我们可以获取内部数据的引用, 因为该引用是可变的, 所以我们可以修改数据的值
+        let mut num = m.lock().unwrap();
+        *num = 6;
+        // MutexGuard<i32> 这个智能指针也实现了 Drop Trait
+        // 所以当代码走出 39 行作用域时, Mutex 会实现自动的解锁
+    }
+    println!("m = {:?}", m);
 }
