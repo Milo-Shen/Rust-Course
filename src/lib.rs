@@ -132,12 +132,20 @@ pub fn search_case_insensitive<'a>(query: &str, content: &'a str) -> Vec<&'a str
 }
 
 // Rust 面向对象编程
+#[derive(Debug)]
 pub struct AveragedCollection {
     list: Vec<i32>,
     average: f64,
 }
 
 impl AveragedCollection {
+    pub fn new() -> AveragedCollection {
+        AveragedCollection {
+            list: vec![],
+            average: 0 as f64,
+        }
+    }
+
     pub fn add(&mut self, value: i32) {
         self.list.push(value);
         self.update_average();
