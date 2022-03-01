@@ -55,6 +55,7 @@ mod memory_leak;
 mod threads_1;
 mod threads_2;
 mod threads_3;
+mod threads_4;
 
 fn main() {
     // Variables and Mutability
@@ -166,4 +167,5 @@ fn main() {
     threads_1::learning_threads();
     threads_2::learning_threads();
     threads_3::learning_threads();
+    threads_4::learning_threads();
 }
