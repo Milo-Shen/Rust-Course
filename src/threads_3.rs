@@ -64,4 +64,10 @@ pub fn learning_threads() {
     }
 
     println!("The value of count is = {}", *counter.lock().unwrap());
+
+    // RefCell<T>/Rc<T>    vs    Mutex<T>/Arc<T>
+    // Mutex<T> 提供了内部可变性, 和 Cell 家族一样
+    // 我们使用 RefCell<T> 来改变 Rc<T> 里面的内容
+    // 我们使用 Mutex<T> 来改变 Arc<T> 里面的内容
+    // 注意: Mutex<T> 有死锁的风险
 }
