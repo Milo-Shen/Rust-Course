@@ -16,4 +16,7 @@ pub fn learning_oop() {
     //  - struct、enum 包含数据
     // impl 块为之提供了方法
     // 但带有方法的 struct、enum 并没有被称为对象
+
+    // 封装: 调用对象外部的代码无法直接访问对象内部的实现细节, 唯一可以与对象进行交互的方法就是通过它公开的 API
+    // Rust: pub 关键字
 }
