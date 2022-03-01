@@ -1,4 +1,5 @@
-use std::sync::Mutex;
+use std::sync::{Mutex, Arc};
+use std::thread;
 
 pub fn learning_threads() {
     println!("Start to learn threads 3");
@@ -38,4 +39,29 @@ pub fn learning_threads() {
         // 所以当代码走出 39 行作用域时, Mutex 会实现自动的解锁
     }
     println!("m = {:?}", m);
+
+    // 多线程共享 Mutex<T> - 多线程的多重所有权
+    // 使用 Arc<T> 来进行原子引用计数
+    // Arc<T> 和 Rc<T> 类似, 它可以用于并发场景
+    //  - A: atomic, 原子的
+    // 为什么所有的基础类型都不是原子的, 为什么标准库类型不默认使用 Arc<T> ?
+    //  - 需要性能作为代价
+    // Arc<T> 和 Rc<T> 的 API 是相同的
+    let counter = Arc::new(Mutex::new(0));
+    let mut handles = vec![];
+
+    for _ in 0..10 {
+        let counter = Arc::clone(&counter);
+        let handle = thread::spawn(move || {
+            let mut num = counter.lock().unwrap();
+            *num += 1;
+        });
+        handles.push(handle);
+    }
+
+    for handle in handles {
+        handle.join().unwrap();
+    }
+
+    println!("The value of count is = {}", *counter.lock().unwrap());
 }
