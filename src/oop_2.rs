@@ -1,5 +1,3 @@
-use std::fmt::Debug;
-
 pub trait Draw {
     fn draw(&self);
 }
