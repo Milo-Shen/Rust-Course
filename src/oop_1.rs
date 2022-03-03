@@ -1,7 +1,7 @@
 use rust_course::AveragedCollection;
 
 pub fn learning_oop() {
-    println!("Start to learn oop");
+    println!("Start to learn oop 1");
 
     // Rust 的面向对象的编程特性
 
@@ -21,12 +21,12 @@ pub fn learning_oop() {
 
     // 封装: 调用对象外部的代码无法直接访问对象内部的实现细节, 唯一可以与对象进行交互的方法就是通过它公开的 API
     // Rust: pub 关键字
-    let mut myCollection = AveragedCollection::new();
-    println!("myCollection = {:?}", myCollection);
+    let mut my_collection = AveragedCollection::new();
+    println!("my_collection = {:?}", my_collection);
     // &mut self 定义的方法, 只能在 mut 类型上使用
-    myCollection.add(2);
-    println!("myCollection = {:?}", myCollection);
-    println!("The average value of myCollection = {}", myCollection.average());
+    my_collection.add(2);
+    println!("my_collection = {:?}", my_collection);
+    println!("The average value of my_collection = {}", my_collection.average());
 
     // 继承
     // 继承: 使对象可以沿用另外一个对象的数据和行为, 且无需重复定义相关代码

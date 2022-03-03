@@ -57,6 +57,7 @@ mod threads_2;
 mod threads_3;
 mod threads_4;
 mod oop_1;
+mod oop_2;
 
 fn main() {
     // Variables and Mutability
@@ -172,4 +173,5 @@ fn main() {
 
     // oop
     oop_1::learning_oop();
+    oop_2::learning_oop();
 }
