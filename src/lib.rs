@@ -174,15 +174,34 @@ impl AveragedCollection {
 
 // 实现面向对象的设计模式
 pub trait State {
+    // Box<Self> 与 self 的区别: 这个语法意味着这个方法，它只能被包裹着当前类型的 Box 实例所调用
+    // 它会在调用过程中获取 Box<Self> 的所有权, 并使旧的状态实失效, 从而将 Post 的状态值，转化为一个新的状态
     fn request_review(self: Box<Self>) -> Box<dyn State>;
     fn approve(self: Box<Self>) -> Box<dyn State>;
+    fn content<'a>(&self, post: &'a Post) -> &'a str { "" }
+}
+
+pub struct Published {}
+
+impl State for Published {
+    fn request_review(self: Box<Self>) -> Box<dyn State> {
+        self
+    }
+
+    fn approve(self: Box<Self>) -> Box<dyn State> {
+        self
+    }
+
+    fn content<'a>(&self, post: &'a Post) -> &'a str {
+        &post.content
+    }
 }
 
 pub struct PendingReview {}
 
 impl State for PendingReview {
     fn request_review(self: Box<Self>) -> Box<dyn State> {
-        todo!()
+        self
     }
 
     fn approve(self: Box<Self>) -> Box<dyn State> {
@@ -220,7 +239,21 @@ impl Post {
     }
 
     pub fn content(&self) -> &str {
-        ""
+        // as_ref: Converts from &Option<T> to Option<&T>.
+        self.state.as_ref().unwrap().content(&self)
+    }
+
+    pub fn request_review(&mut self) {
+        // take 的作用: takes the value out of the option, leaving a None in its place.
+        if let Some(s) = self.state.take() {
+            self.state = Some(s.request_review());
+        }
+    }
+
+    pub fn approve(&mut self) {
+        if let Some(s) = self.state.take() {
+            self.state = Some(s.approve());
+        }
     }
 }
 
