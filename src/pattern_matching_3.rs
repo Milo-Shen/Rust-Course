@@ -152,4 +152,29 @@ pub fn learning_pattern_matching() {
             println!("Some numbers: {},{},{}", first, third, fifth);
         }
     }
+
+    // 通过使用 _ 开头命名来忽略未使用的变量
+    let _x = 5;
+    println!("_x = {}", _x);
+
+    let s = Some(String::from("Hello !"));
+    // 此处使用 _ 进行解构时不会发生绑定这类操作, 若是使用非 _ 变量, 则会发生绑定操作
+    // 所有权将发生移动
+    if let Some(_) = s {
+        println!("found a string");
+    }
+    println!("{:?}", s);
+
+    // 使用 .. 来忽略值的剩余部分
+    let origin = Point { x: 1, y: 2 };
+    match origin {
+        Point { x, .. } => println!("x is {}", x),
+    }
+
+    let numbers = (2, 4, 8, 16, 32);
+    match numbers {
+        (first, .., last) => {
+            println!("first = {}, last = {}", first, last);
+        }
+    }
 }
