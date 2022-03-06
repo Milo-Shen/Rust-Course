@@ -77,4 +77,19 @@ pub fn learning_pattern_matching() {
     let a = 5;
     let (x, y, z) = (1, 2, 3);
     println!("let pattern: {},{},{},{}", a, x, y, z);
+
+    // 函数参数
+    // 函数的参数也可以是模式
+
+    // x 也是模式匹配的一种
+    fn foo(x: i32) {
+        println!("The value is: {}", x);
+    }
+
+    fn print_coordinates(&(x, y): &(i32, i32)) {
+        println!("Current location: ({},{})", x, y);
+    }
+
+    let point = (3, 5);
+    print_coordinates(&point);
 }
