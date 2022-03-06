@@ -88,4 +88,24 @@ pub fn learning_pattern_matching() {
             println!("change the color: r = {} ,g = {} ,b = {}", r, g, b);
         }
     }
+
+    // 结构嵌套的 struct 和 enum
+    enum Color {
+        RGB(i32, i32, i32),
+        HSV(i32, i32, i32),
+    }
+
+    enum ColorPanel {
+        ChangeColor(Color),
+    }
+
+    let color = ColorPanel::ChangeColor(Color::RGB(0, 0, 0));
+    match color {
+        ColorPanel::ChangeColor(Color::RGB(r, g, b)) => {
+            println!("change the color: r = {} ,g = {} ,b = {}", r, g, b);
+        }
+        ColorPanel::ChangeColor(Color::HSV(h, s, v)) => {
+            println!("change the color: h = {} ,s = {} ,v = {}", h, s, v);
+        }
+    }
 }
