@@ -120,4 +120,16 @@ pub fn learning_pattern_matching() {
     // 解构 struct 和 tuple
     let ((feat, inches), Point { x, y }) = ((3, 10), Point { x: 3, y: -10 });
     println!("feat = {}, inches = {}, x = {}, y = {}", feat, inches, x, y);
+
+    // 在模式中忽略值
+    //  - 使用 _ 来忽略整个值
+    //  - 使用 _ 配合其他模式可以用来忽略部分值
+    //  - 忽略使用 _ 开头的名称
+    //  使用 .. 来忽略值的剩余部分
+
+    // 使用 _ 来忽略整个值
+    fn foo(_: i32, y: i32) {
+        println!("This code only uses the y parameter = {}", y);
+    }
+    foo(1, 2);
 }
