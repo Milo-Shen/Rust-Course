@@ -197,4 +197,12 @@ pub fn learning_pattern_matching() {
         _ => println!("Default case, x = {:?}", x),
     }
     println!("at the end: x = {:?}, y = {:?}", x, y);
+
+    // 配合多重模式来使用 match 守卫
+    let x = 4;
+    let y = false;
+    match x {
+        4 | 5 | 6 if y => println!("yes"),
+        _ => println!("no"),
+    }
 }
