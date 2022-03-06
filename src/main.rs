@@ -62,6 +62,7 @@ mod oop_3;
 mod pattern_matching_1;
 mod pattern_matching_2;
 mod pattern_matching_3;
+mod unsafe_rust;
 
 fn main() {
     // Variables and Mutability
@@ -184,4 +185,7 @@ fn main() {
     pattern_matching_1::learning_pattern_matching();
     pattern_matching_2::learning_pattern_matching();
     pattern_matching_3::learning_pattern_matching();
+
+    // unsafe rust
+    unsafe_rust::learning_unsafe_rust();
 }
