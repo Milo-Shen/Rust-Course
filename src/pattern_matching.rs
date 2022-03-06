@@ -70,4 +70,11 @@ pub fn learning_pattern_matching() {
     for (index, value) in v.iter().enumerate() {
         println!("{} is at index: {}", value, index);
     }
+
+    // let 语句
+    // let 语句也是模式
+    // let PATTERN = EXPRESSION;
+    let a = 5;
+    let (x, y, z) = (1, 2, 3);
+    println!("let pattern: {},{},{},{}", a, x, y, z);
 }
