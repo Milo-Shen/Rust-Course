@@ -132,4 +132,24 @@ pub fn learning_pattern_matching() {
         println!("This code only uses the y parameter = {}", y);
     }
     foo(1, 2);
+
+    // 使用嵌套的 _ 来忽略值的一部分
+    let mut setting_value = Some(5);
+    let new_setting_value = Some(10);
+    match (setting_value, new_setting_value) {
+        (Some(_), Some(_)) => {
+            println!("can't overwrite an existing customized value");
+        }
+        _ => {
+            setting_value = new_setting_value
+        }
+    }
+    println!("setting is {:?}", setting_value);
+
+    let numbers = (2, 4, 8, 16, 32);
+    match numbers {
+        (first, _, third, _, fifth) => {
+            println!("Some numbers: {},{},{}", first, third, fifth);
+        }
+    }
 }
