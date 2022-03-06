@@ -116,4 +116,8 @@ pub fn learning_pattern_matching() {
         ColorPanel::Position(Point { x, y }) => println!("The current pos is x = {} ,y = {}", x, y),
         _ => println!("other cases"),
     }
+
+    // 解构 struct 和 tuple
+    let ((feat, inches), Point { x, y }) = ((3, 10), Point { x: 3, y: -10 });
+    println!("feat = {}, inches = {}, x = {}, y = {}", feat, inches, x, y);
 }
