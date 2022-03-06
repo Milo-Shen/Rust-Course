@@ -45,6 +45,7 @@ pub fn learning_pattern_matching() {
         println!("Using your favorite color: {}, as the background", color);
     } else if is_tuesday {
         println!("Tuesday is green day !");
+        // 此处的代码, 新的 age 变量会覆盖等号后面的旧的 age 变量
     } else if let Ok(age) = age {
         if age > 30 {
             println!("Using purple as the background color");
@@ -53,5 +54,12 @@ pub fn learning_pattern_matching() {
         }
     } else {
         println!("Using blue as the background color");
+    }
+
+    // while let 条件循环
+    // 只要模式继续满足匹配条件, 那它允许 while 循环一直运行
+    let mut stack = vec![1, 2, 3];
+    while let Some(top) = stack.pop() {
+        println!("{}", top);
     }
 }
