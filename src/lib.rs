@@ -221,6 +221,10 @@ impl State for Draft {
     }
 }
 
+pub struct DraftPost {
+    content: String,
+}
+
 pub struct Post {
     state: Option<Box<dyn State>>,
     content: String,
