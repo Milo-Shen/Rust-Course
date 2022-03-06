@@ -182,11 +182,19 @@ pub fn learning_pattern_matching() {
     // match 守卫就是 match arm 模式后额外的 if 条件, 想要匹配该条件也必须满足
     // match 守卫适用于比单独的模式更复杂的场景
     let num = Some(4);
-
     // 下面的代码中, Some(x) 就是模式, x < 5 就是 match 守卫
     match num {
         Some(x) if x < 5 => println!("less than five: {}", x),
         Some(x) => println!("{}", x),
         None => (),
     }
+
+    let x = Some(10);
+    let y = 10;
+    match x {
+        Some(50) => println!("Got 50"),
+        Some(n) if n == y => println!("Matched, n = {:?}", n),
+        _ => println!("Default case, x = {:?}", x),
+    }
+    println!("at the end: x = {:?}, y = {:?}", x, y);
 }
