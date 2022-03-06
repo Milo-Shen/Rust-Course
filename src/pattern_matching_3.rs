@@ -97,6 +97,7 @@ pub fn learning_pattern_matching() {
 
     enum ColorPanel {
         ChangeColor(Color),
+        Position(Point),
     }
 
     let color = ColorPanel::ChangeColor(Color::RGB(0, 0, 0));
@@ -107,5 +108,12 @@ pub fn learning_pattern_matching() {
         ColorPanel::ChangeColor(Color::HSV(h, s, v)) => {
             println!("change the color: h = {} ,s = {} ,v = {}", h, s, v);
         }
+        _ => println!("other cases"),
+    }
+
+    let pos = ColorPanel::Position(Point { x: 1, y: 2 });
+    match pos {
+        ColorPanel::Position(Point { x, y }) => println!("The current pos is x = {} ,y = {}", x, y),
+        _ => println!("other cases"),
     }
 }
