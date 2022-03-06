@@ -62,4 +62,12 @@ pub fn learning_pattern_matching() {
     while let Some(top) = stack.pop() {
         println!("{}", top);
     }
+
+    // for 循环
+    // for 循环是 Rust 中最常见的循环
+    // for 循环中, 模式就是紧随 for 关键字后的值
+    let v = vec!['a', 'b', 'c'];
+    for (index, value) in v.iter().enumerate() {
+        println!("{} is at index: {}", value, index);
+    }
 }
