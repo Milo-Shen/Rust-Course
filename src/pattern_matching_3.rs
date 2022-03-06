@@ -205,4 +205,23 @@ pub fn learning_pattern_matching() {
         4 | 5 | 6 if y => println!("yes"),
         _ => println!("no"),
     }
+
+    // @ 绑定
+    // @ 符号让我们可以创建一个变量, 该变量可以在测试某个值是否与模式匹配的同时保存该值
+    enum HelloMessage {
+        Hello { id: i32 }
+    }
+    let msg = HelloMessage::Hello { id: 5 };
+
+    match msg {
+        HelloMessage::Hello { id: id_variable @ 3..=7 } => {
+            println!("Found an id in range: {}", id_variable);
+        }
+        HelloMessage::Hello { id: 10..=12 } => {
+            println!("Found an id in another range");
+        }
+        HelloMessage::Hello { id } => {
+            println!("Found some other id: {}", id);
+        }
+    }
 }
