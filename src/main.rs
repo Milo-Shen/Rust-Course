@@ -59,7 +59,7 @@ mod threads_4;
 mod oop_1;
 mod oop_2;
 mod oop_3;
-mod pattern_matching;
+mod pattern_matching_1;
 
 fn main() {
     // Variables and Mutability
@@ -179,5 +179,5 @@ fn main() {
     oop_3::learning_oop();
 
     // pattern matching
-    pattern_matching::learning_pattern_matching();
+    pattern_matching_1::learning_pattern_matching();
 }
