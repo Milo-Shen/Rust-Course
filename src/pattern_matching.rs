@@ -12,4 +12,46 @@ pub fn learning_pattern_matching() {
     //  - 占位符
     // 想要使用模式, 需要将其与某个值进行比较
     //  - 如果模式匹配, 就可以在代码中使用这个值的相应部分
+
+    // 用到模式的地方
+
+    // match 的 Arm
+    // match VALUE {
+    //     PATTERN => EXPRESSION,
+    //     PATTERN => EXPRESSION,
+    //     PATTERN => EXPRESSION,
+    // }
+
+    // match 的表达式的要求:
+    //  - 详尽 ( 包含所有的可能性 )
+
+    // 一个特殊的模式: _ ( 下划线 ):
+    //  - 它会匹配任何东西
+    //  - 不会绑定到变量
+    // 通常用于 match 的最后一个 arm, 用于忽略某些值
+
+    // 条件 if let 表达式
+    // if let 表达式主要是作为一种简短的方式来等价替代只有一个匹配项的 match
+    // if let 可选的可以拥有 else, 包括:
+    //  - else if
+    //  - else if let
+    // 但, if let 不会检查穷尽性
+
+    let favourite_color: Option<&str> = None;
+    let is_tuesday = false;
+    let age: Result<u8, _> = "34".parse();
+
+    if let Some(color) = favourite_color {
+        println!("Using your favorite color: {}, as the background", color);
+    } else if is_tuesday {
+        println!("Tuesday is green day !");
+    } else if let Ok(age) = age {
+        if age > 30 {
+            println!("Using purple as the background color");
+        } else {
+            println!("Using orange as the background color");
+        }
+    } else {
+        println!("Using blue as the background color");
+    }
 }
