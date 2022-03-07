@@ -50,4 +50,18 @@ pub fn learning_unsafe_rust() {
     // 原始指针并不一直都是有效的, 下面我们创建一个无法确定其有效性的原始指针
     let address = 0x012345usize;
     let r = address as *const i32;
+
+    // 解引用原始指针
+    unsafe {
+        println!("r1: {}", *r1);
+        println!("r2: {}", *r2);
+    }
+
+    // r1 和 r2 指向了同一块内存地址, 此时我们可以通过可变引用 r2 来修改其里面的值
+    // 这种操作是允许的, 但是需要格外小心
+    unsafe {
+        *r2 = 10000;
+        println!("updated r2: {}", *r2);
+        println!("updated r1: {}", *r1);
+    }
 }
