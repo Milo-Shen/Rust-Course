@@ -1,3 +1,5 @@
+use std::ops::Add;
+
 pub fn learning_advanced_trait() {
     println!("Start to learn unsafe trait");
 
@@ -48,4 +50,25 @@ pub fn learning_advanced_trait() {
     // 这种计数常用于运算符重载 ( operator overloading )
     // Rust 不允许创建自己的运算符及重载任意的运算符
     // 但可以通过实现 std::ops 中列出的那些 trait 来重载一部分相应的运算符
+    #[derive(Debug, PartialEq)]
+    struct Point {
+        x: i32,
+        y: i32,
+    }
+
+    impl Add for Point {
+        type Output = Point;
+
+        // 下面的代码重载了 + 号运算符
+        // 此处的 Self::Output 也可以由 Point 来代替
+        fn add(self, rhs: Self) -> Self::Output {
+            Self::Output {
+                x: self.x + rhs.x,
+                y: self.y + rhs.y,
+            }
+        }
+    }
+
+    let my_pointer = Point { x: 1, y: 2 } + Point { x: 3, y: 4 };
+    println!("The final point is: {:?}", my_pointer);
 }
