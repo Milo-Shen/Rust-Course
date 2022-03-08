@@ -135,4 +135,32 @@ pub fn learning_advanced_trait() {
 
     // 调用的是 Wizard 上定义的 fly 方法
     Wizard::fly(&person);
+
+    // 完全限定语法 ( Fully Qualified Syntax )
+    // 如何调动同名方法
+    // 完全限定语法: <Type as Trait>::function(receiver_if_method, netx_args, ...)
+    //  - 可以在任何调用函数或方法的地方使用
+    //  - 允许忽略那些从其他上下文能推导出来的部分
+    //  - 当 Rust 无法区分你期望调用哪个具体实现的时候, 才需要使用这种语法
+
+    trait Animal {
+        fn baby_name() -> String;
+    }
+
+    struct Dog;
+
+    impl Dog {
+        fn baby_name() -> String {
+            String::from("Spot")
+        }
+    }
+
+    impl Animal for Dog {
+        fn baby_name() -> String {
+            String::from("puppy")
+        }
+    }
+
+    println!("A baby dog is called a {}", Dog::baby_name());
+    println!("A baby dog is called a {}", <Dog as Animal>::baby_name());
 }
