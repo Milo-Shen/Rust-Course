@@ -163,4 +163,10 @@ pub fn learning_advanced_trait() {
 
     println!("A baby dog is called a {}", Dog::baby_name());
     println!("A baby dog is called a {}", <Dog as Animal>::baby_name());
+
+    // 使用 supertrait 来要求 trait 附带其他 trait 的功能
+    // 其实就是要求一个 trait 继承于另一个 trait
+    // 需要在一个 trait 中使用其他 trait 的功能
+    //  - 需要被依赖的 trait 也被实现
+    //  - 那个被间接依赖的 trait 就是当前 trait 的 supertrait
 }
