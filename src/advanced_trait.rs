@@ -60,9 +60,9 @@ pub fn learning_advanced_trait() {
         type Output = Point;
 
         // 下面的代码重载了 + 号运算符
-        // 此处的 Self::Output 也可以由 Point 来代替
-        fn add(self, rhs: Self) -> Self::Output {
-            Self::Output {
+        // 此处的 Point 也可以由 Self::Output 来代替
+        fn add(self, rhs: Self) -> Point {
+            Point {
                 x: self.x + rhs.x,
                 y: self.y + rhs.y,
             }
@@ -71,4 +71,22 @@ pub fn learning_advanced_trait() {
 
     let my_pointer = Point { x: 1, y: 2 } + Point { x: 3, y: 4 };
     println!("The final point is: {:?}", my_pointer);
+
+    // 具体指明泛型参数类型的例子
+    #[derive(Debug)]
+    struct Millimeters(u32);
+    struct Meters(u32);
+
+    impl Add<Meters> for Millimeters {
+        type Output = Millimeters;
+
+        fn add(self, rhs: Meters) -> Self::Output {
+            Millimeters(self.0 + (rhs.0 * 1000))
+        }
+    }
+
+    let millimeters = Millimeters(1);
+    let meter = Meters(2);
+    let final_millimeters: Millimeters = millimeters + meter;
+    println!("final_millimeters = {:?}", final_millimeters);
 }
