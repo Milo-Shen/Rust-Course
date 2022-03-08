@@ -41,4 +41,11 @@ pub fn learning_advanced_trait() {
             None
         }
     }
+
+    // 默认参数类型和运算符重载
+    // 可以在使用泛型参数时为泛型指定一个默认的数据类型
+    // 语法: <PlaceholderType=ConcreteType>
+    // 这种计数常用于运算符重载 ( operator overloading )
+    // Rust 不允许创建自己的运算符及重载任意的运算符
+    // 但可以通过实现 std::ops 中列出的那些 trait 来重载一部分相应的运算符
 }
