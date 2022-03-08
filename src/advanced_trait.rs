@@ -89,4 +89,50 @@ pub fn learning_advanced_trait() {
     let meter = Meters(2);
     let final_millimeters: Millimeters = millimeters + meter;
     println!("final_millimeters = {:?}", final_millimeters);
+
+    // 默认泛型参数的主要应用场景
+    // 扩展一个类型而不破坏现有代码
+    // 允许在大部分用户都不需要的特定场景下进行自定义
+
+    // 完全限定语法 ( Fully Qualified Syntax )
+    // 如何调动同名方法
+    trait Pilot {
+        fn fly(&self);
+    }
+
+    trait Wizard {
+        fn fly(&self);
+    }
+
+    struct Human;
+
+    impl Pilot for Human {
+        fn fly(&self) {
+            println!("This is your captain speaking");
+        }
+    }
+
+    impl Wizard for Human {
+        fn fly(&self) {
+            println!("UP !");
+        }
+    }
+
+    impl Human {
+        fn fly(&self) {
+            println!("*waving arms furiously*");
+        }
+    }
+
+    let person = Human;
+
+    // 调用的是 Human 本身的 fly 方法
+    // 执行结果为: "*waving arms furiously*"
+    person.fly();
+
+    // 调用的是 Pilot 上定义的 fly 方法
+    Pilot::fly(&person);
+
+    // 调用的是 Wizard 上定义的 fly 方法
+    Wizard::fly(&person);
 }
