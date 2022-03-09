@@ -1,4 +1,7 @@
 use std::ops::Add;
+use std::fmt;
+use std::fmt::{Display, Formatter};
+use std::process::Output;
 
 pub fn learning_advanced_trait() {
     println!("Start to learn unsafe trait");
@@ -169,4 +172,32 @@ pub fn learning_advanced_trait() {
     // 需要在一个 trait 中使用其他 trait 的功能
     //  - 需要被依赖的 trait 也被实现
     //  - 那个被间接依赖的 trait 就是当前 trait 的 supertrait
+
+    trait OutlinePrint: fmt::Display {
+        fn outline_print(&self) {
+            // to_string 是由 Display 这个 trait 实现的
+            let output = self.to_string();
+            let len = output.len();
+            println!("{}", "*".repeat(len + 4));
+            println!("*{}*", " ".repeat(len + 2));
+            println!("* {} *", output);
+            println!("*{}*", " ".repeat(len + 2));
+            println!("{}", "*".repeat(len + 4));
+        }
+    }
+
+    impl Display for Point {
+        fn fmt(&self, f: &mut Formatter<'_>) -> fmt::Result {
+            write!(f, "({}, {})", self.x, self.y)
+        }
+    }
+    impl OutlinePrint for Point {}
+
+    let point = Point { x: 1, y: 10 };
+    point.outline_print();
+
+    // 使用 newtype 模式在外部类型上实现外部 trait
+    // 孤儿规则: 只有当 trait 或类型定义在本地包时, 才能为该类型实现这个 trait
+    // 可以通过 newtype 模式来绕过这一规则
+    //  - 利用 tuple struct ( 元组结构体 ) 创建一个新的类型
 }
