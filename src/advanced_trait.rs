@@ -1,6 +1,6 @@
 use std::ops::Add;
 use std::fmt;
-use std::fmt::{Display, Formatter};
+use std::fmt::{Display, Formatter, write};
 use std::process::Output;
 
 pub fn learning_advanced_trait() {
@@ -200,4 +200,14 @@ pub fn learning_advanced_trait() {
     // 孤儿规则: 只有当 trait 或类型定义在本地包时, 才能为该类型实现这个 trait
     // 可以通过 newtype 模式来绕过这一规则
     //  - 利用 tuple struct ( 元组结构体 ) 创建一个新的类型
+    struct Wrapper(Vec<String>);
+
+    impl fmt::Display for Wrapper {
+        fn fmt(&self, f: &mut Formatter<'_>) -> fmt::Result {
+            write!(f, "[{}]", self.0.join(", "))
+        }
+    }
+
+    let w = Wrapper(vec![String::from("hello"), String::from("world")]);
+    println!("w = {}", w)
 }
