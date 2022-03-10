@@ -105,4 +105,24 @@ pub fn learning_advanced_type() {
     // Rust 使用动态大小类型的通用方式
     // 附带一些额外的元数据来存储动态信息的大小
     //  - 使用动态大小类型时总会把它的值放在某种指针的
+
+    // 另一种动态大小的类型: Trait
+    // 每个 trait 都是一个动态大小的类型, 可以通过名称对其进行引用
+    // 为了将 trait 用作 trait 对象, 必须将其放置在某种指针之后
+    //  - 例如: &dyn Trait 或 Box<dyn Trait> 或 Rc<dyn Trait> 之后
+
+    // Sized Trait
+    // 为了处理动态大小的类型, Rust 提供了一个 Sized Trait 来确定一个类型的大小在编译时是否已知
+    //  - 编译时可计算出大小的类型会自动实现这一 trait
+    //  - Rust 还会为每一个泛型函数隐式地添加 Sized 约束
+    // 默认情况下， 泛型函数只能被用于编译时已经知道大小的类型, 但是可以通过特殊语法解除这一限制
+
+    // 下面的函数实际上会被影式转化为: fn generic<T: Sized>(t: T) {}
+    fn generic<T>(t: T) {}
+
+    // 使用 ?Sized trait 解除上述约束
+    // ?Sized 表达了一种不确定性, 即 T 可能是 sized 也可能不是 sized
+    // 语法的要求: 只能用于 Sized 上面
+    // 参数 T 变成了 &T, 因为此时 T 的大小不是确定的, 所以此处我们要把 T 放在某种指针后面
+    fn _generic<T: ?Sized>(t: &T) {}
 }
