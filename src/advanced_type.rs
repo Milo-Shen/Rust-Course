@@ -40,7 +40,7 @@ pub fn learning_advanced_type() {
 
     // Result 的例子
     // 未使用类型别名前:
-    pub trait __Write {
+    pub trait Write {
         fn write(&mut self, buf: &[u8]) -> Result<usize, Error>;
         fn flush(&mut self) -> Result<usize, Error>;
         fn write_all(&mut self, buf: &[u8]) -> Result<usize, Error>;
@@ -54,5 +54,14 @@ pub fn learning_advanced_type() {
         fn flush(&mut self) -> _Result<usize>;
         fn write_all(&mut self, buf: &[u8]) -> _Result<usize>;
         fn write_fmt(&mut self, fmt: fmt::Arguments) -> _Result<usize>;
+    }
+
+    // 使用类型别名后 - 另一种形式:
+    type __Result<T> = std::io::Result<T>;
+    pub trait __Write {
+        fn write(&mut self, buf: &[u8]) -> __Result<usize>;
+        fn flush(&mut self) -> __Result<usize>;
+        fn write_all(&mut self, buf: &[u8]) -> __Result<usize>;
+        fn write_fmt(&mut self, fmt: fmt::Arguments) -> __Result<usize>;
     }
 }
