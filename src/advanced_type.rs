@@ -64,4 +64,28 @@ pub fn learning_advanced_type() {
         fn write_all(&mut self, buf: &[u8]) -> __Result<usize>;
         fn write_fmt(&mut self, fmt: fmt::Arguments) -> __Result<usize>;
     }
+
+    // Never 类型
+    // 有一个名为 ! 的特殊类型
+    //  - 它没有任何值, 行话称为空类型 ( empty type )
+    //  - 我们倾向于叫它 never 类型, 因为它在不返回的函数中充当返回类型
+    // 不返回值的函数也被称为发散函数 ( diverging function )
+    // Never 这个类型无法产生一个无法返回的值, Never 类型的表达式可以被强制转换为其他任意类型
+    // 永远不会结束的 loop 循环的表达式的返回值也是 Never 类型
+    // continue 和 panic! 返回的类型就是 Never 类型
+    // fn bar() -> ! {}
+
+    let guess = "2";
+    loop {
+        let guess: u32 = match guess.trim().parse() {
+            Ok(num) => num,
+            // continue 就是 Never 类型, 而 Never 这个类型无法产生一个可供返回的值
+            // 因而下方的表达式的返回类型就采用了第一个分支的类型, 也就是 u32 类型
+            // 因为 Never 类型的表达式可以强制被转换成其他任意类型, 所以此处 continue 所代表的 Never 就被强制转化为了 u32 类型
+            // 所以上下这两句话的返回类型是一样的, 都是 u32 类型
+            Err(_) => continue,
+        };
+        println!("guess: {:?}", guess);
+        break;
+    }
 }
