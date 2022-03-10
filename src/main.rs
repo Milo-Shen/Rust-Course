@@ -64,6 +64,7 @@ mod pattern_matching_2;
 mod pattern_matching_3;
 mod unsafe_rust;
 mod advanced_trait;
+mod advanced_type;
 
 fn main() {
     // Variables and Mutability
@@ -192,4 +193,7 @@ fn main() {
 
     // advanced trait
     advanced_trait::learning_advanced_trait();
+
+    // advanced type
+    advanced_type::learning_advanced_type();
 }
