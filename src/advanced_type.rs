@@ -88,4 +88,21 @@ pub fn learning_advanced_type() {
         println!("guess: {:?}", guess);
         break;
     }
+
+    // 动态大小和 Sized Trait
+    // Rust 需要在编译时确定为一个特定类型的值分配多少空间
+    // 动态大小的类型 ( Dynamically Sized Types, DST ) 概念
+    //  - 编写代码时只有在运行时才能确定大小的值
+    // str 是动态大小的类型 ( 注意不是 &str ): 只有运行时才能确定字符串的长度
+    //  - 下面的代码无法工作:
+    //    - let s1: str = "Hello there !"
+    //    - let s2: str = "How's it going ?"
+    //  - 对于同一个类型, Rust 会为其分配同样大小的内存空间 ( 同一个类型的值必须使用等量的内存 ), 所以上面的写法是错误的
+    //  - 使用 &str 来解决
+    //    - str 的地址
+    //    - str 的长度
+
+    // Rust 使用动态大小类型的通用方式
+    // 附带一些额外的元数据来存储动态信息的大小
+    //  - 使用动态大小类型时总会把它的值放在某种指针的
 }
