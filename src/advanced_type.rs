@@ -1,3 +1,6 @@
+use std::io::Error;
+use std::fmt;
+
 pub fn learning_advanced_type() {
     println!("Start to learn advanced type");
 
@@ -26,7 +29,7 @@ pub fn learning_advanced_type() {
     }
     let f: Box<dyn Fn() + Send + 'static> = Box::new(|| println!("hello world"));
 
-    // 使用类型别名后
+    // 使用类型别名后:
     type Thunk = Box<dyn Fn() + Send + 'static>;
 
     fn takes_long_type(f: Thunk) {}
@@ -34,4 +37,22 @@ pub fn learning_advanced_type() {
         Box::new(|| println!("hello world"))
     }
     let f: Thunk = Box::new(|| println!("hello world"));
+
+    // Result 的例子
+    // 未使用类型别名前:
+    pub trait __Write {
+        fn write(&mut self, buf: &[u8]) -> Result<usize, Error>;
+        fn flush(&mut self) -> Result<usize, Error>;
+        fn write_all(&mut self, buf: &[u8]) -> Result<usize, Error>;
+        fn write_fmt(&mut self, fmt: fmt::Arguments) -> Result<usize, Error>;
+    }
+
+    // 使用类型别名后:
+    type _Result<T> = Result<T, std::io::Error>;
+    pub trait _Write {
+        fn write(&mut self, buf: &[u8]) -> _Result<usize>;
+        fn flush(&mut self) -> _Result<usize>;
+        fn write_all(&mut self, buf: &[u8]) -> _Result<usize>;
+        fn write_fmt(&mut self, fmt: fmt::Arguments) -> _Result<usize>;
+    }
 }
