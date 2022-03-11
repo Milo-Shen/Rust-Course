@@ -19,7 +19,38 @@ pub fn learning_advanced_function() {
     // 某些情景, 只想接收 fn 而不接收闭包:
     //  - 与外部不支持闭包的代码交互: C 函数
     let list_of_numbers = vec![1, 2, 3];
-    let list_of_strings: Vec<String> = list_of_numbers.iter().map(|i| i.to_string()).collect();
+    let list_of_strings: Vec<String> = list_of_numbers
+        .iter()
+        .map(|i| i.to_string())
+        .collect();
+    println!("list_of_strings = {:?}", list_of_strings);
 
     let list_of_numbers = vec![1, 2, 3];
+    let list_of_strings: Vec<String> = list_of_numbers
+        .iter()
+        .map(ToString::to_string)
+        .collect();
+    println!("list_of_strings = {:?}", list_of_strings);
+
+    // 利用元组结构体和元组结构枚举变体的实现细节
+    #[derive(Debug)]
+    enum Status {
+        Value(u32),
+        Stop,
+    }
+
+    // Status::value 的构造器被实现成了函数, 该函数会接收一个参数并返回一个新的实例
+    // 所以我们可以把 Status::value 这个构造器也作为实现了闭包 trait 的函数指针来进行使用
+    // 所以下面的例子中, 我们直接把构造器传进去就好了
+    let v = Status::Value(3);
+    let list_of_statuses: Vec<Status> = (0u32..20)
+        .map(Status::Value)
+        .collect();
+    println!("list_of_statuses = {:?}", list_of_statuses);
+
+    // 返回闭包
+    // 闭包使用 trait 进行表达, 无法在函数中直接返回一个闭包, 可以将一个实现了该 trait 的具体类型作为返回值
+    fn returns_closure() -> Box<dyn Fn(i32) -> i32> {
+        Box::new(|x| x + 1)
+    }
 }
