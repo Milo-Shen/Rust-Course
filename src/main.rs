@@ -66,6 +66,7 @@ mod unsafe_rust;
 mod advanced_trait;
 mod advanced_type;
 mod advanced_function;
+mod learn_macro;
 
 fn main() {
     // Variables and Mutability
@@ -200,4 +201,7 @@ fn main() {
 
     // advanced function
     advanced_function::learning_advanced_function();
+
+    // marcos
+    learn_macro::learning_macros();
 }
