@@ -13,6 +13,10 @@ pub fn learning_variables() {
     let address = &a as *const i32 as usize;
     println!("a address is :0x{}", address);
 
+    // change the type of a by shadow mechanism
+    let a: String = String::from("shadow");
+    println!("the value of a = {}", a);
+
     // b address is :0x140701963303796
     let mut b: i32 = 5;
     let address = &b as *const i32 as usize;
