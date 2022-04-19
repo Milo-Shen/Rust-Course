@@ -89,10 +89,10 @@ pub fn learning_ref_cell() {
     // 其中: 即便 RefCell<T> 本身不可变, 但仍能修改其中存储的值
 
     // 内部可变性: 可变的借用一个不可变的值
-    // 借用规则有一个推论: 可变的借用一个不可变的值
+    // 借用规则有一个推论: 无法可变的借用一个不可变的值
 
     let x = 5;
-    // 借用规则有一个推论: 可变的借用一个不可变的值, 所以下面代码错误
+    // 借用规则有一个推论: 无法可变的借用一个不可变的值, 所以下面代码错误
     // error[E0596]: cannot borrow `x` as mutable, as it is not declared as mutable
     // let y = &mut x;
 
