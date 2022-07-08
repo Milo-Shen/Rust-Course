@@ -121,6 +121,13 @@ pub fn learning_pattern_matching() {
     let ((feat, inches), Point { x, y }) = ((3, 10), Point { x: 3, y: -10 });
     println!("feat = {}, inches = {}, x = {}, y = {}", feat, inches, x, y);
 
+    // 解构赋值时候, 新增 mut 控制
+    let (a, mut b): (bool, bool) = (true, false);
+    // a = true,不可变; b = false，可变
+    println!("a = {:?}, b = {:?}", a, b);
+    b = true;
+    println!("a = {:?}, b = {:?}", a, b);
+
     // 在模式中忽略值
     //  - 使用 _ 来忽略整个值
     //  - 使用 _ 配合其他模式可以用来忽略部分值
