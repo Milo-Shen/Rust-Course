@@ -58,4 +58,10 @@ pub fn learning_rc() {
     //  - 若是 Rc<T> 允许持有多个可变引用的话, 那么它就会违反借用规则
     //  - 借用规则: 多个指向同一个区域的可变引用会导致数据的竞争，以及数据的不一致
     // 问题: 如何使得数据可变呢 ?
+
+    // added in 2022-10-8
+    let val = Rc::new(2);
+    let some_val = Some(val.clone());
+    let some_clone = some_val.clone();
+    println!("option clone & Rc = {}", Rc::strong_count(&val));
 }
