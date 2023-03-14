@@ -27,13 +27,23 @@ pub fn learning_variables() {
     b = 50;
     let address = &b as *const i32 as usize;
     println!("b address is :0x{}", address);
+
     let tuple: (i32, f64) = (1, 2.0);
+    let address = &tuple as *const (i32, f64) as usize;
     println!("my tuple is: {}, {}", tuple.0, tuple.1);
+    println!("my tuple address is: {}", address);
+
     let (_a, _b) = tuple;
     println!("my tuple is: {}, {}", _a, _b);
+
     let array_a: [i32; 2] = [1, 2];
     let array_b = [3; 2];
     let mut array_c = [1, 2];
-    println!("array value: {}, {}", array_a[0], array_b[0]);
+    println!("array value: {}, {}, {:?}", array_a[0], array_b[0], array_c);
     println!("array len of array_b is: {}", array_b.len());
+
+    // char 和 u8 的区别
+    let a = 'A';
+    let b = b'A';
+    println!("{}, {}", a, b);
 }

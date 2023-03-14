@@ -71,6 +71,7 @@ mod learn_macro;
 fn main() {
     // Variables and Mutability
     variables::learning_variables();
+    return;
 
     // Functions
     functions::learning_functions();
