@@ -69,24 +69,24 @@ mod advanced_function;
 mod learn_macro;
 
 fn main() {
-    // Variables and Mutability
-    variables::learning_variables();
-    return;
-
-    // Functions
-    functions::learning_functions();
-
-    // Control Flow
-    control_flow::learning_control_flow();
-
-    // Ownership
-    ownership::learning_ownership();
-
-    // Reference
-    reference::learning_reference();
+    // // Variables and Mutability
+    // variables::learning_variables();
+    //
+    // // Functions
+    // functions::learning_functions();
+    //
+    // // Control Flow
+    // control_flow::learning_control_flow();
+    //
+    // // Ownership
+    // ownership::learning_ownership();
+    //
+    // // Reference
+    // reference::learning_reference();
 
     // Slices
     slices::learning_slice();
+    return;
 
     // Struct
     structs::learning_struct();

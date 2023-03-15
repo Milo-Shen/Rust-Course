@@ -1,7 +1,7 @@
 fn first_world(x: &str) -> &str {
-    // todo: &[u8] 是什么 ?
     let _bytes = x.as_bytes();
     for (i, &item) in _bytes.iter().enumerate() {
+        // b' ' 为 u8 类型，且
         if item == b' ' {
             return &x[..i];
         }
@@ -33,11 +33,14 @@ pub fn learning_slice() {
     println!("slice index 0 value: {}", array_slice[0]);
     println!("origin index 0 value: {}", origin_array[0]);
 
-    // todo: 字符串字面值的类型就是字符串切片 ! 所以不需要再 &
+    // 字符串字面值的类型就是字符串切片! 所以不需要再 &
     let whole = "Hello World";
     let find = first_world(whole);
     println!("first world is: {}", find);
     let my_whole = String::from("My name is jack");
     let find = first_world(&my_whole[..]);
     println!("first world is: {}", find);
+
+    // String 传递给 &str 会被自动转成 &str 类型么？ 答案是不会
+    // let find = first_world(my_whole);
 }
