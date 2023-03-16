@@ -28,7 +28,8 @@ pub fn learning_slice() {
     let mut origin_array = [1; 4];
     let array_slice = &mut origin_array[..2];
     array_slice[0] = 10;
-    // todo: 切片本身是否是一种引用 ? 改变引用会不会改变原先的值 ? ( mut 的类型 )
+    // 切片本身是否是一种引用 ? 改变引用会不会改变原先的值 ? ( mut 的类型 )
+    // 答案: 是的，属于一种引用，会改变原先的值
     // todo: 下面 2 句话: 173 和 174 对调就会产生 error，详细了解为什么
     println!("slice index 0 value: {}", array_slice[0]);
     println!("origin index 0 value: {}", origin_array[0]);
