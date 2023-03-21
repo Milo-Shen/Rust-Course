@@ -4,7 +4,11 @@ use std::io::Result as IoResult;
 // use 的简写形式
 use std::io::{self, Write};
 
+// 绝对路径: 从 crate root 开始, 使用 字面值 crate
 use rust_course::eat_at_restaurant;
+
+// 绝对路径: 从 crate root 开始, 使用 crate 名，或是字面值 crate
+// use crate::eat_at_restaurant;
 
 mod front_of_house;
 // 引入包内所有的内容
