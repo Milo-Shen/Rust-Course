@@ -1,6 +1,19 @@
 use std::{fs, env, process};
 use std::error::Error;
 
+pub mod father_mod {
+    fn print_father_mod() {
+        println!("print_father_mod called");
+    }
+
+    pub mod son_mod {
+        pub fn print_son_mod() {
+            super::print_father_mod();
+            println!("print_son_mod")
+        }
+    }
+}
+
 mod front_of_house;
 
 mod back_of_house {
