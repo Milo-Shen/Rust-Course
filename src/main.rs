@@ -103,6 +103,7 @@ fn main() {
     // 使用 module 下的函数
     eat_at_restaurant();
     front_of_house::hosting::print_house();
+    rust_course::father_mod::son_mod::print_son_mod();
 
     // // vector
     // vector::learning_vector();

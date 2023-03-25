@@ -1,6 +1,10 @@
 use std::{fs, env, process};
 use std::error::Error;
 
+fn print_outside() {
+    println!("print_outside called");
+}
+
 pub mod father_mod {
     fn print_father_mod() {
         println!("print_father_mod called");
@@ -8,6 +12,7 @@ pub mod father_mod {
 
     pub mod son_mod {
         pub fn print_son_mod() {
+            super::super::print_outside();
             super::print_father_mod();
             println!("print_son_mod")
         }
