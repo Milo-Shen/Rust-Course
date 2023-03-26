@@ -12,6 +12,8 @@ pub mod father_mod {
 
     pub mod son_mod {
         pub fn print_son_mod() {
+            // super 关键字
+            // super: 用来访问父级模块路径中的内容, 类似文件系统中的 ..
             super::super::print_outside();
             super::print_father_mod();
             println!("print_son_mod")
