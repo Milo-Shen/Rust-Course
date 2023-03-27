@@ -5,15 +5,22 @@ pub fn learning_struct() {
         name: String,
         age: u8,
     }
+
     let mut jack: User = User {
         age: 1,
         name: String::from("jack"),
     };
-    let marry = User {
+
+    // 结构体更新语法
+    let mut marry = User {
         name: String::from("Mary"),
         ..jack
     };
-    println!("name: {}, {}", jack.name, marry.name);
+    println!("jack name: {}, marry name: {}", jack.name, marry.name);
+    marry.age = 99;
+
+    // 结构体更新语法，并不会共享值，值是复制过去的
+    println!("jack age: {}, marry age: {}", jack.age, marry.age);
 
     // update the value of struct User for jack variable
     jack.name = String::from("Jack Upgrade");

@@ -70,7 +70,7 @@ mod learn_macro;
 
 fn main() {
     // Variables and Mutability
-    variables::learning_variables();
+    // variables::learning_variables();
     //
     // // Functions
     // functions::learning_functions();
@@ -85,11 +85,11 @@ fn main() {
     // reference::learning_reference();
 
     // Slices
-    slices::learning_slice();
-    return;
+    // slices::learning_slice();
 
     // Struct
     structs::learning_struct();
+    return;
 
     // Enum & Pattern matching
     enums::learning_enums();
