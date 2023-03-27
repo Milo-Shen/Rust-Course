@@ -39,8 +39,14 @@ pub fn learning_slice() {
     let whole = "Hello World";
     let find = first_world(whole);
     println!("first world is: {}", find);
+
     let my_whole = String::from("My name is jack");
     let find = first_world(&my_whole[..]);
+    println!("first world is: {}", find);
+
+    // &my_whole 会被强制转换成 &my_whole[..]
+    let my_whole = String::from("My name is jack");
+    let find = first_world(&my_whole);
     println!("first world is: {}", find);
 
     // String 传递给 &str 会被自动转成 &str 类型么？ 答案是不会
