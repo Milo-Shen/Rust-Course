@@ -46,4 +46,9 @@ pub fn learning_variables() {
     let a = 'A';
     let b = b'A';
     println!("{}, {}", a, b);
+
+    // Rust 提供了一个名为 Copy 的 trait, 它可以用于整数这类完全存储在栈上的数据类型。
+    // 一旦某种数据类型拥有了 Copy 这种 trait, 那么它的变量就可以在赋值给其他变量之后保持可用性。
+    // 如果一种类型本身或这种类型的任意成员实现了 Drop 这种 trait, 那么 Rust 就不允许其实现 Copy 这种 trait
+    // 尝试给某个需要在离开作用域时执行特殊指令的类型实现 Copy 这种 trait 会导致编译时错误
 }

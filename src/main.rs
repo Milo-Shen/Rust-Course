@@ -69,8 +69,8 @@ mod advanced_function;
 mod learn_macro;
 
 fn main() {
-    // // Variables and Mutability
-    // variables::learning_variables();
+    // Variables and Mutability
+    variables::learning_variables();
     //
     // // Functions
     // functions::learning_functions();
