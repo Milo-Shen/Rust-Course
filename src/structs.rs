@@ -26,6 +26,16 @@ pub fn learning_struct() {
     jack.name = String::from("Jack Upgrade");
     println!("name: {}, {}", jack.name, marry.name);
 
+    // jack.name 的所有权已经被转移到了 jason 中
+    let mut jason = User {
+        age: 65,
+        ..jack
+    };
+    println!("Jason name: {}", jason.name);
+    // error[E0382]: borrow of moved value: `jack.name`
+    // 下面这句话会报错，因为 jack.name 的所有权已经被转移到了 jason 中
+    // println!("{}", jack.name);
+
     // tuple struct
     struct Color(i32, i32, i32);
     struct Point(f32, f32, f64);
