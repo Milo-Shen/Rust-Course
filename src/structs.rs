@@ -81,7 +81,7 @@ pub fn learning_struct() {
 
     // Method of struct
     impl Rectangle {
-        // todo: 能不能不加 & 这个符号 ?
+        // 能不能不加 & 这个符号 ?
         // 不能: error[E0382]: use of moved value: `rect`
         // 不加 & 的话，执行 area 方法后，当前实例所有权会转移到 area 这个方法，后续的代码中将无法继续访问
         fn area(&self) -> u32 {
