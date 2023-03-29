@@ -84,6 +84,8 @@ pub fn learning_struct() {
         // 能不能不加 & 这个符号 ?
         // 不能: error[E0382]: use of moved value: `rect`
         // 不加 & 的话，执行 area 方法后，当前实例所有权会转移到 area 这个方法，后续的代码中将无法继续访问
+        // 通常来说，将第一个参数标记为 self 并在调用过程中取得实例所有权的方法并不常见。这种技术有可能会被用于那些
+        // 需要将 self 转换为其他类型, 且在转换之后想要阻止调用者访问原始实例的场景
         fn area(&self) -> u32 {
             return self.width * self.height;
         }
