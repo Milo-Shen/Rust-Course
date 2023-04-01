@@ -57,6 +57,7 @@ pub fn learning_match() {
 
     // 模式与模式匹配 if let
     // if let 只关心一种匹配，而忽略其他匹配的情况，可以看做是 match 的语法糖
+    // if let 可以匹配具体的值, 那么是否要实现 Equal 这个 Trait 才行 ?
     let v = Some(0);
     match v {
         Some(3) => println!("match three"),
@@ -70,9 +71,14 @@ pub fn learning_match() {
         println!("if let others")
     }
 
+    // if let 可以从枚举中把值取出来
+    if let Some(x) = v {
+        println!("if let val: {}", x);
+    }
+
     let v = China::Beijing;
-    // todo: 也许可以通过这种方式，对枚举值进行判断
-    // todo: 虽然作为 match 的语法糖，但是用处了条件语句的感觉
+    // 可以通过这种方式，对枚举值进行判断
+    // 虽然作为 match 的语法糖，但是用处了条件语句的感觉
     if let China::Shanghai = v {
         println!("if let China::Beijing");
     } else {
@@ -86,13 +92,15 @@ pub fn learning_match() {
     }
 
     let hcb = HighContrast::White;
-    // todo: 需要特别注意的是: HighContrast::Black = hcb 不能倒过来写
+    // 需要特别注意的是: HighContrast::Black = hcb 不能倒过来写
+    // 判断的类型放前面，具体的值放后面
     if let HighContrast::Black = hcb {
         println!("This is hcb");
     } else {
         println!("This is else hcw");
     }
 
+    // 模拟三目运算符
     let num = 1;
     if num == 1 { println!("1") } else { print!("2"); }
 }

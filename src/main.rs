@@ -88,15 +88,16 @@ fn main() {
     // slices::learning_slice();
 
     // Struct
-    structs::learning_struct();
-    return;
+    // structs::learning_struct();
 
     // Enum & Pattern matching
-    enums::learning_enums();
+    // enums::learning_enums();
 
     // match 关键字
     // 允许一个值与一系列模式进行匹配, 模式
     match_syntax::learning_match();
+    return;
+    ;
 
     // 使用 module 下的函数
     eat_at_restaurant();
