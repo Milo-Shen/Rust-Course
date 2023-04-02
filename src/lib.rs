@@ -25,6 +25,7 @@ mod front_of_house;
 
 mod back_of_house {
     // pub 放在 struct 前, struct 是公共的，而 struct 的字段默认是私有的
+    #[derive(Debug)]
     pub struct Breakfast {
         pub toast: String,
         seasonal_fruit: String,
@@ -58,7 +59,11 @@ pub fn eat_at_restaurant() {
     crate::front_of_house::hosting::add_to_wait_list();
     let mut meal = back_of_house::Breakfast::summer("Rye");
     meal.toast = String::from("Wheat");
+    println!("meal: {:?}", meal);
     println!("I'd like {} toast please", meal.toast);
+    // 在外部不能访问私有变量, 即使是只读的也不行
+    // error[E0616]: field `seasonal_fruit` of struct `Breakfast` is private
+    // println!("I'd like {} seasonal fruit please", meal.seasonal_fruit);
 
     // use absolute path: hosting
     hosting::add_to_wait_list();
