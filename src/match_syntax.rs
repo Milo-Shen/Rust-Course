@@ -97,6 +97,8 @@ pub fn learning_match() {
     if let HighContrast::Black = hcb {
         println!("This is hcb");
     } else {
+        // 我们可以在 if let 中搭配使用 else
+        // else 所关联的代码块在 if let 语句中扮演的角色, 就如同 match 中 _ 模式所关联的代码块一样
         println!("This is else hcw");
     }
 
