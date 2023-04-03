@@ -15,6 +15,7 @@ use rust_course::eat_at_restaurant;
 
 mod front_of_house;
 // 引入包内所有的内容
+// 测试代码通常会引入通配符将所有需要测试的东西引入 tests 模块
 // use std::collections::*;
 
 // mod tree

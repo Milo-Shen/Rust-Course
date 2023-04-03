@@ -1,3 +1,4 @@
+// 目录的结构，必须和单元包的结构相同
 pub fn add_to_wait_list() {
     println!("add to wait list successfully");
 }
