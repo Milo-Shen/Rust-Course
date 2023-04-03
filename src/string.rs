@@ -22,11 +22,22 @@ pub fn learning_string() {
     // + 号使用了类似这个签名的方法 fn add(self, s: &str) -> String {...}
     let s1 = String::from("Hello ");
     let s2 = String::from("World");
+
     // 此处的 &s2 使用了 "解引用强制转换 ( deref coercion )"
+    let s1_address = &s1 as *const String as usize;
+
+    // 看起来是复制两个字符串并创建一个新的字符串, 但是实际上这条语句会取得 s1 的所有权, 再将 s2 种的内容复制到其中
+    // 最终再将 s1 的所有权作为结果返回，所以看似进行了很多复制，实际上并没有，这种实现很高效
     let s3 = s1 + &s2;
+
+    // 实现高效，并不意味着 string 的内存地址前后未发生改变，实际内存地址是发生了改变的
+    let s3_address = &s3 as *const String as usize;
+
+    // let s2 = s1 + &s2; 这里原来的 s2 就被原来的掩盖了
     // error[E0382]: borrow of moved value: `s1`
     // s1 被借用了，所以此处不能访问 s1，s2 是引用，所以仍旧拥有所有权，此处可以访问
     println!("{},{}", s3, s2);
+    println!("s1_address = {}, s3_address = {}", s1_address, s3_address);
 
     // use format! 拼接字符串不会获得所有权
     let s1 = String::from("hello");

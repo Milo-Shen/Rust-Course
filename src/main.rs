@@ -104,16 +104,17 @@ fn main() {
     // 允许一个值与一系列模式进行匹配, 模式
     // match_syntax::learning_match();
 
-    // 使用 module 下的函数
-    eat_at_restaurant();
-    front_of_house::hosting::print_house();
-    rust_course::father_mod::son_mod::print_son_mod();
+    // // 使用 module 下的函数
+    // eat_at_restaurant();
+    // front_of_house::hosting::print_house();
+    // rust_course::father_mod::son_mod::print_son_mod();
 
     // // vector
     // vector::learning_vector();
     //
-    // // string
-    // string::learning_string();
+    // string
+    string::learning_string();
+    return;
     //
     // // hashmap 章节
     // hashmap::learning_hashmap();
