@@ -1,4 +1,7 @@
 use std::fmt::Result;
+
+// as 关键字
+// as 关键字可以为引入的路径指定本地的别名
 use std::io::Result as IoResult;
 
 // use 的简写形式
