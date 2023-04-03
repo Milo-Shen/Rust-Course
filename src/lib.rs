@@ -52,6 +52,16 @@ mod back_of_house {
 // 默认 use 导入的代码对当前文件是 private 的
 pub use crate::front_of_house::hosting;
 
+// 引入了 hosting 后，不能再次创建同名的 mod
+// mod hosting {}
+
+// 因为 self 作为相对路径的起点
+// pub use self::front_of_house::hosting;
+
+// 这里不加 crate 也是可以的，等于用的相对路径
+// 曾经必须加 self, 但是现在可以不加了
+// pub use front_of_house::hosting;
+
 // 下面是使用相对路径引入
 // use front_of_house::hosting;
 
