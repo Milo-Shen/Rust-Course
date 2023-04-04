@@ -43,6 +43,8 @@ pub fn learning_string() {
     let s1 = String::from("hello");
     let s2 = String::from("world");
     let s3: String = String::from("Jack");
+
+    // 这段使用 format! 的代码更加易读, 并且不会夺取任何参数的所有权
     let s4 = format!("{}-{}-{}", s1, s2, s3);
     println!("{},{},{},{}", s4, s1, s2, s3);
 
