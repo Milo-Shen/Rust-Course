@@ -2,6 +2,7 @@ pub fn learning_string() {
     println!("Start to learn string");
 
     // create a string (utf-8)
+    // String 类型实际上是基于 Vec<u8> 类型的封装
     let mut s = String::new();
     s.push_str("Hello String");
     let mut s = "Hello String".to_string();
@@ -57,6 +58,8 @@ pub fn learning_string() {
 
     // String 类型的内部表示 Vec<v8>
     let len = String::from("Hello World").len();
+    // 这里 len 的长度，不一定完全等于 chars 的长度
+    // 因为有的字符能占大于 1 个字节的空间
     println!("The length of string is: {}", len);
 
     // Bytes, Scalar Values, Grapheme Clusters
