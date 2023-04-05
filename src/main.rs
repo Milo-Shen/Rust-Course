@@ -113,12 +113,13 @@ fn main() {
     // vector::learning_vector();
     //
     // string
-    string::learning_string();
-    return;
+    // string::learning_string();
+
     //
     // // hashmap 章节
-    // hashmap::learning_hashmap();
-    //
+    hashmap::learning_hashmap();
+    return;
+
     // // panic
     // panic::learning_panic();
     //

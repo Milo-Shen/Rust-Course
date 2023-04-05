@@ -12,13 +12,18 @@ pub fn learning_hashmap() {
     let teams: Vec<String> = Vec::from([String::from("Blue"), String::from("Yellow")]);
     let initial_scores = vec![10, 50];
     let scores: HashMap<_, _> = teams.iter().zip(initial_scores.iter()).collect();
+    println!("{:?}", scores);
 
     // 对于实现了 copy trait 的类型，值会被复制到 HashMap 中
     // 对于拥有所有权的值 (例如 String)，值会被移动，所有权会转移给 HashMap
     let field_name = String::from("favourite color");
     let field_value = String::from("Blue");
-    let mut map: HashMap<String, String> = HashMap::new();
+    let mut map = HashMap::new();
+    // field_name 和 field_value 的所有权被转移到了 map 中
     map.insert(field_name, field_value);
+    // 因为此处已经没有 field_name 和 field_value 的所有权了，所以无法访问
+    // error[E0382]: borrow of moved value: `field_value`, `field_name`
+    // println!("{}, {}", field_name, field_value);
 
     // 此时的 field name 失去了所有权，error[E0382]: borrow of moved value: `field_name`
     // println!("{},{}", field_name, field_value);
@@ -49,6 +54,7 @@ pub fn learning_hashmap() {
     }
 
     // 遍历 HashMap
+    // todo: 此处是否会调用迭代器 ?
     for (k, v) in &scores {
         println!("{}: {}", k, v);
     }
@@ -74,4 +80,14 @@ pub fn learning_hashmap() {
         *count += 1;
     }
     println!("{:#?}", map);
+
+    // 往 map 里插入引用的做法 ( 需要配合生命周期来确保引用的有效性 )
+    let mut map: HashMap<i32, &String> = HashMap::new();
+    {
+        let str = String::from("temporary value");
+        // error[E0597]: `str` does not live long enough
+        // 此处 str 的生命周期短于 map 的生命周期, 所以下面的代码会报错
+        // map.insert(1, &str);
+    }
+    println!("{:?}", map);
 }
