@@ -5,6 +5,8 @@ pub fn learning_hashmap() {
     println!("Start to learn hashmap");
 
     // 创建 HashMap
+    // 这里的 hash 计算工具实现了 BuildHasher trait 类型
+    // 如果因为 hash 函数而导致性能问题, 可通过改变内置的 hash 算法来解决
     let mut scores: HashMap<String, i32> = HashMap::new();
     scores.insert(String::from("blue"), 10);
 
@@ -68,15 +70,27 @@ pub fn learning_hashmap() {
     // 更新 HashMap - 不存在待插入的值的 key 时才插入
     let mut scores = HashMap::new();
     scores.insert(String::from("Blue"), 10);
-    let inserted_yellow = scores.entry(String::from("Yellow")).or_insert(50);
+
+    // entry 返回的是一个 Entry<String, i32> 类型
+    let inserted_yellow = scores.entry(String::from("Yellow"));
+
+    // or_insert 方法 返回一个 Entry 键所指向值的可变引用
     let inserted_blue = scores.entry(String::from("Blue")).or_insert(50);
     println!("{:#?}", scores);
+
+    // 尝试非值类型的 entry 方法
+    let mut map = HashMap::new();
+    map.insert(1, String::from("before or insert"));
+    let modify_str = map.entry(1).or_insert(String::from("after or insert"));
+    modify_str.insert(0, '!');
+    println!("modify_str = {}", modify_str);
 
     // 更新 HashMap - 基于现有的 value 来更新 value
     let text = "hello world wonderful world";
     let mut map = HashMap::new();
     for word in text.split_whitespace() {
         let count = map.entry(word).or_insert(0);
+        // 由于这个可变引用会在 for 循环的结尾处离开作用域, 所以我们在代码中的所有修改都是安全且满足借用规则的
         *count += 1;
     }
     println!("{:#?}", map);
