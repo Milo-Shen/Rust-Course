@@ -116,12 +116,11 @@ fn main() {
     // string::learning_string();
 
     //
-    // // hashmap 章节
-    hashmap::learning_hashmap();
-    return;
+    // hashmap 章节
+    // hashmap::learning_hashmap();
 
     // // panic
-    // panic::learning_panic();
+    panic::learning_panic();
     //
     // // result
     // result::learning_result();

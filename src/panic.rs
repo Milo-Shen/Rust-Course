@@ -1,4 +1,5 @@
 pub fn learning_panic() {
+    // 我们可以通过 RUST_BACKTRACE=1 cargo run 来得到错误的回溯信息
     println!("Start to learn panic");
 
     // Rust 错误的分类
@@ -8,7 +9,6 @@ pub fn learning_panic() {
     // panic!("crash and burn");
     let arr = vec![1, 2, 3];
     // note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
-    // todo: mac os 上使用 set RUST_BACKTRACE=1 无效
     // let b = arr[100];
 
     struct Guess {
