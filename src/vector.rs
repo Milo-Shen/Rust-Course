@@ -5,7 +5,7 @@ pub fn learning_vector() {
     let v: Vec<i32> = Vec::new();
 
     // Use initial values to create a vector
-    // 如果越界访问, 会触发 panic! , C 种会导致缓冲区溢出
+    // 如果越界访问, 会触发 panic! , C 种会导致缓冲区溢出 ( buffer overread )
     let v = vec![1, 2, 3];
 
     // use mut vector
