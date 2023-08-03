@@ -14,11 +14,10 @@ pub fn learning_closure() {
 
     // 闭包的类型推断
     //  - 注意: 闭包的定义最终只会为参数 / 返回值推断出唯一具体的类型
-    // todo: 为什么加个 return 就不提示: error[E0282]: type annotations needed
     // 不标注类型，且没有被调用时，无法通过编译，会提示添加类型申明
     let example_closure = |x| x;
     // 调用下方函数后，x 的类型被确定为了 &str
-    let s = example_closure("Hello Closure");
+    // let s = example_closure("Hello Closure");
     // 因为上面语句的执行中 x 已经是 &str 了，所以再赋 int 类型是错误的，
     // 错误提示为: error[E0308]: mismatched types, expected `&str`, found integer
     // let n = example_closure(5);
