@@ -1,12 +1,15 @@
-use std::fmt::{Display, Debug};
 use std::clone::Clone;
+use std::fmt::{Debug, Display};
 
 trait Summary {
     fn summarize(&self) -> String;
     fn summarize_author(&self) -> String;
     // 对于 trait 的默认实现
     fn print(&self) {
-        println!("this is the default implementation of trait summary, from: {}", self.summarize_author());
+        println!(
+            "this is the default implementation of trait summary, from: {}",
+            self.summarize_author()
+        );
     }
 }
 
@@ -106,14 +109,18 @@ pub fn learning_trait() {
 
     // Trait bound 使用 where 子句
     // 未使用 where 子句
-    pub fn notify_bound_without_where<T: Summary + Display, U: Clone + Debug>(a: T, b: U) -> String {
+    pub fn notify_bound_without_where<T: Summary + Display, U: Clone + Debug>(
+        a: T,
+        b: U,
+    ) -> String {
         return format!("Breaking news ! {}", a.summarize());
     }
     // 使用 where 子句 - 可以在方法签名的后面指定 where 子句
     pub fn notify_bound_with_where<T, U>(a: T, b: U) -> String
-        where
-            T: Summary + Display,
-            U: Clone + Debug {
+    where
+        T: Summary + Display,
+        U: Clone + Debug,
+    {
         return format!("Breaking news ! {}", a.summarize());
     }
 

@@ -55,7 +55,7 @@ pub fn learning_enums() {
     let my_message = Message::Move { x: 1, y: 2 };
     match my_message {
         Message::Move { x, y } => println!("{},{}", x, y),
-        _ => println!("Nothing happen")
+        _ => println!("Nothing happen"),
     }
     if let Message::Move { x, y } = my_message {
         println!("if let my_message: {},{}", x, y)

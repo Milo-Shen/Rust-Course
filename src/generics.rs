@@ -41,7 +41,10 @@ pub fn learning_generics() {
         }
 
         fn mix_up<V, W>(self, other: Point<V, W>) -> Point<T, W> {
-            Point { x: self.x, y: other.y }
+            Point {
+                x: self.x,
+                y: other.y,
+            }
         }
     }
 
@@ -62,7 +65,10 @@ pub fn learning_generics() {
 
     // struct 里的泛型参数可以和方法的泛型类型参数不同
     let p1 = Point { x: 1, y: 2 };
-    let p2 = Point { x: "Hello", y: "world" };
+    let p2 = Point {
+        x: "Hello",
+        y: "world",
+    };
     let p3 = p1.mix_up(p2);
     println!("The mixed up value p3 is: {:#?}", p3);
 

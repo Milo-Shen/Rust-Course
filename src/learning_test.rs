@@ -95,9 +95,13 @@ mod tests {
     //  - 使用 debug 格式打印参数
     //     要求参数实现了 PartialEq 和 Debug Traits ( 所有的基本类型和标准库里大部分类型都实现了 )
 
-    fn add_two(a: i32) -> i32 { a + 2 }
+    fn add_two(a: i32) -> i32 {
+        a + 2
+    }
 
-    fn add_three(a: i32) -> i32 { a + 3 }
+    fn add_three(a: i32) -> i32 {
+        a + 3
+    }
 
     #[test]
     fn it_adds_two() {

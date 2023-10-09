@@ -1,5 +1,5 @@
-use std::io::Error;
 use std::fmt;
+use std::io::Error;
 
 pub fn learning_advanced_type() {
     println!("Start to learn advanced type");

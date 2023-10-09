@@ -26,8 +26,12 @@ pub fn learning_drop_trait() {
     // Dropping CustomSmartPointer with data: other stuff
     // Dropping CustomSmartPointer with data: my stuff
     // 释放资源的顺序和申明资源的顺序是相反的
-    let a = CustomSmartPointer { data: String::from("my stuff") };
-    let b = CustomSmartPointer { data: String::from("other stuff") };
+    let a = CustomSmartPointer {
+        data: String::from("my stuff"),
+    };
+    let b = CustomSmartPointer {
+        data: String::from("other stuff"),
+    };
     println!("CustomSmartPointer created.");
 
     // 使用 std::mem::drop 来提前 drop 值
@@ -40,8 +44,12 @@ pub fn learning_drop_trait() {
     // a.drop();
 
     // 使用标准库的 std::mem::drop 函数，来提前 drop 值
-    let c = CustomSmartPointer { data: String::from("my stuff drop") };
-    let d = CustomSmartPointer { data: String::from("other stuff drop") };
+    let c = CustomSmartPointer {
+        data: String::from("my stuff drop"),
+    };
+    let d = CustomSmartPointer {
+        data: String::from("other stuff drop"),
+    };
 
     // 输出:
     // Dropping CustomSmartPointer with data: my stuff drop

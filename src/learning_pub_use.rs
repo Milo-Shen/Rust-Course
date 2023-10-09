@@ -1,6 +1,6 @@
+use rust_course::mix;
 use rust_course::PrimaryColor;
 use rust_course::SecondaryColor;
-use rust_course::mix;
 
 pub fn learning_pub_use() {
     println!("Start to learn pub use");

@@ -1,5 +1,5 @@
-use std::rc::{Rc, Weak};
 use std::cell::{Ref, RefCell};
+use std::rc::{Rc, Weak};
 
 // 如此我们可以灵活修改 Cons 来让他指向下一个 list 值
 #[derive(Debug)]
@@ -14,7 +14,7 @@ impl List {
     fn tail(&self) -> Option<&RefCell<Rc<List>>> {
         match self {
             Cons(_, item) => Some(item),
-            Nil => None
+            Nil => None,
         }
     }
 }
@@ -83,7 +83,11 @@ pub fn learning_memory_leak() {
     });
 
     println!("leaf parent  = {:?}", leaf.parent.borrow().upgrade());
-    println!("leaf strong = {}, weak = {}", Rc::strong_count(&leaf), Rc::weak_count(&leaf));
+    println!(
+        "leaf strong = {}, weak = {}",
+        Rc::strong_count(&leaf),
+        Rc::weak_count(&leaf)
+    );
 
     {
         let branch = Rc::new(Node {
@@ -95,10 +99,22 @@ pub fn learning_memory_leak() {
         *leaf.parent.borrow_mut() = Rc::downgrade(&branch);
         // 因为使用了 Weak, 所以下面这段代码没有造成循环引用
         println!("leaf parent  = {:#?}", leaf.parent.borrow().upgrade());
-        println!("branch strong = {}, weak = {}", Rc::strong_count(&branch), Rc::weak_count(&branch));
-        println!("leaf strong = {}, weak = {}", Rc::strong_count(&leaf), Rc::weak_count(&leaf));
+        println!(
+            "branch strong = {}, weak = {}",
+            Rc::strong_count(&branch),
+            Rc::weak_count(&branch)
+        );
+        println!(
+            "leaf strong = {}, weak = {}",
+            Rc::strong_count(&leaf),
+            Rc::weak_count(&leaf)
+        );
     }
 
     println!("leaf parent  = {:?}", leaf.parent.borrow().upgrade());
-    println!("leaf strong = {}, weak = {}", Rc::strong_count(&leaf), Rc::weak_count(&leaf));
+    println!(
+        "leaf strong = {}, weak = {}",
+        Rc::strong_count(&leaf),
+        Rc::weak_count(&leaf)
+    );
 }

@@ -48,7 +48,7 @@ pub fn learning_hashmap() {
     // 使用 match 语法获得 HashMap 的 return type: Option
     match score {
         Some(s) => println!("use match syntax: {}", s),
-        None => println!("use match team not exist")
+        None => println!("use match team not exist"),
     }
     // 使用 if let 来获得值
     if let Some(s) = score {

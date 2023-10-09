@@ -1,6 +1,6 @@
-use std::{fs, process};
+use rust_course::{run, Config};
 use std::env::args;
-use rust_course::{Config, run};
+use std::{fs, process};
 
 pub fn learning_grep_example() {
     println!("Start to learn grep example");

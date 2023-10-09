@@ -26,7 +26,10 @@ pub fn learning_oop() {
     // &mut self 定义的方法, 只能在 mut 类型上使用
     my_collection.add(2);
     println!("my_collection = {:?}", my_collection);
-    println!("The average value of my_collection = {}", my_collection.average());
+    println!(
+        "The average value of my_collection = {}",
+        my_collection.average()
+    );
 
     // 继承
     // 继承: 使对象可以沿用另外一个对象的数据和行为, 且无需重复定义相关代码

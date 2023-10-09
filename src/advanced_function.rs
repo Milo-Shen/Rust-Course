@@ -5,8 +5,12 @@ pub fn learning_advanced_function() {
     // 可以将函数传递给其他函数
     // 函数在传递过程中会被强制转换成 fn 类型
     // fn 类型就是 "函数指针 ( function pointer )"
-    fn add_one(x: u32) -> u32 { x + 1 }
-    fn do_twice(f: fn(u32) -> u32, arg: u32) -> u32 { f(arg) + f(arg) }
+    fn add_one(x: u32) -> u32 {
+        x + 1
+    }
+    fn do_twice(f: fn(u32) -> u32, arg: u32) -> u32 {
+        f(arg) + f(arg)
+    }
     let answer = do_twice(add_one, 5);
     println!("The answer is: {}", answer);
 
@@ -19,17 +23,11 @@ pub fn learning_advanced_function() {
     // 某些情景, 只想接收 fn 而不接收闭包:
     //  - 与外部不支持闭包的代码交互: C 函数
     let list_of_numbers = vec![1, 2, 3];
-    let list_of_strings: Vec<String> = list_of_numbers
-        .iter()
-        .map(|i| i.to_string())
-        .collect();
+    let list_of_strings: Vec<String> = list_of_numbers.iter().map(|i| i.to_string()).collect();
     println!("list_of_strings = {:?}", list_of_strings);
 
     let list_of_numbers = vec![1, 2, 3];
-    let list_of_strings: Vec<String> = list_of_numbers
-        .iter()
-        .map(ToString::to_string)
-        .collect();
+    let list_of_strings: Vec<String> = list_of_numbers.iter().map(ToString::to_string).collect();
     println!("list_of_strings = {:?}", list_of_strings);
 
     // 利用元组结构体和元组结构枚举变体的实现细节
@@ -43,9 +41,7 @@ pub fn learning_advanced_function() {
     // 所以我们可以把 Status::value 这个构造器也作为实现了闭包 trait 的函数指针来进行使用
     // 所以下面的例子中, 我们直接把构造器传进去就好了
     let v = Status::Value(3);
-    let list_of_statuses: Vec<Status> = (0u32..20)
-        .map(Status::Value)
-        .collect();
+    let list_of_statuses: Vec<Status> = (0u32..20).map(Status::Value).collect();
     println!("list_of_statuses = {:?}", list_of_statuses);
 
     // 返回闭包

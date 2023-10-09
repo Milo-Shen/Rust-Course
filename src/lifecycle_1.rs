@@ -24,11 +24,7 @@ pub fn learning_lifecycle() {
     // 生命周期的标注语法为 <'a> 配合使用 &'a，其中 a 可以替换成其他任意字符
     // 生命周期只和函数签名有关，和内部实现无关
     fn longest<'a>(x: &'a str, y: &'a str) -> &'a str {
-        return if x.len() > y.len() {
-            x
-        } else {
-            y
-        };
+        return if x.len() > y.len() { x } else { y };
     }
 
     // 这里的 string_1.as_str() 也可以写成 &string_1，这样便用了解引用强制转换

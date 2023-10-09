@@ -17,7 +17,7 @@ pub fn learning_pattern_matching() {
     match x {
         Some(50) => println!("Got 50"),
         Some(y) => println!("Matched, y = {}", y),
-        _ => println!("Default case, x = {:?}", x)
+        _ => println!("Default case, x = {:?}", x),
     }
     println!("At the end: x= {:?},y = {}", x, y);
 
@@ -158,9 +158,7 @@ pub fn learning_pattern_matching() {
         (Some(_), Some(_)) => {
             println!("can't overwrite an existing customized value");
         }
-        _ => {
-            setting_value = new_setting_value
-        }
+        _ => setting_value = new_setting_value,
     }
     println!("setting is {:?}", setting_value);
 
@@ -227,12 +225,14 @@ pub fn learning_pattern_matching() {
     // @ 绑定
     // @ 符号让我们可以创建一个变量, 该变量可以在测试某个值是否与模式匹配的同时保存该值
     enum HelloMessage {
-        Hello { id: i32 }
+        Hello { id: i32 },
     }
     let msg = HelloMessage::Hello { id: 5 };
 
     match msg {
-        HelloMessage::Hello { id: id_variable @ 3..=7 } => {
+        HelloMessage::Hello {
+            id: id_variable @ 3..=7,
+        } => {
             println!("Found an id in range: {}", id_variable);
         }
         HelloMessage::Hello { id: 10..=12 } => {

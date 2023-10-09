@@ -21,7 +21,7 @@ pub fn learning_vector() {
     // use get method & match syntax to get value
     match v.get(0) {
         Some(first_value) => println!("Match -> the first value is: {}", first_value),
-        None => println!("The vector is empty")
+        None => println!("The vector is empty"),
     }
 
     // out of bound process
@@ -31,7 +31,7 @@ pub fn learning_vector() {
     // code will run into None condition
     match v.get(100) {
         Some(first_value) => println!("Match -> the first value is: {}", first_value),
-        None => println!("Out of bound")
+        None => println!("Out of bound"),
     }
 
     // traverse the vector - immutable

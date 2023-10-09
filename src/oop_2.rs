@@ -11,7 +11,6 @@ pub struct Screen {
     // 这边没有使用泛型的原因是, 使用泛型的话一次只能使用一个类型, 而 dyn Draw 的话
     // 只要实现了 Draw 这个的 trait 都能放在 components 这个 vec 里面
     pub components: Vec<Box<dyn Draw>>,
-
     // 下面的代码会报错, 因为返回的类型是 Self
     // error[E0038]: the trait `oop_2::Clone` cannot be made into an object
     // because method `clone` references the `Self` type in its return

@@ -17,11 +17,7 @@ pub fn learning_lifecycle() {
 
     // 此处泛型定义内 'a 的生命周期为 x, y 生命周期的交集，也就是生命周期较短的那个变量的生命周期
     fn longest_1<'a>(x: &'a str, y: &'a str) -> &'a str {
-        return if x.len() > y.len() {
-            x
-        } else {
-            y
-        };
+        return if x.len() > y.len() { x } else { y };
     }
 
     let string_1 = String::from("Hello World");

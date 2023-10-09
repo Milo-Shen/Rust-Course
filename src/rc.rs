@@ -27,27 +27,39 @@ pub fn learning_rc() {
 
     use List::{Cons, Nil};
 
-    let list: Rc<List> = Rc::new(Cons(
-        8, Rc::new(Cons(
-            9, Rc::new(Cons(
-                10, Rc::new(Nil)))))));
-    println!("strong reference count after creating list = {}", Rc::strong_count(&list));
+    let list: Rc<List> = Rc::new(Cons(8, Rc::new(Cons(9, Rc::new(Cons(10, Rc::new(Nil)))))));
+    println!(
+        "strong reference count after creating list = {}",
+        Rc::strong_count(&list)
+    );
 
     // Rc::clone 不会执行数据的深度拷贝操作, 其只会增加引用计数, 而类似 list.clone() 方法会执行深度拷贝
     // Rc::clone method: This creates another pointer to the same allocation, increasing the strong reference count.
     let a = Cons(1, Rc::clone(&list));
-    println!("strong reference count after creating a = {}", Rc::strong_count(&list));
+    println!(
+        "strong reference count after creating a = {}",
+        Rc::strong_count(&list)
+    );
 
     let b = Cons(2, Rc::clone(&list));
-    println!("strong reference count after creating b = {}", Rc::strong_count(&list));
+    println!(
+        "strong reference count after creating b = {}",
+        Rc::strong_count(&list)
+    );
 
     {
         let c = Cons(3, Rc::clone(&list));
-        println!("strong reference count after creating c = {}", Rc::strong_count(&list));
+        println!(
+            "strong reference count after creating c = {}",
+            Rc::strong_count(&list)
+        );
     }
 
     // 当上面的变量 c 离开作用域的时候, 其上的计数引用会自动减少 1, 因为 Rc<T> 也实现了 Drop Trait
-    println!("count after c goes out of scope = {}", Rc::strong_count(&list));
+    println!(
+        "count after c goes out of scope = {}",
+        Rc::strong_count(&list)
+    );
 
     // Rc::clone() vs 类型的 clone 方法
     // Rc::clone(): 增加引用, 不会执行数据的深度拷贝操作

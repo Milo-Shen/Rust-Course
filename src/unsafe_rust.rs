@@ -131,7 +131,7 @@ pub fn learning_unsafe_rust() {
         unsafe {
             (
                 slice::from_raw_parts_mut(ptr, mid),
-                slice::from_raw_parts_mut(ptr.add(mid), len - mid)
+                slice::from_raw_parts_mut(ptr.add(mid), len - mid),
             )
         }
     }

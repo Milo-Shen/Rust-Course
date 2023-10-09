@@ -1,5 +1,5 @@
-use std::{fs, env, process};
 use std::error::Error;
+use std::{env, fs, process};
 
 fn print_outside() {
     println!("print_outside called");
@@ -213,7 +213,9 @@ pub trait State {
     // 它会在调用过程中获取 Box<Self> 的所有权, 并使旧的状态实失效, 从而将 Post 的状态值，转化为一个新的状态
     fn request_review(self: Box<Self>) -> Box<dyn State>;
     fn approve(self: Box<Self>) -> Box<dyn State>;
-    fn content<'a>(&self, post: &'a Post) -> &'a str { "" }
+    fn content<'a>(&self, post: &'a Post) -> &'a str {
+        ""
+    }
 }
 
 pub struct Published {}
@@ -318,7 +320,10 @@ mod test {
         safe, fast, productive.
         Pick three.
         Trust me.";
-        assert_eq!(vec!["Rust:", "Trust me."], search_case_insensitive(query, content));
+        assert_eq!(
+            vec!["Rust:", "Trust me."],
+            search_case_insensitive(query, content)
+        );
     }
 }
 
@@ -328,7 +333,6 @@ mod test {
 //  - println!
 // 标准错误: stderr
 //  - eprintln!
-
 
 // learning pub use
 pub mod kinds {
@@ -357,4 +361,3 @@ pub mod utils {
 pub use self::kinds::PrimaryColor;
 pub use self::kinds::SecondaryColor;
 pub use self::utils::mix;
-

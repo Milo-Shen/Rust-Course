@@ -27,10 +27,7 @@ pub fn learning_struct() {
     println!("name: {}, {}", jack.name, marry.name);
 
     // jack.name 的所有权已经被转移到了 jason 中
-    let mut jason = User {
-        age: 65,
-        ..jack
-    };
+    let mut jason = User { age: 65, ..jack };
     println!("Jason name: {}", jason.name);
     // error[E0382]: borrow of moved value: `jack.name`
     // 下面这句话会报错，因为 jack.name 的所有权已经被转移到了 jason 中
@@ -56,7 +53,6 @@ pub fn learning_struct() {
     //     name: &str,
     // }
 
-
     // The exercise of struct
 
     // 让 Rectangle 派生于 Debug
@@ -77,7 +73,6 @@ pub fn learning_struct() {
 
     println!("The area of rect is: {}", area(&rect));
     println!("The rect is: {:#?}", rect);
-
 
     // Method of struct
     impl Rectangle {

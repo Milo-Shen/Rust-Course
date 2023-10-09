@@ -1,6 +1,6 @@
-use std::{env, fs};
 use std::error::Error;
 use std::f32::consts::E;
+use std::{env, fs};
 
 pub fn learning_iterator() {
     println!("Start to learn iterator 5");
@@ -92,7 +92,10 @@ pub fn learning_iterator() {
 
     // 使用迭代器简化 search 的代码
     pub fn search_iterator<'a>(query: &str, content: &'a str) -> Vec<&'a str> {
-        content.lines().filter(|line| line.contains(query)).collect()
+        content
+            .lines()
+            .filter(|line| line.contains(query))
+            .collect()
     }
 
     // 可以使用 CASE_INSENSITIVE=0 cargo run Too poem.txt 来测试
@@ -109,6 +112,10 @@ pub fn learning_iterator() {
 
     // 使用迭代器简化 search_case_insensitive 的代码
     pub fn search_case_insensitive_iterator<'a>(query: &str, content: &'a str) -> Vec<&'a str> {
-        content.lines().filter(|line| line.to_lowercase().contains(&query.to_lowercase())).map(|x| x.trim()).collect()
+        content
+            .lines()
+            .filter(|line| line.to_lowercase().contains(&query.to_lowercase()))
+            .map(|x| x.trim())
+            .collect()
     }
 }

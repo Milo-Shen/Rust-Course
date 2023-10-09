@@ -30,10 +30,16 @@ pub fn learning_closure() {
     let equal_to_str = |z: String| z == string_1;
     // cannot borrow `string_1` as mutable because it is also borrowed as immutable
     // string_1.push_str("2");
-    println!("The result of equal_to_str is: {}", equal_to_str(String::from("FnOnce")));
+    println!(
+        "The result of equal_to_str is: {}",
+        equal_to_str(String::from("FnOnce"))
+    );
     // error[E0506]: cannot assign to `string_1` because it is borrowed
     // string_1 = String::from("Fn");
-    println!("The result of equal_to_str is: {}", equal_to_str(String::from("FnOnce")));
+    println!(
+        "The result of equal_to_str is: {}",
+        equal_to_str(String::from("FnOnce"))
+    );
     println!("The value: {} is still available", string_1);
 
     // move 关键字

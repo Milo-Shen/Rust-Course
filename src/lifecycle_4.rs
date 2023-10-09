@@ -22,7 +22,9 @@ pub fn learning_lifecycle() {
 
     impl<'a> ImportantExcerpt<'a> {
         // 因为这边返回值不是引用，所以无需为返回值申明生命周期
-        fn level(&self) -> i32 { 1 }
+        fn level(&self) -> i32 {
+            1
+        }
 
         // 根据省略规则 1, 编译器会为每个引用申明生命周期
         // 根据省略规则 2, 返回值的生命周期即为 self 的生命周期
@@ -41,10 +43,15 @@ pub fn learning_lifecycle() {
 
     // 泛型参数类型, Trait Bound, 生命周期
     fn longest_with_announcement<'a, T>(x: &'a str, y: &'a str, ann: T) -> &'a str
-        where
-            T: Display {
+    where
+        T: Display,
+    {
         println!("Announcement! {}", ann);
-        if x.len() > y.len() { x } else { y }
+        if x.len() > y.len() {
+            x
+        } else {
+            y
+        }
     }
 
     let string_1 = "Hello World";

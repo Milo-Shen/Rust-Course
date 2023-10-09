@@ -1,5 +1,5 @@
-use std::rc::Rc;
 use std::cell::RefCell;
+use std::rc::Rc;
 
 pub trait Messenger {
     fn send(&self, msg: &str);
@@ -14,7 +14,9 @@ pub struct LimitTracker<'a, T: 'a + Messenger> {
 
 // 为什么 Where 子句此处不用 where T: 'a + Messenger
 impl<'a, T> LimitTracker<'a, T>
-    where T: Messenger {
+where
+    T: Messenger,
+{
     pub fn new(messenger: &T, max: usize) -> LimitTracker<T> {
         LimitTracker {
             messenger,
@@ -30,9 +32,11 @@ impl<'a, T> LimitTracker<'a, T>
         if percentage_of_max >= 1.0 {
             self.messenger.send("Error: you are over your quota");
         } else if percentage_of_max >= 0.9 {
-            self.messenger.send("Urgent warning: You've used up over 90% of your quote");
+            self.messenger
+                .send("Urgent warning: You've used up over 90% of your quote");
         } else if percentage_of_max >= 0.75 {
-            self.messenger.send("Urgent warning: You've used up over 75% of your quote");
+            self.messenger
+                .send("Urgent warning: You've used up over 75% of your quote");
         }
     }
 }
@@ -56,7 +60,6 @@ pub fn learning_ref_cell() {
 
     // RefCell<T>
     // 与 Rc<T> 不同, RefCell<T> 类型代表了其持有数据的唯一所有权
-
 
     // 回忆一下借用规则
     // 在任何给定的时间, 你要么只能拥有一个可变引用, 要么只能拥有任意数量的不可变引用
@@ -115,8 +118,8 @@ pub fn learning_ref_cell() {
 
 #[cfg(test)]
 mod tests {
-    use std::borrow::Borrow;
     use super::*;
+    use std::borrow::Borrow;
 
     struct MockMessenger {
         sent_messages: RefCell<Vec<String>>,
@@ -125,7 +128,7 @@ mod tests {
     impl MockMessenger {
         fn new() -> MockMessenger {
             MockMessenger {
-                sent_messages: RefCell::new(vec![])
+                sent_messages: RefCell::new(vec![]),
             }
         }
     }

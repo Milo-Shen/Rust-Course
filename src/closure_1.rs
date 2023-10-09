@@ -1,6 +1,6 @@
+use std::collections::HashMap;
 use std::thread;
 use std::time::Duration;
-use std::collections::HashMap;
 
 pub fn learning_closure() {
     println!("Start to learn closure 1");
@@ -26,14 +26,18 @@ pub fn learning_closure() {
 
 // todo: 需要研究下函数泛型参数如何申明的
 struct Cache<T>
-    where T: Fn(u32) -> u32 {
+where
+    T: Fn(u32) -> u32,
+{
     calculation: T,
     value: Option<u32>,
     hash_value: HashMap<u32, u32>,
 }
 
 impl<T> Cache<T>
-    where T: Fn(u32) -> u32 {
+where
+    T: Fn(u32) -> u32,
+{
     fn new(calculation: T) -> Cache<T> {
         return Cache {
             calculation,
@@ -98,14 +102,26 @@ fn generate_workout(intensity: u32, random_number: u32) {
         //  - Fn
         //  - FnMut
         //  - FnOnce
-        println!("Today, do {} push ups!", expensive_closure.hash_value(intensity));
-        println!("Next, do {} sit ups!", expensive_closure.hash_value(intensity + 1));
-        println!("Finally, do {} push ups!", expensive_closure.hash_value(intensity + 1));
+        println!(
+            "Today, do {} push ups!",
+            expensive_closure.hash_value(intensity)
+        );
+        println!(
+            "Next, do {} sit ups!",
+            expensive_closure.hash_value(intensity + 1)
+        );
+        println!(
+            "Finally, do {} push ups!",
+            expensive_closure.hash_value(intensity + 1)
+        );
     } else {
         if random_number == 3 {
             println!("Take a break today! Remember to stay hydrated!");
         } else {
-            println!("Today, run for {} minutes!", expensive_closure.value(intensity + 3));
+            println!(
+                "Today, run for {} minutes!",
+                expensive_closure.value(intensity + 3)
+            );
         }
     }
 }

@@ -29,7 +29,7 @@ pub fn learning_match() {
                 println!("State quarter from : {:?}", state);
                 return 25;
             }
-            _ => 15
+            _ => 15,
         }
     }
 
@@ -41,7 +41,7 @@ pub fn learning_match() {
     fn plus_one(x: Option<i32>) -> Option<i32> {
         match x {
             None => None,
-            Some(i) => Some(i + 1)
+            Some(i) => Some(i + 1),
         }
     }
 
@@ -53,7 +53,6 @@ pub fn learning_match() {
         _ => 100,
     };
     println!("matched value: {}", matched_value);
-
 
     // 模式与模式匹配 if let
     // if let 只关心一种匹配，而忽略其他匹配的情况，可以看做是 match 的语法糖
@@ -104,5 +103,9 @@ pub fn learning_match() {
 
     // 模拟三目运算符
     let num = 1;
-    if num == 1 { println!("1") } else { print!("2"); }
+    if num == 1 {
+        println!("1")
+    } else {
+        print!("2");
+    }
 }

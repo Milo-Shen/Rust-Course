@@ -42,7 +42,6 @@ pub fn learning_iterator() {
     // 因为 iter 返回的是在不可变引用上创建的迭代器，所以不能改变迭代器 next 的返回值
     // v1_iter_first.push_str("is mut ?");
 
-
     //  使用 iter_mut 方法 - 迭代可变的引用
     let mut v3 = vec!["1".to_string(), "2".to_string(), "3".to_string()];
     let mut v3_iter = v3.iter_mut();

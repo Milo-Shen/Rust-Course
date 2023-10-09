@@ -1,6 +1,6 @@
-use std::ops::Add;
 use std::fmt;
-use std::fmt::{Display, Formatter, write};
+use std::fmt::{write, Display, Formatter};
+use std::ops::Add;
 use std::process::Output;
 
 pub fn learning_advanced_trait() {

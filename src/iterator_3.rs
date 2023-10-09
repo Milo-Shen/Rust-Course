@@ -21,9 +21,18 @@ pub fn learning_iterator() {
     }
 
     let shoes = vec![
-        Shoe { size: 10, style: String::from("sneaker") },
-        Shoe { size: 15, style: String::from("sandal") },
-        Shoe { size: 20, style: String::from("boot") },
+        Shoe {
+            size: 10,
+            style: String::from("sneaker"),
+        },
+        Shoe {
+            size: 15,
+            style: String::from("sandal"),
+        },
+        Shoe {
+            size: 20,
+            style: String::from("boot"),
+        },
     ];
 
     let my_size_shoes = shoes_in_my_size(shoes, 10);
