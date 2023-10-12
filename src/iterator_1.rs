@@ -10,9 +10,15 @@ pub fn learning_iterator() {
     //  - 惰性的: 除非调用消费迭代器的方法，否则迭代器本身没有任何效果
     let v1: Vec<i32> = vec![1, 2, 3];
     let v1_iter = v1.iter();
+
     // 此处的 val 是 &i32 类型 ( 是一个借用 )
     for val in v1_iter {
         println!("Got: {}", val);
+    }
+
+    // 此处的 val_1 是 i32 类型
+    for val_1 in v1 {
+        println!("Got: {}", val_1);
     }
 
     // 迭代器 (1) - Iterator trait 和 next 方法
