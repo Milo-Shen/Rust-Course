@@ -31,6 +31,7 @@ pub fn learning_iterator() {
     let v1 = vec![1, 2, 3];
     // 因为迭代器是惰性的, 除非调用消费迭代器的方法, 否则迭代器本身没有任何效果
     // collect 是一个消耗型迭代器, 它会把结果收集到一个集合中
-    let v2: Vec<_> = v1.iter().map(|x| x + 1).collect();
+    let v2_iterator_adaptor = v1.iter().map(|x| x + 1);
+    let v2: Vec<_> = v2_iterator_adaptor.collect();
     println!("{:?}", v2);
 }
