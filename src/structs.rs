@@ -66,10 +66,9 @@ pub fn learning_struct() {
         return rect.width * rect.height;
     }
 
-    let mut rect = Rectangle {
-        width: 30,
-        height: 40,
-    };
+    let width = 30;
+
+    let mut rect: Rectangle = Rectangle { width, height: 40 };
 
     println!("The area of rect is: {}", area(&rect));
     println!("The rect is: {:#?}", rect);
