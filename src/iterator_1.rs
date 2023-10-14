@@ -21,6 +21,22 @@ pub fn learning_iterator() {
         println!("Got: {}", val_1);
     }
 
+    let v1: Vec<i32> = vec![1, 2, 3];
+    let v1_into_iter = v1.into_iter();
+
+    // 此处的 val 是 i32 类型 ( 是一个借用 )
+    for val in v1_into_iter {
+        println!("Got: {}", val);
+    }
+
+    let mut v1: Vec<i32> = vec![1, 2, 3];
+    let v1_iter_mut = v1.iter_mut();
+
+    // 此处的 val 是 &mut i32 类型 ( 是一个借用 )
+    for val in v1_iter_mut {
+        println!("Got: {}", val);
+    }
+
     // 迭代器 (1) - Iterator trait 和 next 方法
     // Iterator trait
     // 所有的迭代器都实现了 Iterator trait
