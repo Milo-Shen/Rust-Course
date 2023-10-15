@@ -8,6 +8,12 @@ pub fn learning_vector() {
     // 如果越界访问, 会触发 panic! , C 种会导致缓冲区溢出 ( buffer overread )
     let v = vec![1, 2, 3];
 
+    // 可以使用这种方式从 vec 里转换得到获得 &[i32]
+    let v_slice = &v[..];
+
+    // 也可以通过如下方式获得 &[i32] 类型
+    let v_slice_1: &[i32] = &v;
+
     // use mut vector
     let mut v = Vec::new();
     v.push(1);
