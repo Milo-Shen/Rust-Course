@@ -132,7 +132,7 @@ fn main() {
     // generics::learning_generics();
     //
     // // trait
-    // learning_trait::learning_trait();
+    learning_trait::learning_trait();
     //
     // // lifecycle
     // lifecycle_1::learning_lifecycle();

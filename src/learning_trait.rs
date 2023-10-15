@@ -138,18 +138,33 @@ pub fn learning_trait() {
     return_impl_result.summarize();
 
     // 实现 Trait 作为返回类型 - 使用 bound 的方式
-    // todo: 这里研究一下 ist.iter() 的用法
     fn largest<T: PartialOrd + Copy>(list: &[T]) -> T {
         let mut largest = list[0];
-        for item in list {
-            if *item > largest {
-                largest = *item;
+        for &item in list.iter() {
+            if item > largest {
+                largest = item;
             }
         }
         return largest;
     }
     let vector = vec![1, 2, 3];
     let largest = largest(&vector);
+    println!("The largest value is: {}", largest);
+
+
+    // 实现 Trait 作为返回类型 - 使用 bound 的方式
+    // 新增此种返回引用的形式
+    fn _largest<T: PartialOrd>(list: &[T]) -> &T {
+        let mut largest = &list[0];
+        for item in list.iter() {
+            if *item > *largest {
+                largest = item;
+            }
+        }
+        return largest;
+    }
+    let vector = vec![1, 2, 3];
+    let largest = _largest(&vector);
     println!("The largest value is: {}", largest);
 
     fn largest_string_1<T: PartialOrd + Clone>(list: &[T]) -> T {
