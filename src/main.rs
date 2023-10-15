@@ -120,7 +120,7 @@ fn main() {
     // hashmap::learning_hashmap();
 
     // // panic
-    panic::learning_panic();
+    // panic::learning_panic();
     //
     // // result
     // result::learning_result();
@@ -132,10 +132,10 @@ fn main() {
     // generics::learning_generics();
     //
     // // trait
-    learning_trait::learning_trait();
+    // learning_trait::learning_trait();
     //
     // // lifecycle
-    // lifecycle_1::learning_lifecycle();
+    lifecycle_1::learning_lifecycle();
     // lifecycle_2::learning_lifecycle();
     // lifecycle_3::learning_lifecycle();
     // lifecycle_4::learning_lifecycle();
