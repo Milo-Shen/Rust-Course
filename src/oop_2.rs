@@ -22,6 +22,7 @@ impl Screen {
         // draw 函数运行的时候, 它不关心传入的是什么类型, 它只关心传入的的类型实现了 Draw 这个 trait 就可以
         // 但是如果元素没有实现 Draw 这个 trait 则不行
         for component in self.components.iter() {
+            // 此处 component 的类型为: &Box<dyn Draw>
             component.draw();
         }
     }
