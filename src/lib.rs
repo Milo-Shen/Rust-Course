@@ -211,8 +211,8 @@ impl AveragedCollection {
 pub trait State {
     // Box<Self> 与 self 的区别: 这个语法意味着这个方法，它只能被包裹着当前类型的 Box 实例所调用
     // 它会在调用过程中获取 Box<Self> 的所有权, 并使旧的状态实失效, 从而将 Post 的状态值，转化为一个新的状态
+    
     // type of `self` must be `Self` or a type that dereferences to it
-
     // consider changing to `self`, `&self`, `&mut self`, `self: Box<Self>`, `self: Rc<Self>`, `self: Arc<Self>`
     // or `self: Pin<P>` (where P is one of the previous types except `Self`)
     fn request_review(self: Box<Self>) -> Box<dyn State>;
