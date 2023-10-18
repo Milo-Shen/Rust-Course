@@ -290,6 +290,7 @@ impl Post {
 
     pub fn request_review(&mut self) {
         // take 的作用: takes the value out of the option, leaving a None in its place.
+        // 这里用 Option 的原因是因为如果不用的话将发生: cannot move out of `self.state` which is behind a mutable reference
         if let Some(s) = self.state.take() {
             self.state = Some(s.request_review());
         }
