@@ -23,6 +23,11 @@ pub fn learning_ownership() {
     // 注意，不要使用println!("{}", *a);或类似的宏来测试，这些宏不是函数，它们真实的代码中使用的是&(*a)，因此不会发生所有权的转移。
     println!("{:?}", *v);
 
+    let x = "hello".to_string();
+    x;   // 发生Move
+    // println!("{}", x);  // 报错：value borrowed here after move
+    // 从这个示例来看，【当值需要放进位置的时候，就会发生移动】，这句话似乎不总是正确，第三行的x;取得了x的值，但是它直接被丢弃了，所以x也被消耗掉了，使得println中使用x报错。实际上，这里也产生了位置，它等价于let _tmp = x;，即将值移动给了一个临时变量。
+
     let mut name = String::from("jack");
     name.push_str("hello");
     println!("my name is: {}", name);
