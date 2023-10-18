@@ -28,6 +28,13 @@ pub fn learning_ownership() {
     // println!("{}", x);  // 报错：value borrowed here after move
     // 从这个示例来看，【当值需要放进位置的时候，就会发生移动】，这句话似乎不总是正确，第三行的x;取得了x的值，但是它直接被丢弃了，所以x也被消耗掉了，使得println中使用x报错。实际上，这里也产生了位置，它等价于let _tmp = x;，即将值移动给了一个临时变量。
 
+    // 从结果上来看，语句块将x通过返回值的方式移出来赋值给了 y，所以认为x的所有权被转移给了y。实际上，语句块中那唯一的一行代码本身就发生了一次移动，将x的所有权移动给了临时变量，然后返回时又发生了一次移动。
+    let x = "hello".to_string();
+    let y = {
+        x // 发生Move，注意没有结尾分号
+    };
+    // println!("{}", x); // 报错：value borrowed here after move
+
     let mut name = String::from("jack");
     name.push_str("hello");
     println!("my name is: {}", name);
