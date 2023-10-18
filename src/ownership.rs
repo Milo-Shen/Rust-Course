@@ -16,6 +16,11 @@ fn calculate_length(x: String) -> (String, usize) {
 pub fn learning_ownership() {
     println!("Start to learn ownership");
 
+    // 解引用操作也需要转移所有权
+    let v = &vec![11, 22];
+    // 因为变量v只是vec的一个引用，而不是它的所有者，它无权转移值的所有权。
+    // let vv = *v;
+
     let mut name = String::from("jack");
     name.push_str("hello");
     println!("my name is: {}", name);
