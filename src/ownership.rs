@@ -20,6 +20,8 @@ pub fn learning_ownership() {
     let v = &vec![11, 22];
     // 因为变量v只是vec的一个引用，而不是它的所有者，它无权转移值的所有权。
     // let vv = *v;
+    // 注意，不要使用println!("{}", *a);或类似的宏来测试，这些宏不是函数，它们真实的代码中使用的是&(*a)，因此不会发生所有权的转移。
+    println!("{:?}", *v);
 
     let mut name = String::from("jack");
     name.push_str("hello");
