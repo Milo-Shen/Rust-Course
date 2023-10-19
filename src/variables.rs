@@ -31,13 +31,13 @@ pub fn learning_variables() {
     {
         let s = "hello";
         // 0x10257459c
-        println!("the address of const s is: {:p}", s);  
+        println!("the address of const s is: {:p}", s);
     }
-  
+
     // 因此，上面的示例中只是让变量s失效了，仅此而已，并没有销毁s所绑定的字符串字面量
     let s = "hello";
     // 0x10257459c
-    println!("the address of const s is: {:p}", s);  
+    println!("the address of const s is: {:p}", s);
 
     let tuple: (i32, f64) = (1, 2.0);
     let address = &tuple as *const (i32, f64) as usize;

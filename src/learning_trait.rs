@@ -151,7 +151,6 @@ pub fn learning_trait() {
     let largest = largest(&vector);
     println!("The largest value is: {}", largest);
 
-
     // 实现 Trait 作为返回类型 - 使用 bound 的方式
     // 新增此种返回引用的形式
     fn _largest<T: PartialOrd>(list: &[T]) -> &T {
