@@ -64,10 +64,20 @@ pub fn learning_ownership() {
     // 因此，变量 s 是那个胖指针的所有者，而不是堆中实际数据的所有者。
     // 但是，由于胖指针是指向堆中数据的，多数时候为了简化理解简化描述方式，也经常会说s是那个堆中实际数据的所有者。但无论如何描述，需要理解所有者和值之间的真相。
 
-
     // Rust采用非常直接的方式，当执行let s2 = s1;时，直接让s1无效(s1仍然存在，只是变成未初始化变量，Rust不允许使用未初始化变量，可重新为其赋值)，而是只让s2绑定堆内存的数据。也就是将s1移动到s2，也称为值的所有权从s1移给s2。
     let mut s1 = String::from("hello world");
     let s2 = s1;
     s1 = String::from("hello world next");
     println!("{}", s1);
+
+    // 所有权移动后修改数据
+    // 定义变量的时候，加上 mut 表示变量可修改。当发生所有权转移时，后拥有所有权的变量也可以加上mut。
+    let mut x = String::from("hello");
+    // x将所有权转移给y，但 y 无法修改字符串
+    let y = x;
+    // y.push('C');  // 本行报错
+    let a = String::from("hello");
+    // 虽然a无法修改字符串，但转移所有权后，b 可修改字符串
+    let mut b = a;
+    b.push('C'); // 本行不报错
 }
