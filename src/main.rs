@@ -86,7 +86,7 @@ fn main() {
     // control_flow::learning_control_flow();
     //
     // // Ownership
-    // ownership::learning_ownership();
+    ownership::learning_ownership();
     //
     // // Reference
     // reference::learning_reference();
