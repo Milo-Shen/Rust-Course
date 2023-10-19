@@ -77,16 +77,16 @@ mod vector;
 
 fn main() {
     // Variables and Mutability
-    // variables::learning_variables();
+    variables::learning_variables();
     //
     // // Functions
-    // functions::learning_functions();
+    functions::learning_functions();
     //
     // // Control Flow
     // control_flow::learning_control_flow();
     //
     // // Ownership
-    ownership::learning_ownership();
+    // ownership::learning_ownership();
     //
     // // Reference
     // reference::learning_reference();
@@ -135,7 +135,7 @@ fn main() {
     // learning_trait::learning_trait();
     //
     // // lifecycle
-    lifecycle_1::learning_lifecycle();
+    // lifecycle_1::learning_lifecycle();
     // lifecycle_2::learning_lifecycle();
     // lifecycle_3::learning_lifecycle();
     // lifecycle_4::learning_lifecycle();

@@ -14,6 +14,13 @@ fn plus_six(x: i32) -> i32 {
 
 pub fn learning_functions() {
     println!("Start to learn functions");
+
+    let x = 32;
+    fn f(){
+      // 编译错误，不能访问函数外面的变量x和y
+      // println!("{}", x);  
+    }
+
     another_function(10086);
     let mut total: i32 = 0;
     total = plus_five(total);
