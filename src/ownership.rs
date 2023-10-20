@@ -92,4 +92,45 @@ pub fn learning_ownership() {
     // 此外，对于胖指针类型的变量(如Vec、String)，即使发生了拷贝，其性能也不差，因为拷贝的只是它的胖指针部分。
     // 总之，Move虽然发生了内存拷贝，但它的性能并不会太受影响。
     // 此处部分结论参考：https://stackoverflow.com/questions/30288782/what-are-move-semantics-in-rust。
+
+    // Copy语义
+    // 默认情况下，在将一个值保存到某个位置时总是进行值的移动(实际上是拷贝)，使得只有目标位置才拥有这个值，而原始变量将变回未初始化状态，也就是暂时不可用的状态。这是Rust的移动语义。
+    // Rust 还有 Copy 语义，和 Move 语义几乎相同，唯一的区别是 Copy 后，原始变量仍然可用。
+    // 前面说过，Move 实际上是进行了拷贝，只不过拷贝后让原始变量变回未初始化状态了，而 Copy 的行为，就是保留原始变量。
+    // 但 Rust 默认是使用 Move 语义，如果想要使用 Copy 语义，要求要拷贝的数据类型实现了 Copy Trait。
+    // 例如，i32 默认就已经实现了Copy Trait，因此它在进行所有权转移的时候，会自动使用 Copy 语义，而不是 Move 语义。
+
+    let x = 3; // 3是原始数据类型，它直接存储在栈中，所以x变量的值是3，x拥有3
+    let n = x; // Copy x的值(即3)到变量n，n现在拥有一个3，但x仍然拥有自己的3
+
+    // Rust中默认实现了Copy Trait的类型，包括但不限于：
+    // 1. 所有整数类型，比如u32
+    // 2. 所有浮点数类型，比如f64
+    // 3. 布尔类型，bool，它的值是true和false
+    // 4. 字符类型，char
+    // 5. 元组，当且仅当其包含的类型也都是Copy的时候。比如(i32, i32)是Copy的，但(i32, String)不是
+    // 6. 共享指针类型或共享引用类型
+
+    // 对于那些没有实现 Copy 的自定义类型，可以手动去实现 Copy (要求同时实现 Clone )，方式很简单：
+    #[derive(Copy, Clone)]
+    struct Abc(i32, i32);
+
+    // 下面是实现了 Copy 和未实现 Copy 时的一个对比示例：
+    #[derive(Debug)]
+    struct Xyz(i32, i32);
+
+    #[derive(Copy, Clone, Debug)]
+    struct Def(i32, i32);
+
+    fn main() {
+        let x = Xyz(11, 22);
+        let y = x;
+        // println!("x: {:?}", x); // 报错
+        println!("y: {:?}", y);
+
+        let d = Def(33, 44);
+        let e = d;
+        println!("d: {:?}", d);
+        println!("e: {:?}", e);
+    }
 }
