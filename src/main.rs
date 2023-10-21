@@ -77,10 +77,10 @@ mod vector;
 
 fn main() {
     // Variables and Mutability
-    variables::learning_variables();
+    // variables::learning_variables();
     //
     // // Functions
-    functions::learning_functions();
+    // functions::learning_functions();
     //
     // // Control Flow
     // control_flow::learning_control_flow();

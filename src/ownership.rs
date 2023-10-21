@@ -133,4 +133,34 @@ pub fn learning_ownership() {
         println!("d: {:?}", d);
         println!("e: {:?}", e);
     }
+
+    // 克隆数据
+    // 虽然实现 Copy Trait 可以让原变量继续拥有自己的值，但在某些需求下，不便甚至不能去实现 Copy。这时如果想要继续使用原变量，可以使用 clone() 方法手动拷贝变量的数据，同时不会让原始变量变回未初始化状态。
+
+    let s1 = String::from("hello");
+    // 克隆s1，克隆之后，变量s1仍然绑定原始数据
+    let s2 = s1.clone();
+    println!("{},{}", s1, s2);
+
+    // 但不是所有数据类型都可以进行克隆，只有那些实现了 Clone Trait 的类型才可以进行克隆，常见的数据类型都已经实现了 Clone，因此它们可以直接使用 clone() 来克隆。
+    // 对于那些没有实现 Clone Trait 的自定义类型，需要手动实现 Clone Trait。在自定义类型之前加上 #[derive(Clone)] 即可。例如：
+
+    #[derive(Clone)]
+    struct ABC(i32, i32);
+
+    // 这样 Abc 类型的值就可以使用 clone() 方法进行克隆。
+    // 要注意 Copy 和 Clone 时的区别，如果不考虑自己实现 Copy trait 和 Clone trait，而是使用它们的默认实现，那么：
+    //   1. Copy 时，只拷贝变量本身的值，如果这个变量指向了其它数据，则不会拷贝其指向的数据
+    //   2. Clone 时，拷贝变量本身的值，如果这个变量指向了其它数据，则也会拷贝其指向的数据
+    // 也就是说，Copy 是浅拷贝，Clone 是深拷贝，Rust 会对每个字段每个元素递归调用 clone()，直到最底部。
+    // 例如：
+
+    let vb0 = vec!["s1".to_string()];
+    let v = vec![vb0];
+    println!("{:p}", &v[0][0]); // 0x7f9bccf06010
+
+    let vc = v.clone();
+    println!("{:p}", &vc[0][0]); // 0x7f9bccf06080
+
+    // 所以，使用 Clone 的默认实现时，clone() 操作的性能是较低的。但可以自己实现自己的克隆逻辑，也不一定总是会效率低。比如 Rc，它的 clone 用于增加引用计数，同时只拷贝少量数据，它的 clone 效率并不低。
 }
