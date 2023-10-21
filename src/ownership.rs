@@ -111,7 +111,7 @@ pub fn learning_ownership() {
     // 5. 元组，当且仅当其包含的类型也都是Copy的时候。比如(i32, i32)是Copy的，但(i32, String)不是
     // 6. 共享指针类型或共享引用类型
 
-    // 对于那些没有实现 Copy 的自定义类型，可以手动去实现 Copy (要求同时实现 Clone )，方式很简单：
+    // 对于那些没有实现 Copy 的自定义类型，可以手动去实现 Copy ( 要求同时实现 Clone )，方式很简单：
     #[derive(Copy, Clone)]
     struct Abc(i32, i32);
 
@@ -179,19 +179,56 @@ pub fn learning_ownership() {
 
     let x = 4;
     f2(x); // 没有移动所有权，而是拷贝一份给f2参数
+
+    // 首先x跳出作用域，
+    // 然后s2跳出作用域，并释放对应堆内存数据，
+    // 最后s1跳出作用域，s1没有所有权，所以没有任何其他影响
+    fn f1(s: String) -> String {
+        let ss = String::from("world");
+        println!("{},{}", s, ss);
+        s // 返回值s的所有权移动到函数外
+    } // ss跳出作用域
+
+    fn f2(i: i32) {
+        println!("{}", i);
+    } // i跳出作用域
+
+    // 很多时候，变量传参之后丢失所有权是非常不方便的，这意味着函数调用之后，原变量就不可用了。为了解决这个问题，可以将变量的引用传递给参数。引用是保存在栈中的，它实现了 Copy Trait ，因此在传递引用时，所有权转移的过程实际上是拷贝了引用，这样不会丢失原变量的所有权，效率也更高。
+
+    // 引用和所有权借用
+
+    // 容器集合类型的所有权规则
+    // 前面所介绍的都是标量类型的所有权规则，此处再简单解释一下容器类型(比如 tuple / array / vec / struct / enum 等 ) 的所有权。
+    // 容器类型中可能包含栈中数据值 (特指实现了 Copy 的类型)，也可能包含堆中数据值 (特指未实现 Copy 的类型)。例如：
+    let tup = (5, String::from("hello"));
+
+    // 容器变量拥有容器中所有元素值的所有权。
+    // 因此，当上面 tup 的第二个元素的所有权转移之后，tup 将不再拥有它的所有权，这个元素将不可使用，tup 自身也不可使用，但仍然可以使用 tup 的第一个元素。
+    let tup = (5, String::from("hello"));
+    // 5拷贝后赋值给x，tup 仍有该元素的所有权
+    // 字符串所有权转移给 y，tup 丢失该元素所有权
+    let (x, y) = tup;
+    // 正确
+    println!("{},{}", x, y);
+    // 正确
+    println!("{}", tup.0);
+    // println!("{}", tup.1); // 错误
+    // borrow of partially moved value: `tup`
+    // partial move occurs because `tup.1` has type `String`, which does not implement the `Copy` traitrustcClick for full compiler diagnostic
+    // println!("{:?}", tup); // 错误
+
+    // 如果想要让原始容器变量继续可用，要么忽略那些没有实现 Copy 的堆中数据，要么 clone() 拷贝堆中数据后再 borrow，又或者可以引用该元素。
+    let tup = (5, String::from("hello"));
+
+    // 方式一：忽略
+    let (x, _) = tup;
+    println!("{}", tup.1); //  正确
+
+    // 方式二：clone
+    let (x, y) = tup.clone();
+    println!("{}", tup.1); //  正确
+
+    // 方式三：引用
+    let (x, ref y) = tup;
+    println!("{}", tup.1); //  正确
 }
-
-// 首先x跳出作用域，
-// 然后s2跳出作用域，并释放对应堆内存数据，
-// 最后s1跳出作用域，s1没有所有权，所以没有任何其他影响
-fn f1(s: String) -> String {
-    let ss = String::from("world");
-    println!("{},{}", s, ss);
-    s // 返回值s的所有权移动到函数外
-} // ss跳出作用域
-
-fn f2(i: i32) {
-    println!("{}", i);
-} // i跳出作用域
-
-// 很多时候，变量传参之后丢失所有权是非常不方便的，这意味着函数调用之后，原变量就不可用了。为了解决这个问题，可以将变量的引用传递给参数。引用是保存在栈中的，它实现了 Copy Trait ，因此在传递引用时，所有权转移的过程实际上是拷贝了引用，这样不会丢失原变量的所有权，效率也更高。
