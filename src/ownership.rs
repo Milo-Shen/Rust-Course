@@ -207,6 +207,7 @@ pub fn learning_ownership() {
     let tup = (5, String::from("hello"));
     // 5拷贝后赋值给x，tup 仍有该元素的所有权
     // 字符串所有权转移给 y，tup 丢失该元素所有权
+    // 字段访问时会 Move 那个字段
     let (x, y) = tup;
     // 正确
     println!("{},{}", x, y);
@@ -231,4 +232,11 @@ pub fn learning_ownership() {
     // 方式三：引用
     let (x, ref y) = tup;
     println!("{}", tup.1); //  正确
+
+    // 索引访问时，会 Move 那个元素
+    let my_vec = [String::from("hello"), String::from("world")];
+    let [str, _] = my_vec;
+    // use of partially moved value: `my_vec`
+    // partial move occurs because `my_vec[..]` has type `String`, which does not implement the `Copy`
+    // println!("{:?}", my_vec[1]);
 }
