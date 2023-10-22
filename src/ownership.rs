@@ -239,4 +239,32 @@ pub fn learning_ownership() {
     // use of partially moved value: `my_vec`
     // partial move occurs because `my_vec[..]` has type `String`, which does not implement the `Copy`
     // println!("{:?}", my_vec[1]);
+
+    // 字段访问时会 Move 那个字段
+    #[derive(Debug)]
+    struct App {
+        a: String,
+        b: i32,
+    }
+
+    let app = App {
+        a: String::from("value"),
+        b: 2,
+    };
+
+    let app_a = app.a;
+    // borrow of partially moved value: `app`
+    // partial move occurs because `app.a` has type `String`, which does not implement the `Copy`
+    // println!("{:?}", app);
+    println!("{}", app.b);
+
+    fn test_1(a: App) {}
+    // use of partially moved value: `app`
+    // partial move occurs because `app.a` has type `String`, which does not implement the `Copy`
+    // test_1(app);
+
+    fn test_2(a: &App) {}
+    // borrow of partially moved value: `app`
+    // partial move occurs because `app.a` has type `String`, which does not implement the `Copy`
+    // test_2(&app);
 }
