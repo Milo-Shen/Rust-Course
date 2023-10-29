@@ -70,6 +70,14 @@ pub fn learning_advanced_trait() {
                 y: self.y + rhs.y,
             }
         }
+
+        // 此处的 Point 也可以由 Self::Output 来代替
+        // fn add(self, rhs: Self::Output) -> Self::Output {
+        //     Self::Output {
+        //         x: self.x + rhs.x,
+        //         y: self.y + rhs.y,
+        //     }
+        // }
     }
 
     let my_pointer = Point { x: 1, y: 2 } + Point { x: 3, y: 4 };
