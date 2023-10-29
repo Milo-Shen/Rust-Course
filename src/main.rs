@@ -83,7 +83,7 @@ fn main() {
     // functions::learning_functions();
     //
     // // Control Flow
-    control_flow::learning_control_flow();
+    // control_flow::learning_control_flow();
     //
     // // Ownership
     // ownership::learning_ownership();
@@ -196,7 +196,7 @@ fn main() {
     // // pattern matching
     // pattern_matching_1::learning_pattern_matching();
     // pattern_matching_2::learning_pattern_matching();
-    // pattern_matching_3::learning_pattern_matching();
+    pattern_matching_3::learning_pattern_matching();
     //
     // // unsafe rust
     // unsafe_rust::learning_unsafe_rust();

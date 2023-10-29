@@ -174,12 +174,20 @@ pub fn learning_pattern_matching() {
     println!("_x = {}", _x);
 
     let s = Some(String::from("Hello !"));
-    // 此处使用 _ 进行解构时不会发生绑定这类操作, 若是使用非 _ 变量, 则会发生绑定操作
-    // 所有权将发生移动
+
+    // 此处使用 _ 进行解构时不会发生绑定这类操作, 不会移动所有钱
+    // 所有权不会发生移动
     if let Some(_) = s {
         println!("found a string");
     }
     println!("{:?}", s);
+
+    // 若是使用非 _变量, 则会发生绑定操作
+    // 所有权会发生移动，下面 s 变量的所有权被转移到了 _s 中
+    if let Some(_s) = s {
+        println!("found a string");
+    }
+    // println!("{:?}", s);
 
     // 使用 .. 来忽略值的剩余部分
     let origin = Point { x: 1, y: 2 };
