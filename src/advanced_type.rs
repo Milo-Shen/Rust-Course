@@ -120,7 +120,7 @@ pub fn learning_advanced_type() {
     // 下面的函数实际上会被影式转化为: fn generic<T: Sized>(t: T) {}
     fn generic<T>(t: T) {}
 
-    // 使用 ?Sized trait 解除上述约束
+    // 使用 ?Sized trait 解除上述约束 ( 所以 ?Sized 是专门针对泛型设计的 )
     // ?Sized 表达了一种不确定性, 即 T 可能是 sized 也可能不是 sized
     // 语法的要求: 只能用于 Sized 上面
     // 参数 T 变成了 &T, 因为此时 T 的大小不是确定的, 所以此处我们要把 T 放在某种指针后面 ( 这个例子里使用的是引用 )
