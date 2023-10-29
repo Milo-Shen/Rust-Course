@@ -35,15 +35,22 @@ pub fn learning_control_flow() {
     for numbers in 1..5 {
         println!("i32 value is: {}", numbers);
     }
+
     for numbers in (1..5).rev() {
         println!("i32 value is: {}", numbers);
     }
 
     let print_array: [i32; 4] = [1, 2, 3, 4];
+
     for i in print_array {
         println!("i32 value is: {}", i);
     }
+
     for i in print_array.iter() {
         println!("&i32 value is: {}", i);
+    }
+
+    for numbers in 1..=5 {
+        println!("i32 value is: {}", numbers);
     }
 }
