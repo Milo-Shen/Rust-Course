@@ -208,6 +208,7 @@ pub fn learning_pattern_matching() {
     let num = Some(4);
     // 下面的代码中, Some(x) 就是模式, x < 5 就是 match 守卫
     match num {
+        // 下文的 match 守卫，又称为 match 守卫
         Some(x) if x < 5 => println!("less than five: {}", x),
         Some(x) => println!("{}", x),
         None => (),
