@@ -41,6 +41,7 @@ pub fn learning_drop_trait() {
     // 但可以调用标准库的 std::mem::drop 函数，来提前 drop 值
 
     // error[E0040]: explicit use of destructor method
+    // 这里不能执行成功是因为，rust 会自动在变量退出作用域的时候执行 drop，如果下面这行代码能通过的话，会造成 double free
     // a.drop();
 
     // 使用标准库的 std::mem::drop 函数，来提前 drop 值
