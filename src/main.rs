@@ -174,7 +174,7 @@ fn main() {
     // drop_trait::learning_drop_trait();
     //
     // // Rc<T> 引用计数智能指针
-    // rc::learning_rc();
+    rc::learning_rc();
     //
     // // RecCell<T>
     // refcell::learning_ref_cell();
@@ -196,7 +196,7 @@ fn main() {
     // // pattern matching
     // pattern_matching_1::learning_pattern_matching();
     // pattern_matching_2::learning_pattern_matching();
-    pattern_matching_3::learning_pattern_matching();
+    // pattern_matching_3::learning_pattern_matching();
     //
     // // unsafe rust
     // unsafe_rust::learning_unsafe_rust();
