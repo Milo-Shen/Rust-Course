@@ -82,4 +82,10 @@ pub fn learning_smart_pointer() {
     use List::{Cons, Nil};
     let list: List = Cons(1, Box::new(Cons(2, Box::new(Cons(3, Box::new(Nil))))));
     println!("{:?}", list);
+
+    let box_str = Box::new(String::from("hello"));
+    // 此时，Box 内部的 String 的所有权就转移给了 unbox_str
+    let unbox_str = *box_str;
+    // borrow of moved value: `box_str`
+    // println!("{}", box_str);
 }
