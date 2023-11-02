@@ -72,7 +72,9 @@ pub fn learning_rc() {
     // 问题: 如何使得数据可变呢 ?
 
     // added in 2022-10-8
-    let val = Rc::new(2);
+    let mut val = Rc::new(2);
+    // todo: 如何体现 Rc<T> 仅允许编译时检查的不可变借用 ?
+    let c = &mut val;
     // 此处的 clone 和 Rc::clone
     let some_val = Some(val.clone());
     // 外层的 Option clone 了，里面的 Rc 的强引用技术也会 +1
