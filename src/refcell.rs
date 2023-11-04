@@ -1,4 +1,4 @@
-use std::cell::RefCell;
+use std::{cell::RefCell, borrow::BorrowMut};
 use std::rc::Rc;
 
 pub trait Messenger {
@@ -43,7 +43,7 @@ where
 
 #[derive(Debug)]
 enum List {
-    Cons(Rc<RefCell<i32>>, Rc<List>),
+    Cons(RefCell<i32>, Rc<List>),
     Nil,
 }
 
@@ -100,15 +100,19 @@ pub fn learning_ref_cell() {
     // let y = &mut x;
 
     // 将 Rc<T> 和 RcCell<T> 结合使用来实现一个拥有多重所有权的可变数据
-    let value = Rc::new(RefCell::new(5));
-    let a = Rc::new(Cons(Rc::clone(&value), Rc::new(Nil)));
-    let b = Cons(Rc::new(RefCell::new(6)), Rc::clone(&a));
-    let c = Cons(Rc::new(RefCell::new(10)), Rc::clone(&a));
+    let a = Rc::new(Cons(RefCell::new(5), Rc::new(Nil)));
+    let b = Cons(RefCell::new(6), Rc::clone(&a));
+    let c = Cons(RefCell::new(9), Rc::clone(&a));
 
     // todo: 理解此处 * 的用法, 下面这句话的执行顺序是否是: *(value.borrow_mut()) += 10;
-    *value.borrow_mut() += 10;
+    match b {
+        List::Cons(a, _) => {
+            *a.borrow_mut() += 100;
+        },
+        _=>()
+    }
     println!("a after = {:?}", a);
-    println!("b after = {:?}", b);
+    // println!("b after = {:?}", b);
     println!("c after = {:?}", c);
 
     // 其他可实现内部可变性的类型

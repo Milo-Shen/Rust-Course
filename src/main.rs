@@ -174,10 +174,10 @@ fn main() {
     // drop_trait::learning_drop_trait();
     //
     // // Rc<T> 引用计数智能指针
-    rc::learning_rc();
+    // rc::learning_rc();
     //
     // // RecCell<T>
-    // refcell::learning_ref_cell();
+    refcell::learning_ref_cell();
     //
     // // memory leak
     // memory_leak::learning_memory_leak();
