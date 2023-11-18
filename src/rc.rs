@@ -77,7 +77,7 @@ pub fn learning_rc() {
     let c = &mut val;
     // 此处的 clone 和 Rc::clone
     let some_val = Some(val.clone());
-    // 外层的 Option clone 了，里面的 Rc 的强引用技术也会 +1
+    // 外层的 Option clone 了，里面的 Rc 的强引用计数也会 +1
     let some_clone = some_val.clone();
     let another_clone = Rc::clone(&val);
     println!("option clone & Rc = {}", Rc::strong_count(&val));
