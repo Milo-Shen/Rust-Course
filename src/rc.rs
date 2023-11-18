@@ -1,3 +1,4 @@
+use std::cell::RefCell;
 use std::rc::Rc;
 
 pub fn learning_rc() {
@@ -81,4 +82,10 @@ pub fn learning_rc() {
     let some_clone = some_val.clone();
     let another_clone = Rc::clone(&val);
     println!("option clone & Rc = {}", Rc::strong_count(&val));
+
+    // Option 的 clone 方法，并不会深拷贝其中的内容
+    let a = Some(Rc::new(RefCell::new(1)));
+    let b = a.clone();
+    *b.unwrap().borrow_mut() += 100;
+    println!("{:?}", a);
 }
