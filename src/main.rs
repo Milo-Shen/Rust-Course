@@ -131,8 +131,8 @@ fn main() {
     // // generics
     // generics::learning_generics();
     //
-    // // trait
-    // learning_trait::learning_trait();
+    // trait
+    learning_trait::learning_trait();
     //
     // // lifecycle
     // lifecycle_1::learning_lifecycle();
@@ -174,7 +174,7 @@ fn main() {
     // drop_trait::learning_drop_trait();
     //
     // // Rc<T> 引用计数智能指针
-    rc::learning_rc();
+    // rc::learning_rc();
     //
     // // RecCell<T>
     // refcell::learning_ref_cell();
