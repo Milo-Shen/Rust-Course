@@ -80,8 +80,27 @@ pub fn learning_advanced_trait() {
         // }
     }
 
+    let point_1 = Point { x: 1, y: 2 };
+    let point_2 = Point { x: 3, y: 4 };
     let my_pointer = Point { x: 1, y: 2 } + Point { x: 3, y: 4 };
+    let is_point_equal = Point { x: 1, y: 2 } == Point { x: 1, y: 2 };
+    println!("is Point equal: {}", is_point_equal);
     println!("The final point is: {:?}", my_pointer);
+
+    #[derive(Debug)]
+    struct Point1 {
+        x: i32,
+        y: i32,
+    }
+
+    impl PartialEq for Point1 {
+        fn eq(&self, other: &Self) -> bool {
+            self.x == other.x
+        }
+    }
+
+    let is_point_equal = Point1 { x: 1, y: 2 } == Point1 { x: 1, y: 3 };
+    println!("is Point1 equal: {}", is_point_equal);
 
     // 具体指明泛型参数类型的例子
     #[derive(Debug)]

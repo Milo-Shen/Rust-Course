@@ -1,5 +1,5 @@
-use std::{cell::RefCell, borrow::BorrowMut};
 use std::rc::Rc;
+use std::{borrow::BorrowMut, cell::RefCell};
 
 pub trait Messenger {
     fn send(&self, msg: &str);
@@ -108,8 +108,8 @@ pub fn learning_ref_cell() {
     match b {
         List::Cons(a, _) => {
             *a.borrow_mut() += 100;
-        },
-        _=>()
+        }
+        _ => (),
     }
     println!("a after = {:?}", a);
     // println!("b after = {:?}", b);

@@ -132,7 +132,7 @@ fn main() {
     // generics::learning_generics();
     //
     // trait
-    learning_trait::learning_trait();
+    // learning_trait::learning_trait();
     //
     // // lifecycle
     // lifecycle_1::learning_lifecycle();
@@ -202,7 +202,7 @@ fn main() {
     // unsafe_rust::learning_unsafe_rust();
     //
     // // advanced trait
-    // advanced_trait::learning_advanced_trait();
+    advanced_trait::learning_advanced_trait();
     //
     // // advanced type
     // advanced_type::learning_advanced_type();
