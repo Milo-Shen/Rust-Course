@@ -87,6 +87,8 @@ pub fn learning_advanced_trait() {
     println!("is Point equal: {}", is_point_equal);
     println!("The final point is: {:?}", my_pointer);
 
+    // 如果，下面有自己的 PartialEq 实现则，无法再 derive PartialEq trait
+    // 否则会引起: conflicting implementation for `Point1 问题
     #[derive(Debug)]
     struct Point1 {
         x: i32,
