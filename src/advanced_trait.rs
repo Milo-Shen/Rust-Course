@@ -124,7 +124,9 @@ pub fn learning_advanced_trait() {
 
     impl Ord for Point1 {
         fn cmp(&self, other: &Self) -> Ordering {
-            todo!()
+            let a = self.x * self.x + self.y + self.y;
+            let b = other.x * other.x + other.y + other.y;
+            return a.cmp(&b);
         }
     }
 
