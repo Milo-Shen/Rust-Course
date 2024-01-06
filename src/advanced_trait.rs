@@ -1,3 +1,4 @@
+use std::cmp::Ordering;
 use std::fmt;
 use std::fmt::{write, Display, Formatter};
 use std::ops::Add;
@@ -101,8 +102,27 @@ pub fn learning_advanced_trait() {
         }
     }
 
+    impl PartialOrd for Point1 {
+        fn partial_cmp(&self, other: &Self) -> Option<Ordering> {
+            let a = self.x * self.x + self.y + self.y;
+            let b = other.x * other.x + other.y + other.y;
+
+            // if a < b {
+            //     return Some(Ordering::Less);
+            // }
+            // if a > b {
+            //     return Some(Ordering::Greater);
+            // }
+            // return Some(Ordering::Equal);
+
+            return a.partial_cmp(&b);
+        }
+    }
+
     let is_point_equal = Point1 { x: 1, y: 2 } == Point1 { x: 1, y: 3 };
     println!("is Point1 equal: {}", is_point_equal);
+    let is_bigger = Point1 { x: 1, y: 2 } > Point1 { x: 1, y: 3 };
+    println!("is bigger: {}", is_bigger);
 
     // 具体指明泛型参数类型的例子
     #[derive(Debug)]
