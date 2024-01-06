@@ -115,6 +115,7 @@ pub fn learning_advanced_trait() {
             // }
             // return Some(Ordering::Equal);
 
+            // 但是在给定值无法区分出次序时，返回 None
             return a.partial_cmp(&b);
         }
     }
