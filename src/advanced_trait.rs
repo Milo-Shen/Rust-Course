@@ -142,8 +142,11 @@ pub fn learning_advanced_trait() {
     let is_bigger = Point1 { x: 1, y: 2 } > Point1 { x: 1, y: 3 };
     println!("is bigger: {}", is_bigger);
 
-    let new_point = Point1 { x: 10, y: 20 };
+    let mut new_point = Point1 { x: 10, y: 20 };
     let copied_point = new_point;
+    new_point.x = 100;
+    println!("new_point: {:?}", new_point);
+    // 这里确实是生成了一个副本
     println!("copied_point: {:?}", copied_point);
 
     // 具体指明泛型参数类型的例子
