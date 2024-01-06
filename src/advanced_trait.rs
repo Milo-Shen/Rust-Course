@@ -92,10 +92,17 @@ pub fn learning_advanced_trait() {
     // 否则会引起: conflicting implementation for `Point1 问题
     // Eq 本身没有任何方法，它的作用在于表明被标记类型的每一个值都与自身相等 ( Eq trait 只能被应用在同时实现了 PartialEq trait 的类型上 )
     // 不是所有实现了 PartialEq 的类型都能实现 Eq，一个典型的例子是浮点数，浮点数中两个非数 Nan 值的实例是互不相等的
-    #[derive(Debug, Eq)]
+    #[derive(Debug, Eq, Copy)]
     struct Point1 {
         x: i32,
         y: i32,
+    }
+
+    impl Clone for Point1 {
+        fn clone(&self) -> Self {
+            println!("clone func of Point 1 has been called");
+            Self { x: 0, y: 0 }
+        }
     }
 
     impl PartialEq for Point1 {
@@ -134,6 +141,10 @@ pub fn learning_advanced_trait() {
     println!("is Point1 equal: {}", is_point_equal);
     let is_bigger = Point1 { x: 1, y: 2 } > Point1 { x: 1, y: 3 };
     println!("is bigger: {}", is_bigger);
+
+    let new_point = Point1 { x: 10, y: 20 };
+    let copied_point = new_point;
+    println!("copied_point: {:?}", copied_point);
 
     // 具体指明泛型参数类型的例子
     #[derive(Debug)]
