@@ -90,7 +90,9 @@ pub fn learning_advanced_trait() {
 
     // 如果，下面有自己的 PartialEq 实现则，无法再 derive PartialEq trait
     // 否则会引起: conflicting implementation for `Point1 问题
-    #[derive(Debug)]
+    // Eq 本身没有任何方法，它的作用在于表明被标记类型的每一个值都与自身相等 ( Eq trait 只能被应用在同时实现了 PartialEq trait 的类型上 )
+    // 不是所有实现了 PartialEq 的类型都能实现 Eq，一个典型的例子是浮点数，浮点数中两个非数 Nan 值的实例是互不相等的
+    #[derive(Debug, Eq)]
     struct Point1 {
         x: i32,
         y: i32,
@@ -98,7 +100,7 @@ pub fn learning_advanced_trait() {
 
     impl PartialEq for Point1 {
         fn eq(&self, other: &Self) -> bool {
-            self.x == other.x
+            self.x == other.x && self.y == other.y
         }
     }
 
@@ -117,6 +119,12 @@ pub fn learning_advanced_trait() {
 
             // 但是在给定值无法区分出次序时，返回 None
             return a.partial_cmp(&b);
+        }
+    }
+
+    impl Ord for Point1 {
+        fn cmp(&self, other: &Self) -> Ordering {
+            todo!()
         }
     }
 
