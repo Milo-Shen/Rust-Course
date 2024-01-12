@@ -81,6 +81,12 @@ pub fn learning_advanced_trait() {
         // }
     }
 
+    impl Default for Point {
+        fn default() -> Self {
+            Self { x: 0, y: 0 }
+        }
+    }
+
     let point_1 = Point { x: 1, y: 2 };
     let point_2 = Point { x: 3, y: 4 };
     let my_pointer = Point { x: 1, y: 2 } + Point { x: 3, y: 4 };
