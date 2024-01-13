@@ -1,5 +1,5 @@
 use std::error::Error;
-use std::{env, fs, process};
+use std::{env, fs};
 
 fn print_outside() {
     println!("print_outside called");
@@ -217,7 +217,7 @@ pub trait State {
     // or `self: Pin<P>` (where P is one of the previous types except `Self`)
     fn request_review(self: Box<Self>) -> Box<dyn State>;
     fn approve(self: Box<Self>) -> Box<dyn State>;
-    fn content<'a>(&self, post: &'a Post) -> &'a str {
+    fn content<'a>(&self, _post: &'a Post) -> &'a str {
         ""
     }
 }
@@ -358,7 +358,7 @@ pub mod kinds {
 pub mod utils {
     use crate::kinds::*;
 
-    pub fn mix(c1: PrimaryColor, c2: PrimaryColor) -> SecondaryColor {
+    pub fn mix(_c1: PrimaryColor, _c2: PrimaryColor) -> SecondaryColor {
         SecondaryColor::Purple
     }
 }
