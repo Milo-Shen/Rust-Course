@@ -40,10 +40,10 @@ mod back_of_house {
 
     impl Breakfast {
         pub fn summer(toast: &str) -> Breakfast {
-            return Breakfast {
+            Breakfast {
                 toast: String::from(toast),
                 seasonal_fruit: String::from("peaches"),
-            };
+            }
         }
     }
 }
@@ -151,7 +151,7 @@ pub fn search<'a>(query: &str, content: &'a str) -> Vec<&'a str> {
             result.push(line.trim());
         }
     }
-    return result;
+    result
 }
 
 // 可以使用  CASE_INSENSITIVE=0 cargo run Too poem.txt 来测试
@@ -163,7 +163,7 @@ pub fn search_case_insensitive<'a>(query: &str, content: &'a str) -> Vec<&'a str
             result.push(line.trim());
         }
     }
-    return result;
+    result
 }
 
 // Rust 面向对象编程
@@ -191,7 +191,7 @@ impl AveragedCollection {
         match result {
             Some(value) => {
                 self.update_average();
-                return Some(value);
+                Some(value)
             }
             None => None,
         }
@@ -204,6 +204,12 @@ impl AveragedCollection {
     fn update_average(&mut self) {
         let total: i32 = self.list.iter().sum();
         self.average = total as f64 / self.list.len() as f64;
+    }
+}
+
+impl Default for AveragedCollection {
+    fn default() -> Self {
+        Self::new()
     }
 }
 
