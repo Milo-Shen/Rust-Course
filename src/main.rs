@@ -58,6 +58,7 @@ mod panic;
 mod pattern_matching_1;
 mod pattern_matching_2;
 mod pattern_matching_3;
+mod raw_pointer;
 mod rc;
 mod refcell;
 mod reference;
@@ -202,7 +203,7 @@ fn main() {
     // unsafe_rust::learning_unsafe_rust();
     //
     // // advanced trait
-    advanced_trait::learning_advanced_trait();
+    // advanced_trait::learning_advanced_trait();
     //
     // // advanced type
     // advanced_type::learning_advanced_type();
@@ -212,4 +213,7 @@ fn main() {
     //
     // // marcos
     // learn_macro::learning_macros();
+
+    // raw pointer
+    raw_pointer::learning_raw_pointer();
 }
