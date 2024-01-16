@@ -5,4 +5,13 @@ pub fn learning_raw_pointer() {
 
     println!("{:?}", r1);
     println!("{:?}", r2);
+
+    let address = 0x012345usize;
+    let r = address as *const i32;
+
+    // 只有在 unsafe 中才能解引用裸指针
+    unsafe {
+        println!("{:?}", *r1);
+        println!("{:?}", *r2);
+    }
 }
